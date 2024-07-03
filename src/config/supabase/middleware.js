@@ -65,19 +65,20 @@ export async function updateSession(request) {
   } = await supabase.auth.getUser()
 
   const url = new URL(request.url)
+  const { pathname } = url
 
   if (user) {
-    if (url.pathname === '/login' || url.pathname === '/signup') {
-      return NextResponse.redirect(new URL('/', request.url))
+    if (pathname === '/login' || pathname === '/signup' || pathname === '/') {
+      return NextResponse.redirect(new URL('/dashboard', request.url))
     }
   } else if (
-    (!user && url.pathname === '/login') ||
-    (!user && url.pathname === '/signup')
+    (!user && pathname === '/login') ||
+    (!user && pathname === '/signup')
   ) {
     // Do Nothing
-  } else {
+  } else if (pathname !== '/') {
     return NextResponse.redirect(
-      new URL(`/login?next=${url.pathname.slice(1)}`, request.url)
+      new URL(`/login?next=${pathname.slice(1)}`, request.url)
     )
   }
   return response

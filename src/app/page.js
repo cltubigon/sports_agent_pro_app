@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 // import Button from './components/Button'
 // import LogoutButton from './(dashboard)/_(dashboardHeader)/LogoutButton'
-import { getCurrentUser } from '@/config/supabase/getCurrentUser'
-import { redirect } from 'next/navigation'
+import ClientLoginFallback from './(auth)/login/ClientLoginFallback'
+import ClientLogin from './(auth)/login/ClientLogin'
 
 export const metadata = {
   title: 'Sports Agent Pro',
@@ -10,14 +10,18 @@ export const metadata = {
 }
 
 const Homepage = async () => {
-  const isLoggedIn = await getCurrentUser()
-  redirect(isLoggedIn ? '/dashboard' : '/login')
+  // const isLoggedIn = await getCurrentUser()
+  // redirect(isLoggedIn ? '/dashboard' : '/login')
   return (
     <>
       {/* <MainNavigation /> */}
       {/* <div className={`${openSans.className}`}> */}
       {/* <p className={''}>Homepage</p> */}
       {/* {isLoggedIn && <LogoutButton />} */}
+
+      <Suspense fallback={<ClientLoginFallback />}>
+        <ClientLogin />
+      </Suspense>
       {/* </div> */}
       {/* <Footer /> */}
     </>

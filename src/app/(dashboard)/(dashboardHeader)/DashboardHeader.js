@@ -11,7 +11,6 @@ const DashboardHeader = async () => {
 
   const display_name = currentUser?.display_name
   const avatar = currentUser?.avatar
-  console.log('currentUser', currentUser)
   return (
     <div
       className={

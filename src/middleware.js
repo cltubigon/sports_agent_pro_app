@@ -16,12 +16,12 @@ export const config = {
 }
 
 export async function middleware(req) {
+  // ************** NOT SPLIT TESTING **************
   const url = new URL(req.url)
   const path = url.pathname
   const doesInclude = restrictedPages.some((item) => path.includes(item))
 
-  // ************** NOT SPLIT TESTING **************
-  if (doesInclude) {
+  if (doesInclude || path === '/') {
     return await updateSession(req)
   }
   // ************** SPLIT TESTING **************

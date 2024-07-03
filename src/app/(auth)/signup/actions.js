@@ -7,7 +7,10 @@ export async function signup(data) {
   const supabase = createServer()
   const { email, password } = data
 
-  const { error } = await supabase.auth.signUp({
+  let {
+    data: { user },
+    error,
+  } = await supabase.auth.signUp({
     email: email,
     password: password,
     options: {
@@ -17,9 +20,11 @@ export async function signup(data) {
 
   if (error) {
     console.log('error', error)
-    // return error
   }
-
-  revalidatePath('/', 'layout')
-  redirect(`/confirm-signup/?email=${email}`)
+  if (!user?.user_metadata?.email) {
+    return 'Email already exists.'
+  } else {
+    revalidatePath('/', 'layout')
+    redirect(`/confirm-signup/?email=${email}`)
+  }
 }
