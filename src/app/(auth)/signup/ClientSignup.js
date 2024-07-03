@@ -4,7 +4,6 @@ import Divider from '@/app/components/Divider'
 import LoginSignupContainer from '@/app/components/LoginSignupContainer'
 import Toast from '@/app/components/Toast'
 import Icon_google from '@/app/components/icons/Icon_google'
-import Icon_linkedin from '@/app/components/icons/Icon_linkedin'
 import Input from '@/app/components/inputsFields/InputGroup/Input'
 import InputGroup from '@/app/components/inputsFields/InputGroup/InputGroup'
 import InputPasswordVisibility from '@/app/components/inputsFields/InputGroup/InputPasswordVisibility'
@@ -13,6 +12,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Icon_spinner from '@/app/components/icons/Icon_spinner'
 import { signup } from './actions'
+import { createClient } from '@/config/supabase/supabaseClient'
 
 const ClientSignup = () => {
   const { register, handleSubmit, formState } = useForm()
@@ -43,6 +43,16 @@ const ClientSignup = () => {
 
   const showHideClicked = () => {
     setshowPassword(() => !showPassword)
+  }
+
+  const handleLoginWithOAuth = async (provider) => {
+    const supabase = createClient()
+    await supabase.auth.signInWithOAuth({
+      provider,
+      options: {
+        redirectTo: location.origin + '/confirm-signup/callback',
+      },
+    })
   }
   return (
     <LoginSignupContainer parameters={{ formTitle: 'Create an account' }}>
@@ -117,18 +127,11 @@ const ClientSignup = () => {
           <div className={'flex gap-4 select-none'}>
             <div
               className={
-                'flex rounded-md w-full justify-center shadow-sm border-[1px] py-[10px] px-3 border-[#D1D5DB] gap-2'
+                'flex cursor-pointer rounded-md w-full justify-center shadow-sm border-[1px] py-[10px] px-3 border-[#D1D5DB] gap-2'
               }
+              onClick={() => handleLoginWithOAuth('google')}
             >
               <Icon_google className="size-6" />
-              Google
-            </div>
-            <div
-              className={
-                'flex rounded-md w-full justify-center shadow-sm border-[1px] py-[10px] px-3 border-[#D1D5DB] gap-2'
-              }
-            >
-              <Icon_linkedin className="size-6" />
               Google
             </div>
           </div>

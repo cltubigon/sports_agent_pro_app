@@ -2,6 +2,7 @@ import React from 'react'
 import Button from './components/Button'
 import LogoutButton from './(dashboard)/_(dashboardHeader)/LogoutButton'
 import { getCurrentUser } from '@/config/supabase/getCurrentUser'
+import { redirect } from 'next/navigation'
 
 export const metadata = {
   title: 'Sports Agent Pro',
@@ -9,19 +10,12 @@ export const metadata = {
 }
 
 const Homepage = async () => {
-  const isLoggedIn = await getCurrentUser()
-  console.log('isLoggedIn', isLoggedIn)
+  redirect('/login')
   return (
     <>
       {/* <MainNavigation /> */}
       {/* <div className={`${openSans.className}`}> */}
       <p className={''}>Homepage</p>
-      <p className={''}>
-        {isLoggedIn
-          ? `${isLoggedIn?.email} is logged in.`
-          : 'You are not logged in'}
-      </p>
-      {isLoggedIn && <LogoutButton />}
       {/* </div> */}
       {/* <Footer /> */}
     </>
