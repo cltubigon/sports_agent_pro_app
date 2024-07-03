@@ -29,14 +29,16 @@ const DashboardMenuMobile = () => {
             onClick={handleCLose}
           />
         )}
-        <div className={'h-fit mb-5 lg:mb-10'}>
-          <Image
-            src={logo}
-            alt="Love Transfusion logo"
-            className="max-w-[220px] lg:max-w-[260px]"
-          />
+        <div className={'h-fit mb-5 lg:mb-10 w-fit'}>
+          <Link href={'/dashboard'}>
+            <h3 className={'text-2xl min-w-[210px] md:text-3xl font-bold'}>
+              Sports Agent Pro
+            </h3>
+          </Link>
         </div>
-        <div className={'flex flex-col divide-y divide-primary-400'}>
+        <div
+          className={'flex flex-col min-w-[250px] divide-y divide-primary-400'}
+        >
           {dashboardMenuList.map((menu, index) => {
             const { name, link, Icon } = menu
             return (
