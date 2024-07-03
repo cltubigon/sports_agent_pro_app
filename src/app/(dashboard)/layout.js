@@ -1,7 +1,6 @@
-import DashboardHeader from './_(dashboardHeader)/DashboardHeader'
-import DashboardMenuDesktop from './_(dashboardMenu)/DashboardMenuDesktop'
-import DashboardMenuMobile from './_(dashboardMenu)/DashboardMenuMobile'
-import { openSans } from '@/utilities/fonts/fonts'
+import DashboardHeader from './(dashboardHeader)/DashboardHeader'
+import DashboardMenuDesktop from './(dashboardMenu)/DashboardMenuDesktop'
+import DashboardMenuMobile from './(dashboardMenu)/DashboardMenuMobile'
 
 export const revalidate = 30
 
@@ -15,7 +14,7 @@ export const metadata = {
 
 export default async function DashboardLayout({ children }) {
   return (
-    <div className={`block md:flex h-screen ${openSans.className}`}>
+    <div className={`block md:flex h-screen`}>
       <div className={'hidden lg:block'}>
         <DashboardMenuDesktop />
       </div>

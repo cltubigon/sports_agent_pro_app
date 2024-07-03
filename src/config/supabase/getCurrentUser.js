@@ -11,15 +11,14 @@ export const getCurrentUser = async () => {
   if (error) {
     return null
   } else if (user) {
-    return user
-    // const { data, error: userError } = await supabase
-    //   .from('users')
-    //   .select('*')
-    //   .eq('email', user?.email)
-    // if (data) {
-    //   return data[0]
-    // } else if (userError) {
-    //   console.log('error', error)
-    // }
+    const { data, error: userError } = await supabase
+      .from('users')
+      .select('*')
+      .eq('email', user?.email)
+    if (data) {
+      return data[0]
+    } else if (userError) {
+      console.log('error', error)
+    }
   }
 }
