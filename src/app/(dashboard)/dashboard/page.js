@@ -1,4 +1,5 @@
 import React from 'react'
+import LogoutButton from '../_(dashboardHeader)/LogoutButton'
 // import ClientDashboard from './ClientDashboard'
 
 export const metadata = {
@@ -13,6 +14,7 @@ const DashboardPage = async () => {
   return (
     <>
       <p className={''}>Dashboard</p>
+      <LogoutButton />
       {/* <ClientDashboard /> */}
     </>
   )
