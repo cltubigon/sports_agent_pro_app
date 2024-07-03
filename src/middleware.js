@@ -1,4 +1,4 @@
-// import { restrictedPages } from './app/lib/restrictedPages'
+import { restrictedPages } from './app/lib/restrictedPages'
 // import { executeSplitTesting } from './config/split-testing/middleware'
 import { updateSession } from './config/supabase/middleware'
 
@@ -16,16 +16,18 @@ export const config = {
 }
 
 export async function middleware(req) {
-  // const url = new URL(req.url)
+  const url = new URL(req.url)
+  const path = url.pathname
+  const doesInclude = restrictedPages.some((item) => path.includes(item))
 
-  // const path = url.pathname
-
-  // const doesInclude = restrictedPages.some((item) => path.includes(item))
+  // ************** NOT SPLIT TESTING **************
+  if (doesInclude) {
+    return await updateSession(req)
+  }
+  // ************** SPLIT TESTING **************
   // if (doesInclude) {
   //   return await updateSession(req)
   // } else {
   //   return executeSplitTesting(req)
   // }
-
-  return await updateSession(req)
 }

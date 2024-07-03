@@ -9,7 +9,7 @@ export default function NotFound() {
           'container md:px-6 lg:px-10 xl:px-0 h-full text-center flex justify-center flex-col'
         }
       >
-        <h3 className={'text-3xl md:text-4xl font-bold'}>Sports Agent Pro</h3>
+        <h3 className={'text-3xl md:text-4xl font-bold'}>404 Not Found</h3>
         <p>Could not find requested resource.</p>
         <div className={'w-fit mx-auto mt-5'}>
           <Link href="/" className="">

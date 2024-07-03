@@ -9,16 +9,17 @@ export const getCurrentUser = async () => {
   } = await supabase.auth.getUser()
 
   if (error) {
-    console.log('There is an error', error)
+    return null
   } else if (user) {
-    const { data, error: userError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('email', user?.email)
-    if (data) {
-      return data[0]
-    } else if (userError) {
-      console.log('error', error)
-    }
+    return user
+    // const { data, error: userError } = await supabase
+    //   .from('users')
+    //   .select('*')
+    //   .eq('email', user?.email)
+    // if (data) {
+    //   return data[0]
+    // } else if (userError) {
+    //   console.log('error', error)
+    // }
   }
 }

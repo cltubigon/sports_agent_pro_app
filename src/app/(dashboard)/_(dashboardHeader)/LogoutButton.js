@@ -1,5 +1,5 @@
 'use client'
-import { logout } from '@/app/(auth)/_signOut/actions'
+import { logout } from '@/app/(auth)/signOut/actions'
 import React from 'react'
 
 const LogoutButton = () => {
