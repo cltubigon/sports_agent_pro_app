@@ -15,3 +15,18 @@ export async function login({ data, redirectTo }) {
   revalidatePath('/', 'layout')
   redirect(redirectTo ? `/${redirectTo}` : '/dashboard')
 }
+
+export const handleLoginWithOAuth = async (provider) => {
+  const supabase = createServer()
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider,
+    options: {
+      redirectTo:
+        process.env.NEXT_PUBLIC_ROOT_DOMAIN + '/confirm-signup/callback',
+    },
+  })
+
+  if (data.url) {
+    redirect(data.url) // use the redirect API for your server framework
+  }
+}

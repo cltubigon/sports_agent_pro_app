@@ -12,7 +12,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Icon_spinner from '@/app/components/icons/Icon_spinner'
 import { signup } from './actions'
-import { createClient } from '@/config/supabase/supabaseClient'
+import { handleLoginWithOAuth } from '../login/actions'
 
 const ClientSignup = () => {
   const { register, handleSubmit, formState } = useForm()
@@ -45,15 +45,6 @@ const ClientSignup = () => {
     setshowPassword(() => !showPassword)
   }
 
-  const handleLoginWithOAuth = async (provider) => {
-    const supabase = createClient()
-    await supabase.auth.signInWithOAuth({
-      provider,
-      options: {
-        redirectTo: location.origin + '/confirm-signup/callback',
-      },
-    })
-  }
   return (
     <LoginSignupContainer parameters={{ formTitle: 'Create an account' }}>
       <Toast parameters={{ toast, settoast }} />

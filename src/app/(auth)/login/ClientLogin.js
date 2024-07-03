@@ -6,7 +6,7 @@ import Icon_google from '@/app/components/icons/Icon_google'
 import Button from '@/app/components/Button'
 import Checkbox from '@/app/components/inputsFields/Checkbox'
 import { useForm } from 'react-hook-form'
-import { login } from './actions'
+import { handleLoginWithOAuth, login } from './actions'
 import Toast from '@/app/components/Toast'
 import InputGroup from '@/app/components/inputsFields/InputGroup/InputGroup'
 import InputPasswordVisibility from '@/app/components/inputsFields/InputGroup/InputPasswordVisibility'
@@ -14,7 +14,6 @@ import LoginSignupContainer from '@/app/components/LoginSignupContainer'
 import Link from 'next/link'
 import Icon_spinner from '@/app/components/icons/Icon_spinner'
 import { useSearchParams } from 'next/navigation'
-import { createClient } from '@/config/supabase/supabaseClient'
 // import Icon_linkedin from '@/app/components/icons/Icon_linkedin'
 // import Icon_facebook from '@/app/components/icons/Icon_facebook'
 
@@ -71,16 +70,6 @@ const ClientLogin = () => {
   }
   const showHideClicked = () => {
     setshowPassword(() => !showPassword)
-  }
-
-  const handleLoginWithOAuth = async (provider) => {
-    const supabase = createClient()
-    await supabase.auth.signInWithOAuth({
-      provider,
-      options: {
-        redirectTo: location.origin + '/confirm-signup/callback',
-      },
-    })
   }
 
   return (
