@@ -35,10 +35,7 @@ const ClientLoginFallback = () => {
           </div>
           <div>
             <Button type="submit" className="w-full">
-              <div className={'relative'}>
-                Sign In{' '}
-                <Icon_spinner className="animate-spin absolute right-[-35px] top-0 bottom-0 my-auto" />
-              </div>
+              <div className={'relative'}>Sign In</div>
             </Button>
             <Link href={'/signup'}>
               <p
