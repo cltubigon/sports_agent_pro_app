@@ -1,5 +1,6 @@
 import { getCurrentUser } from '@/config/supabase/getCurrentUser'
 import React from 'react'
+import ResetPassword from './reset-password/ResetPassword'
 
 const AccountPage = async () => {
   const currentUser = await getCurrentUser()
@@ -9,6 +10,7 @@ const AccountPage = async () => {
       <div className={'flex flex-col gap-2 my-5'}>
         <p className={''}>Email: {currentUser?.email}</p>
         <p className={''}>Account type: {currentUser?.role}</p>
+        <ResetPassword />
       </div>
     </div>
   )

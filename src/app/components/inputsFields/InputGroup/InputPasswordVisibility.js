@@ -2,12 +2,29 @@ import React from 'react'
 import Button from '../../Button'
 
 // Example:
-// const [showPassword, setshowPassword] = useState(null)
-// const showHideClicked = () => {}
+// const [showPassword, setshowPassword] = useState(false)
+// const showHideClicked = () => {
+// setshowPassword(()=> !showPassword)
+// }
 
-// <InputPasswordVisibility onClick={showHideClicked}>
-//    {!showPassword ? 'show' : 'hide'}
-// </InputPasswordVisibility>
+// !!!!!!!! Requires InputGroup and Input
+{
+  /* <InputGroup>
+  <Input
+    id="newPassword"
+    type={showPassword ? 'text' : 'password'}
+    placeholder="New password"
+    error={errors?.newPassword?.message}
+    {...register('newPassword', {
+      required: 'New password is required',
+      validate: validatePassword,
+    })}
+  />
+  <InputPasswordVisibility onClick={showHideClicked}>
+    {!showPassword ? 'show' : 'hide'}
+  </InputPasswordVisibility>
+</InputGroup> */
+}
 
 const InputPasswordVisibility = ({ children, ...props }) => {
   return (
