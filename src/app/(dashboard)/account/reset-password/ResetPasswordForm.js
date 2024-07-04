@@ -6,10 +6,10 @@ import Toast from '@/app/components/Toast'
 import { validatePassword } from '@/utilities/validatePassword'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { updatePassword } from './actions'
 import { logout } from '@/app/(auth)/signOut/actions'
 import InputPasswordVisibility from '@/app/components/inputsFields/InputGroup/InputPasswordVisibility'
 import InputGroup from '@/app/components/inputsFields/InputGroup/InputGroup'
+import { updatePassword } from '@/app/(auth)/change-password-loggedInOnly/actions'
 
 const ResetPasswordForm = () => {
   const [isLoading, setisLoading] = useState(null)

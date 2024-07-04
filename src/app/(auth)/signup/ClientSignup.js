@@ -3,7 +3,6 @@ import Button from '@/app/components/Button'
 import Divider from '@/app/components/Divider'
 import LoginSignupContainer from '@/app/components/LoginSignupContainer'
 import Toast from '@/app/components/Toast'
-import Icon_google from '@/app/components/icons/Icon_google'
 import Input from '@/app/components/inputsFields/InputGroup/Input'
 import InputGroup from '@/app/components/inputsFields/InputGroup/InputGroup'
 import InputPasswordVisibility from '@/app/components/inputsFields/InputGroup/InputPasswordVisibility'
@@ -12,7 +11,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Icon_spinner from '@/app/components/icons/Icon_spinner'
 import { signup } from './actions'
-import { handleLoginWithOAuth } from '../login/actions'
+import OAuthGoogleSignIn from '../login/OAuthGoogleSignIn'
 
 const ClientSignup = () => {
   const { register, handleSubmit, formState } = useForm()
@@ -115,17 +114,7 @@ const ClientSignup = () => {
               <span className="px-4">Or continue with</span>
             </Divider>
           </div>
-          <div className={'flex gap-4 select-none'}>
-            <div
-              className={
-                'flex cursor-pointer rounded-md w-full justify-center shadow-sm border-[1px] py-[10px] px-3 border-[#D1D5DB] gap-2'
-              }
-              onClick={() => handleLoginWithOAuth('google')}
-            >
-              <Icon_google className="size-6" />
-              Google
-            </div>
-          </div>
+          <OAuthGoogleSignIn />
         </div>
       </form>
     </LoginSignupContainer>

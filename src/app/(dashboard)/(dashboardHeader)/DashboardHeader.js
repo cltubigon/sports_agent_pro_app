@@ -35,7 +35,7 @@ const DashboardHeader = async () => {
             }
           >
             <div className={'bg-white border-[1px] border-[#ccc]'}>
-              <LogoutButton />
+              <LogoutButton className="active:bg-secondary-50 py-3 px-5" />
             </div>
           </div>
         </div>

@@ -1,19 +1,29 @@
 'use client'
 import { logout } from '@/app/(auth)/signOut/actions'
-import React from 'react'
+import Icon_spinner from '@/app/components/icons/Icon_spinner'
+import React, { useState } from 'react'
+import { twMerge } from 'tailwind-merge'
 
-const LogoutButton = () => {
+const LogoutButton = ({ className }) => {
+  const [loading, setloading] = useState(null)
+
   const handleLogout = async () => {
+    setloading(true)
     await logout()
   }
   return (
     <>
-      <p
-        className={'py-3 px-5 cursor-pointer text-[#000]'}
+      <div
         onClick={handleLogout}
+        className={twMerge('cursor-pointer select-none w-full', className)}
       >
-        Logout
-      </p>
+        <p className="w-fit relative">
+          Logout{' '}
+          {loading && (
+            <Icon_spinner className="text-neutral-700 animate-spin absolute -right-8 top-0 bottom-0 my-auto" />
+          )}
+        </p>
+      </div>
     </>
   )
 }
