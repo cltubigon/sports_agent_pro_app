@@ -121,13 +121,15 @@ const ClientLogin = () => {
             <Button type="submit" className="w-full">
               <div className={'relative'}>
                 Sign In{' '}
-                <div
-                  className={`w-fit ${
-                    !loading ? 'hidden' : 'animate-spin'
-                  } absolute right-[-35px] top-0 bottom-0 my-auto`}
-                >
-                  {loading && <Icon_spinner className={``} />}
-                </div>
+                {loading && (
+                  <div
+                    className={`w-fit ${
+                      !loading && 'hidden'
+                    } absolute right-[-35px] top-0 bottom-0 my-auto`}
+                  >
+                    <Icon_spinner className={``} />
+                  </div>
+                )}
               </div>
             </Button>
             <Link href={'/signup'}>
