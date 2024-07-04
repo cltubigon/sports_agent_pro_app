@@ -19,7 +19,7 @@ export async function signup(data) {
   })
 
   if (error) {
-    console.log('error', error)
+    return error
   }
   if (!user?.user_metadata?.email) {
     return 'Email already exists.'

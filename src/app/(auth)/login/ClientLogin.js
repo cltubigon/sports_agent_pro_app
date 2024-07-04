@@ -31,7 +31,6 @@ const ClientLogin = () => {
   const [loading, setloading] = useState(false)
   const [showPassword, setshowPassword] = useState(false)
   const [localData, setlocalData] = useState(null)
-  const { errors } = formState
 
   useEffect(() => {
     setlocalData(JSON.parse(localStorage.getItem('saved password')))
@@ -123,7 +122,11 @@ const ClientLogin = () => {
               <div className={'relative'}>
                 Sign In{' '}
                 {loading && (
-                  <Icon_spinner className="animate-spin absolute right-[-35px] top-0 bottom-0 my-auto" />
+                  <Icon_spinner
+                    className={`${
+                      !loading && 'hidden'
+                    } animate-spin absolute right-[-35px] top-0 bottom-0 my-auto`}
+                  />
                 )}
               </div>
             </Button>
