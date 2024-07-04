@@ -123,8 +123,8 @@ const ClientLogin = () => {
                 Sign In{' '}
                 <div
                   className={`w-fit ${
-                    !loading && 'hidden'
-                  } animate-spin absolute right-[-35px] top-0 bottom-0 my-auto`}
+                    !loading ? 'hidden' : 'animate-spin'
+                  } absolute right-[-35px] top-0 bottom-0 my-auto`}
                 >
                   {loading && <Icon_spinner className={``} />}
                 </div>
