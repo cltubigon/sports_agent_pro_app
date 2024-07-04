@@ -28,7 +28,7 @@ const ClientLogin = () => {
     },
   })
   const [toast, settoast] = useState(null)
-  const [loading, setloading] = useState(false)
+  const [loading, setloading] = useState(null)
   const [showPassword, setshowPassword] = useState(false)
   const [localData, setlocalData] = useState(null)
 
