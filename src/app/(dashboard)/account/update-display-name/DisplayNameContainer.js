@@ -6,6 +6,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { updateDisplayName } from './actions'
 import Toast from '@/app/components/Toast'
+import { capitalizeAllFirstLetter } from '@/utilities/capitalizeAllFirstLetter'
 
 const DisplayNameContainer = ({ currentUser }) => {
   const [loading, setloading] = useState(false)
@@ -50,7 +51,7 @@ const DisplayNameContainer = ({ currentUser }) => {
             id="displayName"
             placeholder="Enter your name"
             disabled={display_name && true}
-            defaultValue={display_name || undefined}
+            defaultValue={capitalizeAllFirstLetter(display_name) || undefined}
             className="border-neutral-200 placeholder:text-neutral-200"
             {...register('displayName', {
               required: 'This is required',

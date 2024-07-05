@@ -4,8 +4,8 @@ import HeaderMenuIcon from './HeaderMenuIcon'
 import LogoutButton from './LogoutButton'
 import { capitalizeAllFirstLetter } from '@/utilities/capitalizeAllFirstLetter'
 import { getCurrentUser } from '@/config/supabase/getCurrentUser'
-import Icon_user_circled from '@/app/components/icons/Icon_user_circled'
 import Link from 'next/link'
+import Icon_user2 from '@/app/components/icons/Icon_user2'
 
 const DashboardHeader = async () => {
   const currentUser = await getCurrentUser()
@@ -21,7 +21,7 @@ const DashboardHeader = async () => {
       <div className={'px-5 py-2 flex items-center'}>
         <HeaderMenuIcon />
 
-        <div className={'flex gap-2 items-center w-fit relative group ml-auto'}>
+        <div className={'flex gap-3 items-center w-fit relative group ml-auto'}>
           <p className={''}>{capitalizeAllFirstLetter(display_name)}</p>
           {avatar ? (
             <Image
@@ -33,11 +33,11 @@ const DashboardHeader = async () => {
               className="rounded-full border-[1px] border-[#ccc]"
             />
           ) : (
-            <Icon_user_circled className="size-[62px]" />
+            <Icon_user2 className="text-[#ADB4B6] size-[50px] rounded-full overflow-hidden border-[1px] border-[#ADB4B6]" />
           )}
           <div
             className={
-              'group-hover:block hidden absolute top-[58px] pt-[8px]  right-0 w-[200px] rounded-sm shadow-sm before:absolute before:top-0 before:right-6 before:w-4 before:h-4 before:bg-white before:border-[#ccc] before:border-t-[1px] before:border-l-[1px] before:z-0 before:rotate-45 z-[998]'
+              'group-hover:block hidden absolute top-[41px] pt-[20px]  right-0 w-[200px] rounded-sm shadow-sm before:absolute before:top-3 before:right-4 before:w-4 before:h-4 before:bg-white before:border-[#ccc] before:border-t-[1px] before:border-l-[1px] before:z-0 before:rotate-45 z-[998]'
             }
           >
             <div

@@ -23,9 +23,7 @@ const AccountPage = async () => {
           <p className={''}>Account type:</p>
           <Input
             disabled
-            value={
-              currentUser?.role === 'user' ? 'Basic user' : currentUser?.role
-            }
+            value={currentUser?.role === 'user' ? 'Bronze' : currentUser?.role}
             className="border-neutral-200 text-neutral-400 focus-visible:outline-white"
           />
           <p className={''}>Display name:</p>

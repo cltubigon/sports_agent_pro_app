@@ -9,8 +9,6 @@ const BillingMenu = () => {
   }
   const menu = [
     { name: 'Your Plan', value: 'your_plan' },
-    { name: 'Your Plan2', value: 'your_plan2' },
-    { name: 'Your Plan3', value: 'your_plan3' },
     { name: '', value: 'spacer' },
   ]
   console.log('activeMenu', activeMenu)
@@ -24,9 +22,10 @@ const BillingMenu = () => {
               activeMenu !== value &&
               value !== 'spacer' &&
               'hover:bg-neutral-100'
-            } ${activeMenu !== value && 'border-neutral-300 border-b-[1px]'} ${
-              value === 'spacer' ? 'w-full' : 'min-w-fit'
-            }`}
+            } ${
+              activeMenu !== value &&
+              'border-neutral-300 border-b-[1px] bg-neutral-50'
+            } ${value === 'spacer' ? 'w-full hidden md:block' : 'min-w-fit'}`}
             onClick={() => handleClick(value)}
             key={index}
           >
