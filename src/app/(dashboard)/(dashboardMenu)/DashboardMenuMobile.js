@@ -19,7 +19,7 @@ const DashboardMenuMobile = () => {
   return (
     <>
       <div
-        className={`bg-primary fixed h-screen text-white py-10 z-10 overflow-hidden shadow-md ${
+        className={`bg-primary fixed h-screen text-white py-10 z-[999] overflow-hidden shadow-md ${
           isMobileMenuOpen ? 'w-[300px] px-5' : 'w-0'
         } transition-all duration-500`}
       >

@@ -28,13 +28,7 @@ export default async function DashboardLayout({ children }) {
             'lg:px-5 max-h-screen border-t-[1px] border-[#F7F7F7] lg:border-t-none overflow-y-auto box-border relative'
           }
         >
-          <div
-            className={
-              'flex bg-white lg:rounded-md pt-[86px] pb-5 px-5 md:px-5 md:py-5 lg:p-8 lg:shadow-sm'
-            }
-          >
-            {children}
-          </div>
+          <div className={'flex flex-col lg:rounded-md'}>{children}</div>
         </div>
       </div>
     </div>

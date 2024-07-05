@@ -1,5 +1,6 @@
 import React from 'react'
 import ClientDashboard from './ClientDashboard'
+import ContentContainerDashboard from '@/app/components/ThisWebsiteOnly/Dashboard/ContentContainerDashboard'
 
 export const metadata = {
   title: {
@@ -11,9 +12,9 @@ export const metadata = {
 
 const DashboardPage = async () => {
   return (
-    <>
+    <ContentContainerDashboard>
       <ClientDashboard />
-    </>
+    </ContentContainerDashboard>
   )
 }
 

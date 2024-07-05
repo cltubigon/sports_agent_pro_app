@@ -21,7 +21,7 @@ const ResetPassword = () => {
       </Button>
       <div className="relative">
         {popup && (
-          <Popup data={{ setpopup, bgNotClickable: true }}>
+          <Popup data={{ setpopup, bgNotClickable: true, noScrollbar: true }}>
             <ResetPasswordForm />
           </Popup>
         )}
