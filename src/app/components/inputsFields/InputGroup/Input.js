@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge'
 
 const variants = {
   default:
-    'py-[10px] px-3 w-full text-[16px] text-neutral-900 rounded-[5px] border-[1px] border-secondary-300  focus-visible:outline-none',
+    'py-[10px] px-3 w-full text-[16px] text-neutral-900 rounded-[5px] border-[1px] border-secondary-300 outline-none',
 }
 
 const Input = forwardRef(function Input(

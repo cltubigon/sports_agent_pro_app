@@ -25,7 +25,7 @@ export default async function DashboardLayout({ children }) {
         <DashboardHeader />
         <div
           className={
-            'lg:px-5 max-h-screen border-t-[1px] border-[#F7F7F7] lg:border-t-none overflow-y-auto box-border'
+            'lg:px-5 max-h-screen border-t-[1px] border-[#F7F7F7] lg:border-t-none overflow-y-auto box-border relative'
           }
         >
           <div
