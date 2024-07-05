@@ -15,7 +15,7 @@ const LogoutButton = ({ className }) => {
     <>
       <div
         onClick={handleLogout}
-        className={twMerge('cursor-pointer select-none w-full', className)}
+        className={twMerge('text-black cursor-pointer select-none w-full', className)}
       >
         <p className="w-fit relative">
           Logout{' '}

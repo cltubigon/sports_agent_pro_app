@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react'
 import Input from '@/app/components/inputsFields/InputGroup/Input'
 import Divider from '@/app/components/Divider'
-import Icon_google from '@/app/components/icons/Icon_google'
 import Button from '@/app/components/Button'
 import Checkbox from '@/app/components/inputsFields/Checkbox'
 import { useForm } from 'react-hook-form'
@@ -20,9 +19,10 @@ const ClientLogin = () => {
   const { register, handleSubmit, formState } = useForm({
     defaultValues: async () => {
       const localData = JSON.parse(localStorage.getItem('saved password'))
+      console.log('localData', localData)
       return {
-        email: localData?.myLocalData?.email,
-        password: localData?.myLocalData?.password,
+        email: localData?.email,
+        password: localData?.password,
       }
     },
   })
