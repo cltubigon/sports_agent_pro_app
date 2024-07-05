@@ -2,7 +2,7 @@ import BillingMenu from './billing-menu/BillingMenu'
 
 const BillingPage = () => {
   return (
-    <div className={'bg-white mt-[78px] md:mt-unset'}>
+    <div className={'bg-white mt-[78px] md:mt-[unset]'}>
       <div className={'p-5 border-neutral-300 border-b-[1px]'}>
         <h2 className={'text-xl font-semibold text-primary'}>
           Billing & Upgrade
