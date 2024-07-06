@@ -1,4 +1,4 @@
-import LoadingProgress from './LoadingProgress'
+import LoadingProgress from '@/app/components/LoadingProgress'
 
 const BillingPageLoading = async () => {
   return (
