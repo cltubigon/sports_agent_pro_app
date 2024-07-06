@@ -5,8 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useRef, useState } from 'react'
 import LogoutButton from '../LogoutButton'
-import dynamic from 'next/dynamic'
-const Menu = dynamic(() => import('@/app/components/Menu.js'), { ssr: false })
+import Menu from '@/app/components/Menu'
 
 const HeaderMenu = ({ currentUser }) => {
   const display_name = currentUser?.display_name
@@ -36,26 +35,28 @@ const HeaderMenu = ({ currentUser }) => {
         onClick={() => setShowModal(!showModal)}
       />
       <div
-        className={`size-3 absolute -bottom-[14px] right-5 rotate-45 border-t-[1px] border-neutral-200 border-l-[1px] z-50 bg-white ${
-          showModal ? 'block' : 'hidden'
-        }`}
+        className={`size-3 absolute -bottom-[14px] right-5 rotate-45 border-t-[1px] border-neutral-200 border-l-[1px] z-50 bg-white`}
       />
-      <Menu
-        showModal={showModal}
-        setShowModal={setShowModal}
-        referenceElement={buttonRef}
-        containerHeight={101}
-        containerWidth={250}
-        spaceFromElement={8}
-        className="clt-modal w-[250px] border-[1px] border-neutral-300 p-0 text-secondary divide-y-[1px] divide-neutral-200"
-      >
-        <Link href={'/billing'}>
-          <div className={'py-3 px-5'}>
-            <p className={''}>Billing & Upgrade</p>
-          </div>
-        </Link>
-        <LogoutButton className="clt-modal active:bg-secondary-50 py-3 px-5" />
-      </Menu>
+      {showModal && (
+        <Menu
+          showModal={showModal}
+          setShowModal={setShowModal}
+          referenceElement={buttonRef}
+          containerHeight={101}
+          containerWidth={250}
+          spaceFromElement={8}
+          className={`clt-modal w-[250px] border-[1px] border-neutral-300 p-0 text-secondary divide-y-[1px] divide-neutral-200 opacity-0 ${
+            showModal ? 'opacity-100' : 'opacity-0'
+          } transition-all duration-500`}
+        >
+          <Link href={'/billing'}>
+            <div className={'py-3 px-5'}>
+              <p className={''}>Billing & Upgrade</p>
+            </div>
+          </Link>
+          <LogoutButton className="clt-modal active:bg-secondary-50 py-3 px-5" />
+        </Menu>
+      )}
     </div>
   )
 }
