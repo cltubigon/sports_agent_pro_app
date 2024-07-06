@@ -1,10 +1,5 @@
 import TanstackProvider from '@/config/providers/TanstackProvider'
 import './globals.css'
-import {
-  franklinGothicBook,
-  franklinGothicDemiCond,
-  franklinGothicMediumCond,
-} from '@/utilities/fonts/fonts'
 import { GoogleTagManager } from '@next/third-parties/google'
 
 export const metadata = {
@@ -18,10 +13,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`${franklinGothicBook.variable} ${franklinGothicDemiCond.variable} ${franklinGothicMediumCond.variable}`}
-    >
+    <html lang="en">
       <GoogleTagManager gtmId="GTM-TW4HH9J8" />
       <body>
         <TanstackProvider>{children}</TanstackProvider>
