@@ -51,7 +51,7 @@ const DashboardMenuMobile = () => {
           />
         )}
         <div className={'h-fit mb-5 lg:mb-10 w-full'}>
-          <Link href={'/dashboard'}>
+          <Link href={'/dashboard'} prefetch>
             <h3
               className={
                 'dashboard-menu text-2xl md:text-3xl font-bold min-w-[255px]'

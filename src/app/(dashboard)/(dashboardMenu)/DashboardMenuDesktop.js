@@ -9,7 +9,7 @@ const DashboardMenuDesktop = () => {
       }
     >
       <div className={'h-fit mb-10 w-fit'}>
-        <Link href={'/dashboard'}>
+        <Link href={'/dashboard'} prefetch>
           <h3 className={'text-2xl md:text-3xl font-bold'}>Sports Agent Pro</h3>
         </Link>
       </div>
