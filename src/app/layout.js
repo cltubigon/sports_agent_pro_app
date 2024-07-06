@@ -1,6 +1,6 @@
 import TanstackProvider from '@/config/providers/TanstackProvider'
 import './globals.css'
-import { GoogleTagManager } from '@next/third-parties/google'
+import { openSans } from '@/utilities/fonts/fonts'
 
 export const metadata = {
   title: 'Sports Agent Pro',
@@ -13,8 +13,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <GoogleTagManager gtmId="GTM-TW4HH9J8" />
+    <html lang="en" className={openSans.className}>
       <body>
         <TanstackProvider>{children}</TanstackProvider>
       </body>
