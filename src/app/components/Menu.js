@@ -15,9 +15,9 @@ import { twMerge } from 'tailwind-merge'
 // const buttonRef = useRef(null)
 
 // <Button
-//   id="clt-modal"
 //   ref={buttonRef}
 //   onClick={() => setShowModal(!showModal)}
+//   className='clt-modal'
 // >
 //   Toggle Modal
 // </Button>
@@ -79,11 +79,16 @@ const Menu = ({ children, ...props }) => {
   })
 
   const triggeredFunction = (e) => {
-    if (
-      e.target?.id !== 'clt-modal' &&
-      e.target?.parentElement?.id !== 'clt-modal'
-    ) {
-      setShowModal(!showModal)
+    const currElem = e.target?.className
+    const currParent = e.target?.parentElement?.className
+
+    if (typeof currElem === 'string' && typeof currParent === 'string') {
+      if (
+        !currElem?.includes('clt-modal') &&
+        !currParent?.includes('clt-modal')
+      ) {
+        setShowModal(!showModal)
+      }
     }
   }
 

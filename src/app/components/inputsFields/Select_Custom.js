@@ -21,7 +21,7 @@ import { twMerge } from 'tailwind-merge'
 //     containerHeight: 200,
 //     multiSelect: true,         // optional
 //     optionsStyle: '',          // optional
-//     placeholder,               // optional
+//     placeholder: '- Hello World -',               // optional
 //     containerWidth: 260,       // optional
 //     menuStyle: 'w-[260px]',    // optional
 //     placeholderStyle: '',      // optional
@@ -94,11 +94,10 @@ export default function Select_Custom({
       <div
         className={twMerge(
           variation,
-          'py-[6px] px-4 select-none border-[1px] border-neutral-300 relative rounded-md',
+          'clt-modal py-[6px] px-4 select-none border-[1px] border-neutral-300 relative rounded-md',
           className
         )}
         {...props}
-        id="clt-modal"
         ref={buttonRef}
         onClick={toggleModal}
       >
