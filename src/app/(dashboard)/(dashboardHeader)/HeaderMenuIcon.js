@@ -8,7 +8,7 @@ const HeaderMenuIcon = () => {
   const { isMobileMenuOpen, setIsMobileMenuOpen } = useStore(utilityStore)
 
   const handleMenuClick = () => {
-    setIsMobileMenuOpen()
+    setIsMobileMenuOpen(true)
   }
   return (
     <>

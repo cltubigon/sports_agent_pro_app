@@ -11,9 +11,9 @@ const utilityStore = create(
       })
     },
     isMobileMenuOpen: false,
-    setIsMobileMenuOpen: () => {
+    setIsMobileMenuOpen: (data) => {
       set((state) => {
-        state.isMobileMenuOpen = !state.isMobileMenuOpen
+        state.isMobileMenuOpen = data
       })
     },
   })),

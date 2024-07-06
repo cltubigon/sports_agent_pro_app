@@ -11,6 +11,7 @@ export const metadata = {
 }
 
 const DashboardPage = async () => {
+  console.log('Rendering Dashboard')
   return (
     <ContentContainerDashboard>
       <ClientDashboard />

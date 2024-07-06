@@ -8,6 +8,7 @@ import Icon_check2 from '@/app/components/icons/Icon_check2'
 const BillingPage = async () => {
   const currentUser = await getCurrentUser()
   const { role } = currentUser
+  console.log('Rendering billing')
   return (
     <div className={'bg-white mt-[65px] md:mt-[unset]'}>
       <div className={'p-5 border-neutral-300 border-b-[1px]'}>

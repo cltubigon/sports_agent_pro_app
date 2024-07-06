@@ -7,6 +7,7 @@ import ContentContainerDashboard from '@/app/components/ThisWebsiteOnly/Dashboar
 
 const AccountPage = async () => {
   const currentUser = await getCurrentUser()
+  console.log('Rendering account')
   return (
     <>
       <ContentContainerDashboard>

@@ -15,7 +15,7 @@ const BillingPageLoading = async () => {
       </div>
       <div
         className={
-          'p-5 h-[63px] w-full select-none text-transparent bg-neutral-200 animate-pulse'
+          'p-5 h-[63px] w-full select-none text-transparent bg-neutral-100 animate-pulse'
         }
       ></div>
       <div className={'p-5 border-neutral-300 border-b-[1px]'}>
