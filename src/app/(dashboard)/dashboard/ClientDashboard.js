@@ -1,6 +1,5 @@
 'use client'
 import React from 'react'
-import LogoutButton from '../(dashboardHeader)/LogoutButton'
 
 const ClientDashboard = () => {
   return (
