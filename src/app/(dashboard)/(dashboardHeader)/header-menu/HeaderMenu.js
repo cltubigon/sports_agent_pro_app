@@ -35,7 +35,9 @@ const HeaderMenu = ({ currentUser }) => {
         onClick={() => setShowModal(!showModal)}
       />
       <div
-        className={`size-3 absolute -bottom-[14px] right-5 rotate-45 border-t-[1px] border-neutral-200 border-l-[1px] z-50 bg-white`}
+        className={`size-3 absolute -bottom-[14px] right-5 rotate-45 border-t-[1px] border-neutral-200 border-l-[1px] z-50 bg-white ${
+          showModal ? 'block' : 'hidden'
+        } transition-all duration-500`}
       />
       {showModal && (
         <Menu
