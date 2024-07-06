@@ -30,7 +30,7 @@ const HeaderMenu = ({ currentUser }) => {
         <Icon_user2 className="text-[#ADB4B6] size-[50px] rounded-full overflow-hidden border-[1px] border-[#ADB4B6]" />
       )}
       <div
-        className={'clt-modal w-full z-10 h-[50px] absolute top-0 left-0'}
+        className={'clt-modal cursor-pointer w-full z-10 h-[50px] absolute top-0 left-0'}
         ref={buttonRef}
         onClick={() => setShowModal(!showModal)}
       />

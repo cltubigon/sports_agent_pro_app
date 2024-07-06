@@ -4,7 +4,6 @@ import { subscriptionPlans } from './subscriptionPlans'
 import { capitalizeAllFirstLetter } from '@/utilities/capitalizeAllFirstLetter'
 import Button from '@/app/components/Button'
 import Icon_check2 from '@/app/components/icons/Icon_check2'
-import Test from './Test'
 
 const BillingPage = async () => {
   const currentUser = await getCurrentUser()

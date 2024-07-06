@@ -4,12 +4,10 @@ import Divider from '@/app/components/Divider'
 import Icon_google from '@/app/components/icons/Icon_google'
 import Button from '@/app/components/Button'
 import Checkbox from '@/app/components/inputsFields/Checkbox'
-import Toast from '@/app/components/Toast'
 import InputGroup from '@/app/components/inputsFields/InputGroup/InputGroup'
 import InputPasswordVisibility from '@/app/components/inputsFields/InputGroup/InputPasswordVisibility'
 import LoginSignupContainer from '@/app/components/LoginSignupContainer'
 import Link from 'next/link'
-import Icon_spinner from '@/app/components/icons/Icon_spinner'
 
 const ClientLoginFallback = () => {
   return (
