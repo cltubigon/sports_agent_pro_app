@@ -1,6 +1,9 @@
+import LoadingProgress from './LoadingProgress'
+
 const BillingPageLoading = async () => {
   return (
     <div className={'bg-white mt-[65px] md:mt-[unset]'}>
+      <LoadingProgress />
       <div className={'p-5 border-neutral-300 border-b-[1px]'}>
         <h2
           className={
