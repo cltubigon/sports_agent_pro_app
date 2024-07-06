@@ -53,7 +53,7 @@ const HeaderMenu = ({ currentUser }) => {
             showModal ? 'opacity-100' : 'opacity-0'
           } transition-all duration-500`}
         >
-          <Link href={'/billing'}>
+          <Link href={'/billing'} prefetch>
             <div className={'py-3 px-5'}>
               <p className={''}>Billing & Upgrade</p>
             </div>
