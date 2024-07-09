@@ -19,8 +19,11 @@ import { twMerge } from 'tailwind-merge'
 //     selectedItem,
 //     setselectedItem,
 //     containerHeight: 200,
+//     classModalId: 'clt-modal2',
 //     multiSelect: true,         // optional
 //     optionsStyle: '',          // optional
+//     optionsStyleSelected: '',      // optional
+//     optionsStyleNotSelected: '',   // optional
 //     placeholder: '- Hello World -',               // optional
 //     containerWidth: 260,       // optional
 //     menuStyle: 'w-[260px]',    // optional
@@ -45,10 +48,13 @@ export default function Select_Custom({
     setselectedItem,
     placeholder,
     containerHeight,
+    classModalId,
     containerWidth,
     menuStyle,
     multiSelect,
     optionsStyle,
+    optionsStyleSelected,
+    optionsStyleNotSelected,
     placeholderStyle,
     singleSelectedStyle,
     multiSelectStyle,
@@ -59,7 +65,8 @@ export default function Select_Custom({
   const [showModal, setShowModal] = useState(false)
   const buttonRef = useRef(null)
 
-  const removeItem = (item) => {
+  const removeItem = (e, item) => {
+    e.stopPropagation()
     const remainingSelection = selectedItem
       ?.map((cItem) => cItem)
       ?.filter((cItem) => cItem?.value !== item?.value)
@@ -94,7 +101,7 @@ export default function Select_Custom({
       <div
         className={twMerge(
           variation,
-          'clt-modal py-[6px] px-4 select-none border-[1px] border-neutral-300 relative rounded-md',
+          `${classModalId} py-[10px] px-4 select-none border-[1px] border-neutral-300 relative rounded-md`,
           className
         )}
         {...props}
@@ -103,10 +110,7 @@ export default function Select_Custom({
       >
         {/* Placeholder */}
         {!multiSelect && selectedItem?.length === 0 && (
-          <p
-            className={twMerge('text-primary', placeholderStyle)}
-            onClick={toggleModal}
-          >
+          <p className={twMerge('', placeholderStyle)} onClick={toggleModal}>
             {placeholder || '-- Select --'}
           </p>
         )}
@@ -117,14 +121,15 @@ export default function Select_Custom({
           </p>
         )}
         {multiSelect && (
-          <div className={'flex gap-1'} id="clt-modal">
+          <div className={`${classModalId} flex flex-wrap gap-1`}>
             {selectedItem?.length > 0 ? (
               selectedItem?.map((item, index) => {
                 return (
                   <p
                     key={index}
-                    onClick={() => removeItem(item)}
+                    onClick={(e) => removeItem(e, item)}
                     className={twMerge(
+                      classModalId,
                       'py-1 px-3 bg-primary-100 rounded-full',
                       multiSelectStyle
                     )}
@@ -135,7 +140,7 @@ export default function Select_Custom({
               })
             ) : (
               <p
-                className={twMerge('text-primary', placeholderStyle)}
+                className={twMerge(classModalId, '', placeholderStyle)}
                 onClick={toggleModal}
               >
                 {placeholder || '-- Select --'}
@@ -157,6 +162,7 @@ export default function Select_Custom({
             'justify-start divide-y-[1px] divide-neutral-300 z-50',
             menuStyle
           )}
+          classModalId={classModalId} // Optional
         >
           {options?.map((item, index) => {
             return (
@@ -166,8 +172,11 @@ export default function Select_Custom({
                 className={twMerge(
                   `p-3 ${
                     selectedItem?.some((sItem) => sItem?.value === item.value)
-                      ? 'bg-neutral-100'
-                      : 'hover:bg-neutral-50'
+                      ? `${twMerge('bg-neutral-100', optionsStyleSelected)}`
+                      : `${twMerge(
+                          'hover:bg-neutral-50',
+                          optionsStyleNotSelected
+                        )}`
                   }`,
                   optionsStyle
                 )}

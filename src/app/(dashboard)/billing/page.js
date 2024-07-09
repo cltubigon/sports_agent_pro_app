@@ -1,9 +1,10 @@
 import { getCurrentUser } from '@/config/supabase/getCurrentUser'
-import BillingMenu from './billing-menu/BillingMenu'
+import DashboardContentMenu from '../../components/ThisWebsiteOnly/Dashboard/DashboardContentMenu'
 import { subscriptionPlans } from './subscriptionPlans'
 import { capitalizeAllFirstLetter } from '@/utilities/capitalizeAllFirstLetter'
 import Button from '@/app/components/Button'
 import Icon_check2 from '@/app/components/icons/Icon_check2'
+import ContentContainerDashboard from '@/app/components/ThisWebsiteOnly/Dashboard/ContentContainerDashboard'
 
 export const revalidate = 180
 
@@ -11,14 +12,13 @@ const BillingPage = async () => {
   const currentUser = await getCurrentUser()
   const { role } = currentUser
   console.log('Rendering billing')
+  const menu = [
+    { name: 'Your Plan', value: 'your_plan' },
+    { name: '', value: 'spacer' },
+  ]
   return (
-    <div className={'bg-white mt-[65px] md:mt-[unset]'}>
-      <div className={'p-5 border-neutral-300 border-b-[1px]'}>
-        <h2 className={'text-xl font-semibold text-primary'}>
-          Billing & Upgrade
-        </h2>
-      </div>
-      <BillingMenu />
+    <ContentContainerDashboard>
+      <DashboardContentMenu menu={menu}>Billing & Upgrade</DashboardContentMenu>
       <div className={'p-5 border-neutral-300 border-b-[1px]'}>
         <h5 className={'text-xl md:text-2xl font-bold'}>
           {role === 'user' ? 'Bronze' : capitalizeAllFirstLetter(role)}
@@ -86,7 +86,7 @@ const BillingPage = async () => {
           </div>
         </div>
       </div>
-    </div>
+    </ContentContainerDashboard>
   )
 }
 

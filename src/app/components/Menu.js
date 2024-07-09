@@ -52,7 +52,8 @@ const getXPosition = ({ reference, containerWidth }) => {
   }
 }
 
-const Menu = ({ children, ...props }) => {
+const Menu = ({ children, classModalId, ...props }) => {
+  const classId = classModalId || 'clt-modal'
   const {
     containerHeight,
     containerWidth,
@@ -77,10 +78,7 @@ const Menu = ({ children, ...props }) => {
     const currParent = e.target?.parentElement?.className
 
     if (typeof currElem === 'string' && typeof currParent === 'string') {
-      if (
-        !currElem?.includes('clt-modal') &&
-        !currParent?.includes('clt-modal')
-      ) {
+      if (!currElem?.includes(classId) && !currParent?.includes(classId)) {
         setShowModal(!showModal)
       }
     }
@@ -98,9 +96,8 @@ const Menu = ({ children, ...props }) => {
     <>
       <div
         ref={modalRef}
-        id="clt-modal"
         className={twMerge(
-          'flex flex-col justify-center overflow-auto absolute z-20 bg-white border-[1px] select-none border-[#ccc] shadow-md p-4 w-full',
+          `${classId} flex flex-col justify-center overflow-auto absolute z-20 bg-white border-[1px] select-none border-[#ccc] shadow-md p-4 w-full`,
           props?.className
         )}
         style={{

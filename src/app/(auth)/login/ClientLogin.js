@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Input from '@/app/components/inputsFields/InputGroup/Input'
 import Divider from '@/app/components/Divider'
 import Button from '@/app/components/Button'
@@ -19,21 +19,20 @@ const ClientLogin = () => {
   const { register, handleSubmit, formState } = useForm({
     defaultValues: async () => {
       const localData = JSON.parse(localStorage.getItem('saved password'))
-      console.log('localData', localData)
       return {
         email: localData?.email,
         password: localData?.password,
+        savePassword: localData?.savePassword,
       }
     },
   })
   const [toast, settoast] = useState(null)
   const [loading, setloading] = useState(false)
   const [showPassword, setshowPassword] = useState(false)
-  const [localData, setlocalData] = useState(null)
 
-  useEffect(() => {
-    setlocalData(JSON.parse(localStorage.getItem('saved password')))
-  }, [])
+  // useEffect(() => {
+  //   setlocalData(JSON.parse(localStorage.getItem('saved password')))
+  // }, [])
 
   const searchParams = useSearchParams().get('next')
 
@@ -80,7 +79,7 @@ const ClientLogin = () => {
             <Input
               className="border-[#D1D5DB]"
               id="email"
-              defaultValue={localData?.email}
+              // defaultValue={localData?.email}
               {...register('email', {
                 required: 'Enter your email address',
                 pattern: {
@@ -96,7 +95,7 @@ const ClientLogin = () => {
             <InputGroup>
               <Input
                 type={!showPassword ? 'password' : 'text'}
-                defaultValue={localData?.password}
+                // defaultValue={localData?.password}
                 className="border-[#D1D5DB]"
                 id="password"
                 {...register('password', {
