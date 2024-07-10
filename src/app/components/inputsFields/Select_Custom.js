@@ -62,6 +62,7 @@ export default function Select_Custom({
   },
   ...props
 }) {
+  const classId = classModalId || 'clt-modal'
   const [showModal, setShowModal] = useState(false)
   const buttonRef = useRef(null)
 
@@ -84,7 +85,7 @@ export default function Select_Custom({
       setselectedItem([item])
       setShowModal(false)
     } else if (selectedItem?.some((sItem) => sItem?.value === item.value)) {
-      removeItem(item)
+      removeItem(e, item)
     }
   }
 
@@ -101,7 +102,7 @@ export default function Select_Custom({
       <div
         className={twMerge(
           variation,
-          `${classModalId} py-[10px] px-4 select-none border-[1px] border-neutral-300 relative rounded-md`,
+          `${classId} py-[10px] px-4 select-none border-[1px] border-secondary-300 relative rounded-md`,
           className
         )}
         {...props}
@@ -110,7 +111,10 @@ export default function Select_Custom({
       >
         {/* Placeholder */}
         {!multiSelect && selectedItem?.length === 0 && (
-          <p className={twMerge('', placeholderStyle)} onClick={toggleModal}>
+          <p
+            className={twMerge('text-neutral-400', placeholderStyle)}
+            onClick={toggleModal}
+          >
             {placeholder || '-- Select --'}
           </p>
         )}
@@ -121,7 +125,7 @@ export default function Select_Custom({
           </p>
         )}
         {multiSelect && (
-          <div className={`${classModalId} flex flex-wrap gap-1`}>
+          <div className={`${classId} flex flex-wrap gap-1`}>
             {selectedItem?.length > 0 ? (
               selectedItem?.map((item, index) => {
                 return (
@@ -129,8 +133,8 @@ export default function Select_Custom({
                     key={index}
                     onClick={(e) => removeItem(e, item)}
                     className={twMerge(
-                      classModalId,
-                      'py-1 px-3 bg-primary-100 rounded-full',
+                      classId,
+                      'py-1 px-3 bg-secondary-100 rounded-full',
                       multiSelectStyle
                     )}
                   >
@@ -140,7 +144,11 @@ export default function Select_Custom({
               })
             ) : (
               <p
-                className={twMerge(classModalId, '', placeholderStyle)}
+                className={twMerge(
+                  classId,
+                  'text-neutral-400',
+                  placeholderStyle
+                )}
                 onClick={toggleModal}
               >
                 {placeholder || '-- Select --'}
@@ -162,7 +170,7 @@ export default function Select_Custom({
             'justify-start divide-y-[1px] divide-neutral-300 z-50',
             menuStyle
           )}
-          classModalId={classModalId} // Optional
+          classId={classId} // Optional
         >
           {options?.map((item, index) => {
             return (

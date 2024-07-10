@@ -52,8 +52,7 @@ const getXPosition = ({ reference, containerWidth }) => {
   }
 }
 
-const Menu = ({ children, classModalId, ...props }) => {
-  const classId = classModalId || 'clt-modal'
+const Menu = ({ children, classId, ...props }) => {
   const {
     containerHeight,
     containerWidth,

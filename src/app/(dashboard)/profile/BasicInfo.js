@@ -10,35 +10,50 @@ import {
   listSports,
   listWhichBestDescribesYou,
 } from './listOfArray'
+import { formatDateToUTCString } from '@/utilities/date-and-time/formatDateToUTCString'
+import { updateBasicInfo } from './actions'
+// import { converToDateInputFormat } from '@/utilities/date-and-time/convertToDateInputFormat'
+import Icon_spinner from '@/app/components/icons/Icon_spinner'
+import DateInput from '@/app/components/inputsFields/DateInput'
+import SectionContainer from './SectionContainer'
 
-const BasicInfo = () => {
+const BasicInfo = ({ user }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm()
-  const [whichBestDescribesYou, setwhichBestDescribesYou] = useState([])
-  const [genderIdentity, setgenderIdentity] = useState([])
-  const [sports, setsports] = useState([])
-  const [currentTeams, setcurrentTeams] = useState([])
 
-  const onSubmit = (formVal) => {
+  const [loading, setloading] = useState(false)
+  const [whichBestDescribesYou, setwhichBestDescribesYou] = useState(
+    user?.whichBestDescribesYou
+  )
+  const [genderIdentity, setgenderIdentity] = useState(user?.genderIdentity)
+  const [sports, setsports] = useState(user?.sports)
+  const [currentTeams, setcurrentTeams] = useState(user?.currentTeams)
+
+  const onSubmit = async (formVal) => {
     const data = {
       ...formVal,
-      whichBestDescribesYou: whichBestDescribesYou[0]?.value,
-      genderIdentity: genderIdentity[0]?.value,
+      whichBestDescribesYou,
+      genderIdentity,
       sports,
       currentTeams,
+      dateOfBirth: formatDateToUTCString(formVal?.dateOfBirth),
     }
-    console.log('data', data)
+    setloading(true)
+    const { error } = await updateBasicInfo({ id: user?.id, data })
+    console.log('error', error)
+    setloading(false)
   }
   return (
-    <div className={'rounded-md mt-8 p-4 border-[1px] border-neutral-200'}>
+    <SectionContainer data={{ title: 'Basic info' }}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={'flex flex-col gap-4'}>
           <div className={'flex flex-col md:flex-row gap-4 md:gap-5'}>
             <Input
               id="firstName"
+              defaultValue={user?.firstName}
               placeholder="First name"
               {...register('firstName', {
                 required: 'First name is required',
@@ -47,6 +62,7 @@ const BasicInfo = () => {
             />
             <Input
               id="lastName"
+              defaultValue={user?.lastName}
               placeholder="Last name"
               {...register('lastName', {
                 required: 'Last name is required',
@@ -54,58 +70,78 @@ const BasicInfo = () => {
               error={errors?.lastName?.message}
             />
           </div>
-          <Select_Custom
-            parameters={{
-              options: listWhichBestDescribesYou,
-              selectedItem: whichBestDescribesYou,
-              setselectedItem: setwhichBestDescribesYou,
-              containerHeight: 220,
-              placeholder: `-- Which best describes you? --`,
-              classModalId: 'clt-describes-you',
-            }}
-          />
-          <Input
-            type="date"
-            id="dateOfBirth"
-            placeholder="Date of birth"
-            {...register('dateOfBirth')}
-          />
-          <Select_Custom
-            parameters={{
-              options: listGenderIdentities,
-              selectedItem: genderIdentity,
-              setselectedItem: setgenderIdentity,
-              containerHeight: 220,
-              placeholder: '-- Gender identity --',
-              classModalId: 'clt-gender',
-            }}
-          />
-          <Select_Custom
-            parameters={{
-              options: listSports,
-              selectedItem: sports,
-              setselectedItem: setsports,
-              containerHeight: 220,
-              placeholder: '-- Sports --',
-              classModalId: 'clt-sports',
-              multiSelect: true,
-            }}
-          />
-          <Select_Custom
-            parameters={{
-              options: listCurrentTeam,
-              selectedItem: currentTeams,
-              setselectedItem: setcurrentTeams,
-              containerHeight: 220,
-              placeholder: '-- Current Team --',
-              classModalId: 'clt-current-team',
-              multiSelect: true,
-            }}
-          />
-          <Button type="submit">Update Basic Info</Button>
+          <div className={''}>
+            <p className={'mb-1'}>Which best describes you?</p>
+            <Select_Custom
+              parameters={{
+                options: listWhichBestDescribesYou,
+                selectedItem: whichBestDescribesYou,
+                setselectedItem: setwhichBestDescribesYou,
+                containerHeight: 220,
+                classModalId: 'clt-describes-you',
+              }}
+            />
+          </div>
+          <div className={''}>
+            <p className={'mb-1'}>Date of birth</p>
+            {/* <Input
+              type="date"
+              defaultValue={user?.dateOfBirth}
+              id="dateOfBirth"
+              {...register('dateOfBirth')}
+            /> */}
+            <DateInput
+              default={user?.dateOfBirth}
+              {...register('dateOfBirth')}
+            />
+          </div>
+          <div className={''}>
+            <p className={'mb-1'}>Gender identity</p>
+            <Select_Custom
+              parameters={{
+                options: listGenderIdentities,
+                selectedItem: genderIdentity,
+                setselectedItem: setgenderIdentity,
+                containerHeight: 220,
+                classModalId: 'clt-gender',
+              }}
+            />
+          </div>
+          <div className={''}>
+            <p className={'mb-1'}>Sports</p>
+            <Select_Custom
+              parameters={{
+                options: listSports,
+                selectedItem: sports,
+                setselectedItem: setsports,
+                containerHeight: 220,
+                classModalId: 'clt-sports',
+                multiSelect: true,
+              }}
+            />
+          </div>
+          <div className={''}>
+            <p className={'mb-1'}>Current Team</p>
+            <Select_Custom
+              parameters={{
+                options: listCurrentTeam,
+                selectedItem: currentTeams,
+                setselectedItem: setcurrentTeams,
+                containerHeight: 220,
+                classModalId: 'clt-current-team',
+                multiSelect: true,
+              }}
+            />
+          </div>
+          <Button type="submit" className="px-10 relative ml-auto">
+            Update Basic Info
+            {loading && (
+              <Icon_spinner className="top-0 bottom-0 right-3 my-auto absolute animate-spin" />
+            )}
+          </Button>
         </div>
       </form>
-    </div>
+    </SectionContainer>
   )
 }
 
