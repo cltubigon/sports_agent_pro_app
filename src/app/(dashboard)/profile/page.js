@@ -1,7 +1,7 @@
 import ContentContainerDashboard from '@/app/components/ThisWebsiteOnly/Dashboard/ContentContainerDashboard'
 import DashboardContentMenu from '@/app/components/ThisWebsiteOnly/Dashboard/DashboardContentMenu'
 import Image from 'next/image'
-import React from 'react'
+import React, { Suspense } from 'react'
 import placeholder from './images/20220202210918_img4888.png'
 import Button from '@/app/components/Button'
 import BasicInfo from './BasicInfo'
@@ -11,9 +11,18 @@ import AboutYou from './AboutYou'
 import ViewProfileButton from './ViewProfileButton'
 import AthleticProfileSection from './AthleticProfileSection'
 import Locations from './Locations'
+import Media from './Media'
+import { createServer } from '@/config/supabase/supabaseServer'
+import LoadingComponent from '@/app/components/LoadingComponent'
 
 const ProfilePage = async () => {
+  const supabase = createServer()
   const user = await getCurrentUser()
+  const { data: images, error } = await supabase
+    .from('gallery')
+    .select('*')
+    .eq('owner_id', user?.id)
+  console.log('images', images)
   const menu = [
     { name: 'Profile', value: 'profile' },
     { name: '', value: 'spacer' },
@@ -22,6 +31,9 @@ const ProfilePage = async () => {
   return (
     <ContentContainerDashboard>
       <DashboardContentMenu menu={menu}>Account</DashboardContentMenu>
+      <Suspense fallback={<LoadingComponent />}>
+        <Media user={user} images={images} />
+      </Suspense>
       <div className={'p-5'}>
         {/* Profile Pic */}
         <div className={'flex flex-col md:flex-row md:justify-between gap-2'}>
@@ -55,6 +67,10 @@ const ProfilePage = async () => {
         <BasicInfo user={user} />
         {/* About You */}
         <AboutYou user={user} />
+        {/* Media */}
+        {/* <Suspense fallback={<LoadingComponent />}>
+          <Media user={user} images={images} />
+        </Suspense> */}
         {/* Locations */}
         <Locations user={user} />
         {/* Athletic Profile */}

@@ -5,6 +5,7 @@ import { useCallback, useEffect } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { generateBlurDataURL } from './actions'
 import Icon_spinner from '../icons/Icon_spinner'
+import { twMerge } from 'tailwind-merge'
 
 // guide:
 // Add these
@@ -28,6 +29,7 @@ const CltDropzone = ({
     setSelectedImages,
     imagesWithBlurDataUrl,
     setImagesWithBlurDataUrl,
+    containerStyle,
   },
 }) => {
   const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
@@ -68,9 +70,10 @@ const CltDropzone = ({
       <div {...getRootProps()}>
         <input {...getInputProps()} />
         <div
-          className={
-            'bg-white text-[#C4C6C9] py-[7px] px-3 border-[1px] border-primary border-dashed'
-          }
+          className={twMerge(
+            'bg-white text-[#C4C6C9] py-[7px] px-3 border-[1px] border-secondary border-dashed',
+            containerStyle
+          )}
         >
           {isDragActive ? (
             <p>Drop file(s) here ...</p>

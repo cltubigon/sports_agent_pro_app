@@ -9,6 +9,7 @@ import { listEthnicity, listInterests, listLanguages } from './listOfArray'
 import { updateBio } from './actions'
 import SectionContainer from './SectionContainer'
 import Icon_card from '@/app/components/icons/Icon_card'
+import Icon_user_details from '@/app/components/icons/Icon_user_details'
 
 const AboutYou = ({ user }) => {
   const {
@@ -30,8 +31,8 @@ const AboutYou = ({ user }) => {
     setloading(false)
   }
   return (
-    <SectionContainer data={{ title: 'About you' }}>
-      <p className={'-mt-5 text-sm'}>
+    <SectionContainer data={{ title: 'About you', Icon: Icon_user_details }}>
+      <p className={'-mt-4 text-sm'}>
         Get discovered by adding more profile information.
       </p>
 

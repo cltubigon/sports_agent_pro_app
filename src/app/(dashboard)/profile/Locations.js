@@ -6,6 +6,7 @@ import GoogleMapAutoCompleteAddress from '@/app/components/GoogleMapAutoComplete
 import Button from '@/app/components/Button'
 import Icon_spinner from '@/app/components/icons/Icon_spinner'
 import { updateLocationFunc } from './actions'
+import Icon_location from '@/app/components/icons/Icon_location'
 
 const Locations = ({ user }) => {
   const [loading, setloading] = useState(null)
@@ -19,7 +20,7 @@ const Locations = ({ user }) => {
     })
   }
   return (
-    <SectionContainer data={{ title: 'Locations' }}>
+    <SectionContainer data={{ title: 'Locations', Icon: Icon_location }}>
       <div className={'flex-col flex gap-4'}>
         <GoogleMapAutoCompleteAddress
           parameters={{

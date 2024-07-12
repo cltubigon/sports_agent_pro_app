@@ -16,6 +16,7 @@ import { updateBasicInfo } from './actions'
 import Icon_spinner from '@/app/components/icons/Icon_spinner'
 import DateInput from '@/app/components/inputsFields/DateInput'
 import SectionContainer from './SectionContainer'
+import Icon_user_details2 from '@/app/components/icons/Icon_user_details2'
 
 const BasicInfo = ({ user }) => {
   const {
@@ -47,7 +48,7 @@ const BasicInfo = ({ user }) => {
     setloading(false)
   }
   return (
-    <SectionContainer data={{ title: 'Basic info' }}>
+    <SectionContainer data={{ title: 'Basic info', Icon: Icon_user_details2 }}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={'flex flex-col gap-4'}>
           <div className={'flex flex-col md:flex-row gap-4 md:gap-5'}>

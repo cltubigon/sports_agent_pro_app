@@ -13,6 +13,7 @@ import {
 import Icon_spinner from '@/app/components/icons/Icon_spinner'
 import SectionContainer from './SectionContainer'
 import { updateAthleticProfile } from './actions'
+import Icon_running from '@/app/components/icons/Icon_running'
 
 const AthleticProfileSection = ({ user }) => {
   const [loading, setloading] = useState(false)
@@ -41,7 +42,7 @@ const AthleticProfileSection = ({ user }) => {
     setloading(false)
   }
   return (
-    <SectionContainer data={{ title: 'Athletic profile' }}>
+    <SectionContainer data={{ title: 'Athletic profile', Icon: Icon_running }}>
       <div className={'flex flex-col gap-4'}>
         <div className={''}>
           <p className={'mb-1'}>Position</p>
