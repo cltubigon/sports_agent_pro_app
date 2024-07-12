@@ -99,3 +99,28 @@ export const updateAthleticProfile = async ({ data, id }) => {
 
   revalidatePath('/profile')
 }
+
+export const updateLocationFunc = async ({ data, id }) => {
+  console.log('data', data)
+  const { currentLocation, homeTown } = data
+
+  const supabase = createServer()
+
+  const { data: result, error } = await supabase
+    .from('users')
+    .update({
+      currentLocation: currentLocation,
+      homeTown: homeTown,
+    })
+    .select()
+    .eq('id', id)
+  if (result) {
+    return { error: null }
+  }
+  if (error) {
+    console.log('error', error)
+    return { error: error?.message }
+  }
+
+  revalidatePath('/profile')
+}

@@ -8,6 +8,7 @@ import Select_Custom from '@/app/components/inputsFields/Select_Custom'
 import { listEthnicity, listInterests, listLanguages } from './listOfArray'
 import { updateBio } from './actions'
 import SectionContainer from './SectionContainer'
+import Icon_card from '@/app/components/icons/Icon_card'
 
 const AboutYou = ({ user }) => {
   const {
@@ -29,7 +30,16 @@ const AboutYou = ({ user }) => {
     setloading(false)
   }
   return (
-    <SectionContainer data={{ title: 'Bio' }}>
+    <SectionContainer data={{ title: 'About you' }}>
+      <p className={'-mt-5 text-sm'}>
+        Get discovered by adding more profile information.
+      </p>
+
+      <p className={'mt-4 font-bold'}>Bio</p>
+      <p className={'mb-4 text-sm'}>
+        Tell others more about you. Consider linking websites, charities, or
+        articles.
+      </p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={'flex flex-col gap-4'}>
           <Textarea

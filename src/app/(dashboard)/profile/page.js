@@ -50,6 +50,7 @@ const ProfilePage = async () => {
           </div>
           <ViewProfileButton className={'hidden md:flex'} />
         </div>
+
         {/* Basic Info */}
         <BasicInfo user={user} />
         {/* About You */}
