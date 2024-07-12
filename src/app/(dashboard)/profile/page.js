@@ -31,6 +31,7 @@ const ProfilePage = async () => {
   return (
     <ContentContainerDashboard>
       <DashboardContentMenu menu={menu}>Account</DashboardContentMenu>
+      <p className={''}>{user?.id}</p>
       <Suspense fallback={<LoadingComponent />}>
         <Media user={user} images={images} />
       </Suspense>
