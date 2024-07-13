@@ -8,7 +8,7 @@ import { twMerge } from 'tailwind-merge'
 // const [popup, setpopup] = useState(null) ---> Must be present in the parent component
 
 // Then import it like:
-// <Popup data={{ setpopup, bgNotClickable:true }}></Popup>
+// {popup && <Popup data={{ setpopup, bgNotClickable:true }}></Popup>}
 
 // STYLING For modalContainer
 // Example: data={{ modalContainer: 'max-w-[652px]' }}
@@ -20,6 +20,7 @@ const Popup = ({ children, ...props }) => {
   const setBodyStyle = () => {
     document.body.style.overflow = 'hidden'
     if (isDesktop && !props?.data?.noScrollbar) {
+      // noScrollbar
       document.body.style.marginRight = '15px'
     }
   }
@@ -53,7 +54,7 @@ const Popup = ({ children, ...props }) => {
   return (
     <div
       className={twMerge(
-        'flex fixed left-0 py-4 md:py-10 px-2 top-0 w-full h-screen max-h-screen bg-neutral-500 bg-opacity-25 backdrop-blur-sm overflow-y-auto z-50',
+        'flex fixed left-0 py-4 md:py-10 px-2 top-0 w-full h-screen max-h-screen bg-neutral-500 bg-opacity-25 backdrop-blur-sm overflow-y-auto z-[991]',
         props?.className
       )}
       onClick={bgClose}

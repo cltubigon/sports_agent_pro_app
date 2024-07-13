@@ -12,29 +12,20 @@ import ViewProfileButton from './ViewProfileButton'
 import AthleticProfileSection from './AthleticProfileSection'
 import Locations from './Locations'
 import Media from './Media'
-import { createServer } from '@/config/supabase/supabaseServer'
 import LoadingComponent from '@/app/components/LoadingComponent'
+import { fetchImages } from './actions'
 
 const ProfilePage = async () => {
-  const supabase = createServer()
   const user = await getCurrentUser()
-  const { data: images, error } = await supabase
-    .from('gallery')
-    .select('*')
-    .eq('owner_id', user?.id)
-  console.log('images', images)
+  const images = await fetchImages(user)
+
   const menu = [
     { name: 'Profile', value: 'profile' },
     { name: '', value: 'spacer' },
   ]
-  console.log('user', user)
   return (
     <ContentContainerDashboard>
       <DashboardContentMenu menu={menu}>Account</DashboardContentMenu>
-      <p className={''}>{user?.id}</p>
-      <Suspense fallback={<LoadingComponent />}>
-        <Media user={user} images={images} />
-      </Suspense>
       <div className={'p-5'}>
         {/* Profile Pic */}
         <div className={'flex flex-col md:flex-row md:justify-between gap-2'}>
@@ -69,9 +60,9 @@ const ProfilePage = async () => {
         {/* About You */}
         <AboutYou user={user} />
         {/* Media */}
-        {/* <Suspense fallback={<LoadingComponent />}>
+        <Suspense fallback={<LoadingComponent />}>
           <Media user={user} images={images} />
-        </Suspense> */}
+        </Suspense>
         {/* Locations */}
         <Locations user={user} />
         {/* Athletic Profile */}

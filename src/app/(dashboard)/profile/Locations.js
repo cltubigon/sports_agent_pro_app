@@ -14,10 +14,12 @@ const Locations = ({ user }) => {
   const [homeTown, sethomeTown] = useState(user?.homeTown)
 
   const handleClick = async () => {
+    setloading(true)
     const { error } = await updateLocationFunc({
       data: { currentLocation, homeTown },
       id: user?.id,
     })
+    setloading(false)
   }
   return (
     <SectionContainer data={{ title: 'Locations', Icon: Icon_location }}>

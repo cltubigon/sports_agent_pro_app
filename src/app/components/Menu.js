@@ -76,15 +76,20 @@ const Menu = ({ children, classId, ...props }) => {
     const currElem = e.target?.className
     const currParent = e.target?.parentElement?.className
 
+    console.log({ currElem, currParent, e })
+
     if (typeof currElem === 'string' && typeof currParent === 'string') {
       if (!currElem?.includes(classId) && !currParent?.includes(classId)) {
-        setShowModal(!showModal)
+        console.log('menu set')
+        setShowModal(() => !showModal)
       }
     }
   }
 
   useEffect(() => {
-    document.addEventListener('click', (e) => triggeredFunction(e))
+    document.addEventListener('click', triggeredFunction)
+
+    return () => document.removeEventListener('click', triggeredFunction)
   }, [])
 
   if (!showModal) {

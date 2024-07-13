@@ -1,4 +1,5 @@
 import { createClient } from '@/config/supabase/supabaseClient'
+import { revalidatePath } from 'next/cache'
 
 const generateDateString = () => {
   const date = new Date()
@@ -9,25 +10,23 @@ const generateDateString = () => {
   return `${day}${month}${year}${milliSeconds}`
 }
 
-export const uploadImagesToSupabase = async ({ images, userId }) => {
+export const uploadImagesToSupabase = async ({ folder, images, userId }) => {
   const supabase = createClient()
   const uploadFile = images?.map(async (imgObj) => {
     const imageName = imgObj?.file?.path.replace(' ', '_').toLowerCase()
     const dateString = generateDateString()
     const { data: imageData, error } = await supabase.storage
-      .from('gallery')
+      .from(folder)
       .upload(`${userId}/${dateString}-${imageName}`, imgObj?.file, {
         cacheControl: '3600',
         upsert: false,
       })
-      console.log('imageData', imageData)
-    console.log('error', error)
-    return imageData
+    return { ...imageData, blurDataURL: imgObj?.blurDataURL }
   })
 
   const imagesUploadedToStorage = await Promise.all(uploadFile)
   const { data, error } = await supabase
-    .from('gallery')
+    .from(folder)
     .insert(imagesUploadedToStorage)
     .select()
   if (data) {
@@ -36,4 +35,6 @@ export const uploadImagesToSupabase = async ({ images, userId }) => {
     console.log('error', error)
     return { data: null, error: error?.message }
   }
+
+  revalidatePath('/profile')
 }
