@@ -9,11 +9,12 @@ import { uploadImagesToSupabase } from '@/app/components/dropzone/uploadImagesTo
 import Image from 'next/image'
 import Popup from '@/app/components/Popup'
 import Icon_trash from '@/app/components/icons/Icon_trash'
-import { deletePhoto, fetchImages } from './actions'
+import { deletePhoto, fetchGalleryImages } from './actions'
 import ButtonLoader from '@/app/components/ButtonLoader'
 import Toast from '@/app/components/Toast'
 
 const Media = ({ user, images: imagesFromSupabase }) => {
+  console.log('media')
   const [images, setimages] = useState(imagesFromSupabase)
   const [toast, settoast] = useState(null)
   const [selectedImages, setSelectedImages] = useState([])
@@ -30,11 +31,12 @@ const Media = ({ user, images: imagesFromSupabase }) => {
       folder: 'gallery',
       images: imagesWithBlurDataUrl,
       userId: user?.id,
+      pageToRevalidate: '/profile',
     })
     if (data) {
       setSelectedImages([])
       setImagesWithBlurDataUrl(null)
-      setimages(await fetchImages(user))
+      setimages(await fetchGalleryImages(user))
       setloading(null)
       setpopup(false)
       settoast({
@@ -94,7 +96,7 @@ const Media = ({ user, images: imagesFromSupabase }) => {
     ])
     settempImageRemove(tempImageRemove?.filter((img) => img.path !== path))
   }
-  
+
   return (
     <SectionContainer data={{ title: 'Media', Icon: Icon_image }}>
       <Toast parameters={{ toast, settoast }} />

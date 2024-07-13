@@ -9,7 +9,7 @@ export default function Error({ error, reset }) {
   }, [error])
 
   return (
-    <div className="text-center w-full">
+    <div className="text-center w-full mt-[100px]">
       <h2 className="text-xl font-semibold">Something went wrong!</h2>
       <p className="mb-3">{error.message}</p>
       <Button onClick={() => reset()} className="mx-auto">

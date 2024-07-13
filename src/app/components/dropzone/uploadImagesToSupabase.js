@@ -10,7 +10,57 @@ const generateDateString = () => {
   return `${day}${month}${year}${milliSeconds}`
 }
 
-export const uploadImagesToSupabase = async ({ folder, images, userId }) => {
+// export const uploadProfilePicture = async ({
+//   folder,
+//   images,
+//   userId,
+//   pageToRevalidate,
+// }) => {
+//   const supabase = createClient()
+//   const uploadFile = images?.map(async (imgObj) => {
+//     const imageName = imgObj?.file?.path.replace(' ', '_').toLowerCase()
+//     const dateString = generateDateString()
+//     const { data: imageData, error } = await supabase.storage
+//       .from(folder)
+//       .upload(`${userId}/${dateString}-${imageName}`, imgObj?.file, {
+//         cacheControl: '3600',
+//         upsert: false,
+//       })
+//     return { ...imageData, blurDataURL: imgObj?.blurDataURL }
+//   })
+
+//   const imagesUploadedToStorage = await Promise.all(uploadFile)
+
+//   const { data: galleryData, error: galleryError } = await supabase
+//     .from('gallery')
+//     .insert(imagesUploadedToStorage)
+//     .select()
+
+//   const { data: profileData, error: profileError } = await supabase
+//     .from('profile_picture')
+//     .upsert(imagesUploadedToStorage)
+//     .select()
+
+//   if (galleryData && profileData) {
+//     return { data: [galleryData, profileData], error: null }
+//   } else if (profileError) {
+//     console.log('profileError', profileError)
+//     return { data: null, error: profileError?.message }
+//   } else if (galleryError) {
+//     console.log('galleryError', galleryError)
+//     return { data: null, error: galleryError?.message }
+//   }
+//   revalidatePath(pageToRevalidate || '/')
+// }
+
+export const uploadImagesToSupabase = async ({
+  folder,
+  images,
+  userId,
+  pageToRevalidate,
+  isProfilePicture,
+}) => {
+  console.log('images', images)
   const supabase = createClient()
   const uploadFile = images?.map(async (imgObj) => {
     const imageName = imgObj?.file?.path.replace(' ', '_').toLowerCase()
@@ -21,7 +71,12 @@ export const uploadImagesToSupabase = async ({ folder, images, userId }) => {
         cacheControl: '3600',
         upsert: false,
       })
-    return { ...imageData, blurDataURL: imgObj?.blurDataURL }
+    console.log('imageData', imageData)
+    return {
+      ...imageData,
+      blurDataURL: imgObj?.blurDataURL,
+      isProfilePicture: isProfilePicture || null,
+    }
   })
 
   const imagesUploadedToStorage = await Promise.all(uploadFile)
@@ -36,5 +91,5 @@ export const uploadImagesToSupabase = async ({ folder, images, userId }) => {
     return { data: null, error: error?.message }
   }
 
-  revalidatePath('/profile')
+  revalidatePath(pageToRevalidate || '/')
 }

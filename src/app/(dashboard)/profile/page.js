@@ -1,9 +1,6 @@
 import ContentContainerDashboard from '@/app/components/ThisWebsiteOnly/Dashboard/ContentContainerDashboard'
 import DashboardContentMenu from '@/app/components/ThisWebsiteOnly/Dashboard/DashboardContentMenu'
-import Image from 'next/image'
 import React, { Suspense } from 'react'
-import placeholder from './images/20220202210918_img4888.png'
-import Button from '@/app/components/Button'
 import BasicInfo from './BasicInfo'
 import { getCurrentUser } from '@/config/supabase/getCurrentUser'
 import { capitalizeAllFirstLetter } from '@/utilities/capitalizeAllFirstLetter'
@@ -13,11 +10,13 @@ import AthleticProfileSection from './AthleticProfileSection'
 import Locations from './Locations'
 import Media from './Media'
 import LoadingComponent from '@/app/components/LoadingComponent'
-import { fetchImages } from './actions'
+import { fetchGalleryImages } from './actions'
+import ProfilePicture from './profile-picture/ProfilePicture'
 
 const ProfilePage = async () => {
   const user = await getCurrentUser()
-  const images = await fetchImages(user)
+  const images = await fetchGalleryImages(user)
+  console.log('profile page')
 
   const menu = [
     { name: 'Profile', value: 'profile' },
@@ -30,15 +29,7 @@ const ProfilePage = async () => {
         {/* Profile Pic */}
         <div className={'flex flex-col md:flex-row md:justify-between gap-2'}>
           <div className={'flex gap-5 items-center'}>
-            <div className={'flex min-h-[128px] min-w-[128px] relative'}>
-              <Image
-                src={placeholder}
-                fill
-                quality={100}
-                alt="user profile"
-                className="object-cover rounded-full"
-              />
-            </div>
+            <ProfilePicture user={user} images={images} />
             <div className={''}>
               <h5 className={'font-tinos text-xl md:text-2xl font-bold'}>
                 {capitalizeAllFirstLetter(

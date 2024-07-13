@@ -1,8 +1,9 @@
 'use server'
 import { createServer } from '@/config/supabase/supabaseServer'
+import { formatDateToUTCString } from '@/utilities/date-and-time/formatDateToUTCString'
 import { revalidatePath } from 'next/cache'
 
-export const fetchImages = async (user) => {
+export const fetchGalleryImages = async (user) => {
   const supabase = createServer()
   const { data: images, error } = await supabase
     .from('gallery')
@@ -10,6 +11,31 @@ export const fetchImages = async (user) => {
     .eq('owner_id', user?.id)
   return images
 }
+
+export const updateProfilePicture = async (id) => {
+  const supabase = createServer()
+  const { data: images, error } = await supabase
+    .from('gallery')
+    .update({ isProfilePicture: formatDateToUTCString(new Date()) })
+    .eq('id', id)
+    .select()
+
+  if (images) {
+    return { data: images, error: null }
+  }
+  if (error) {
+    return { data: null, error: error?.message }
+  }
+}
+
+// export const fetchProfilePicture = async (user) => {
+//   const supabase = createServer()
+//   const { data: images, error } = await supabase
+//     .from('profile_picture')
+//     .select('*')
+//     .eq('owner_id', user?.id)
+//   return images
+// }
 
 export const updateBasicInfo = async ({ data, id }) => {
   const {
