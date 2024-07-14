@@ -17,7 +17,6 @@ const DashboardContentMenu = ({ children, menu }) => {
   const handleClick = (value) => {
     if (value !== 'spacer') setactiveMenu(value)
   }
-  console.log('activeMenu', activeMenu)
   return (
     <>
       <div className={'p-5 border-neutral-300 border-b-[1px]'}>

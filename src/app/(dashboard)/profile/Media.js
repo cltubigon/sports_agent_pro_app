@@ -9,11 +9,7 @@ import { uploadImagesToSupabase } from '@/app/components/dropzone/uploadImagesTo
 import Image from 'next/image'
 import Popup from '@/app/components/Popup'
 import Icon_trash from '@/app/components/icons/Icon_trash'
-import {
-  deletePhoto,
-  fetchGalleryImages,
-  revalidatePathCustom,
-} from './actions'
+import { deletePhoto, revalidatePathCustom } from './actions'
 import ButtonLoader from '@/app/components/ButtonLoader'
 import Toast from '@/app/components/Toast'
 
@@ -46,7 +42,7 @@ const Media = ({ user, images: imagesFromSupabase }) => {
         description: 'Uploaded successful.',
         status: 'success',
       })
-      setimages(await fetchGalleryImages(user))
+      // setimages(await fetchGalleryImages(user))
     } else if (error) {
       settoast({
         description: error?.message,
@@ -58,6 +54,10 @@ const Media = ({ user, images: imagesFromSupabase }) => {
   useEffect(() => {
     settempImageRemove(images)
   }, [images])
+
+  useEffect(() => {
+    setimages(imagesFromSupabase)
+  }, [imagesFromSupabase])
 
   const handleEdit = () => {
     setpopup(true)
@@ -84,7 +84,7 @@ const Media = ({ user, images: imagesFromSupabase }) => {
       return
     }
     revalidatePathCustom('/profile')
-    setimages(tempImageRemove)
+    // setimages(tempImageRemove)
     setloading(null)
     setimagesToRemove([])
     setpopup(false)
@@ -276,6 +276,7 @@ const Media = ({ user, images: imagesFromSupabase }) => {
                   blurDataURL={blurDataURL}
                   quality={100}
                   fill
+                  sizes="(max-width: 768px) 100vw, 100vw"
                   className="object-cover"
                 />
               </div>

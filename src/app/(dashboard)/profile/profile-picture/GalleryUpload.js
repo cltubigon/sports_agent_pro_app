@@ -1,10 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Image from 'next/image'
 import React, { useState } from 'react'
-import {
-  revalidatePathCustom,
-  updateProfilePicture,
-} from '../actions'
+import { revalidatePathCustom, updateProfilePicture } from '../actions'
 import ButtonLoader from '@/app/components/ButtonLoader'
 import { useStore } from 'zustand'
 import utilityStore from '@/utilities/store/utilityStore'
@@ -59,6 +56,7 @@ const GalleryUpload = ({ parameters: { user, images, setpopup } }) => {
                   blurDataURL={blurDataURL}
                   quality={100}
                   fill
+                  sizes="(max-width: 768px) 100vw, 100vw"
                   className="object-cover group-hover:brightness-50"
                 />
                 {/* <Button

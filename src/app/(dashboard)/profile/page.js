@@ -39,10 +39,13 @@ const ProfilePage = async () => {
                 {user?.whichBestDescribesYou?.length > 0 &&
                   user?.whichBestDescribesYou[0]?.name}
               </p>
-              <ViewProfileButton className={'flex md:hidden mt-2'} />
+              <ViewProfileButton
+                user={user}
+                className={'flex md:hidden mt-2'}
+              />
             </div>
           </div>
-          <ViewProfileButton className={'hidden md:flex'} />
+          <ViewProfileButton user={user} className={'hidden md:flex'} />
         </div>
 
         {/* Basic Info */}

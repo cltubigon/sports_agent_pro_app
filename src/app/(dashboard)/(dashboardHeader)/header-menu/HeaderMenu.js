@@ -8,7 +8,6 @@ import ProfilePictureComponent from '@/app/components/ThisWebsiteOnly/profilePic
 
 const HeaderMenu = ({ currentUser }) => {
   const { display_name, firstName, lastName } = currentUser
-  console.log('currentUser', currentUser)
 
   const [showModal, setShowModal] = useState(false)
   const buttonRef = useRef(null)

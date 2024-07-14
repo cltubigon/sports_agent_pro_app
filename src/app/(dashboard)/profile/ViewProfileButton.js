@@ -1,11 +1,17 @@
+'use client'
 import Button from '@/app/components/Button'
+import Link from 'next/link'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
-const ViewProfileButton = ({ className }) => {
+const ViewProfileButton = ({ user, className }) => {
   return (
     <div className={twMerge('flex gap-3', className)}>
-      <Button variant="button2">View Profile</Button>
+      <div className={'w-fit'}>
+        <Link href={`/${user?.id}`} prefetch>
+          <Button variant="button2">View Profile</Button>
+        </Link>
+      </div>
     </div>
   )
 }

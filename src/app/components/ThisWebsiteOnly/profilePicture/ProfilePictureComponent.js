@@ -23,6 +23,7 @@ const ProfilePictureComponent = forwardRef(function ProfilePictureComponent(
           quality={100}
           alt="user image"
           fill
+          sizes="(max-width: 768px) 100vw, 100vw"
           data="profile-picture"
           className={twMerge(
             'object-cover rounded-full border-[1px] border-[#ccc] transition-all duration-300 z-10',
@@ -37,6 +38,7 @@ const ProfilePictureComponent = forwardRef(function ProfilePictureComponent(
           quality={100}
           alt="user image"
           fill
+          sizes="(max-width: 768px) 100vw, 100vw"
           data="profile-picture"
           className={twMerge(
             'object-cover rounded-full border-[1px] border-[#ccc] transition-all duration-300 z-10',
@@ -51,6 +53,7 @@ const ProfilePictureComponent = forwardRef(function ProfilePictureComponent(
           alt="profile placeholder"
           quality={100}
           fill
+          sizes="(max-width: 768px) 100vw, 100vw"
           data="profile-picture"
           title="Upload profile picture"
           className="object-cover rounded-full transition-all duration-300 z-10"
