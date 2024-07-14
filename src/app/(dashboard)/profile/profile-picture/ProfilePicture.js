@@ -16,6 +16,7 @@ import LoadingComponent from '@/app/components/LoadingComponent'
 import ProfilePictureComponent from '@/app/components/ThisWebsiteOnly/profilePicture/ProfilePictureComponent'
 
 const ProfilePicture = ({ user, images: theImages }) => {
+  console.log('user', user)
   const [images, setimages] = useState(theImages)
   const { toast, settoast } = useStore(utilityStore)
   console.log('images', images)

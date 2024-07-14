@@ -34,7 +34,7 @@ const UploadProfile = ({
         </p>
       </div>
       {tab === 'local' && (
-        <LocalUpload parameters={{ user, images, setimages, setpopup }} />
+        <LocalUpload parameters={{ user, setpopup }} />
       )}
       {tab === 'gallery' && (
         <GalleryUpload parameters={{ user, images, setimages, setpopup }} />

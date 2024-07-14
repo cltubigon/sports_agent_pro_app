@@ -1,18 +1,14 @@
 'use client'
 import ButtonLoader from '@/app/components/ButtonLoader'
 import CltDropzone from '@/app/components/dropzone/Dropzone'
-import {
-  uploadImagesToSupabase,
-  uploadProfilePicture,
-} from '@/app/components/dropzone/uploadImagesToSupabase'
+import { uploadProfilePicture } from '@/app/components/dropzone/uploadImagesToSupabase'
 import Toast from '@/app/components/Toast'
 import React, { useState } from 'react'
 import { fetchGalleryImages, revalidatePathCustom } from '../actions'
-import { formatDateToUTCString } from '@/utilities/date-and-time/formatDateToUTCString'
 import { useStore } from 'zustand'
 import utilityStore from '@/utilities/store/utilityStore'
 
-const LocalUpload = ({ parameters: { user, images, setimages, setpopup } }) => {
+const LocalUpload = ({ parameters: { user, setpopup } }) => {
   const [selectedImages, setSelectedImages] = useState([])
   const [imagesWithBlurDataUrl, setImagesWithBlurDataUrl] = useState(null)
   const { toast, settoast } = useStore(utilityStore)

@@ -1,7 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
-import { fetchGalleryImages, updateProfilePicture } from '../actions'
+import React, { useState } from 'react'
+import {
+  fetchGalleryImages,
+  revalidatePathCustom,
+  updateProfilePicture,
+} from '../actions'
 import ButtonLoader from '@/app/components/ButtonLoader'
 import { useStore } from 'zustand'
 import utilityStore from '@/utilities/store/utilityStore'
@@ -12,18 +16,15 @@ const GalleryUpload = ({
   const { settoast } = useStore(utilityStore)
   const [loading, setloading] = useState(null)
 
-  useEffect(() => {
-    const initialFetch = async () => {
-      setimages(await fetchGalleryImages(user))
-    }
-    initialFetch()
-  }, [])
-
-  const handleSelect = async (id) => {
+  const handleSelect = async (img) => {
+    const { created_at, ...dataImg } = img
     setloading({ id: 'selectButton' })
-    const { data, error } = await updateProfilePicture(id)
+    const { data, error } = await updateProfilePicture({
+      dataImg,
+      userId: user?.id,
+    })
     if (data) {
-      setimages(await fetchGalleryImages(user))
+      revalidatePathCustom('/profile')
       setloading(null)
       setpopup(false)
       settoast({
@@ -72,7 +73,7 @@ const GalleryUpload = ({
               </Button> */}
                 <ButtonLoader
                   variant="button2"
-                  onClick={() => handleSelect(id)}
+                  onClick={() => handleSelect(img)}
                   parameters={{ id: 'selectButton', loading, setloading }}
                   className="absolute opacity-0 md:hover:bg-white top-0 bottom-0 right-0 left-0 m-auto w-[80%] group-hover:opacity-100 transition-opacity duration-300"
                 >

@@ -9,19 +9,23 @@ import { uploadImagesToSupabase } from '@/app/components/dropzone/uploadImagesTo
 import Image from 'next/image'
 import Popup from '@/app/components/Popup'
 import Icon_trash from '@/app/components/icons/Icon_trash'
-import { deletePhoto, fetchGalleryImages } from './actions'
+import {
+  deletePhoto,
+  fetchGalleryImages,
+  revalidatePathCustom,
+} from './actions'
 import ButtonLoader from '@/app/components/ButtonLoader'
 import Toast from '@/app/components/Toast'
 
-const Media = ({ user, images: imagesFromSupabase }) => {
+const Media = ({ user, images }) => {
   console.log('media')
-  const [images, setimages] = useState(imagesFromSupabase)
+  // const [images, setimages] = useState(imagesFromSupabase)
   const [toast, settoast] = useState(null)
   const [selectedImages, setSelectedImages] = useState([])
   const [loading, setloading] = useState(null)
   const [imagesWithBlurDataUrl, setImagesWithBlurDataUrl] = useState(null)
   const [popup, setpopup] = useState(null)
-  const [tempImageRemove, settempImageRemove] = useState(imagesFromSupabase)
+  const [tempImageRemove, settempImageRemove] = useState(images)
   const [imagesToRemove, setimagesToRemove] = useState([])
 
   const handleUpload = async () => {
@@ -34,9 +38,10 @@ const Media = ({ user, images: imagesFromSupabase }) => {
       pageToRevalidate: '/profile',
     })
     if (data) {
+      revalidatePathCustom('/profile')
       setSelectedImages([])
       setImagesWithBlurDataUrl(null)
-      setimages(await fetchGalleryImages(user))
+      // setimages(await fetchGalleryImages(user))
       setloading(null)
       setpopup(false)
       settoast({
@@ -79,7 +84,8 @@ const Media = ({ user, images: imagesFromSupabase }) => {
       })
       return
     }
-    setimages(tempImageRemove)
+    revalidatePathCustom('/profile')
+    // setimages(tempImageRemove)
     setloading(null)
     setimagesToRemove([])
     setpopup(false)

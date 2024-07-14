@@ -12,20 +12,22 @@ export const fetchGalleryImages = async (user) => {
   return images
 }
 
-export const updateProfilePicture = async (id) => {
+export const updateProfilePicture = async ({ dataImg, userId }) => {
   const supabase = createServer()
-  const { data: images, error } = await supabase
-    .from('gallery')
-    .update({ isProfilePicture: formatDateToUTCString(new Date()) })
-    .eq('id', id)
+
+  const { data, error } = await supabase
+    .from('users')
+    .update({ profilePicture: dataImg })
+    .eq('id', userId)
     .select()
 
-  if (images) {
-    return { data: images, error: null }
+  if (data) {
+    return { data: data, error: null }
   }
   if (error) {
     return { data: null, error: error?.message }
   }
+  // revalidatePath('/profile')
 }
 
 // export const fetchProfilePicture = async (user) => {

@@ -34,10 +34,11 @@ export const uploadProfilePicture = async ({ folder, images, userId }) => {
     .from(folder)
     .insert(imagesUploadedToStorage)
     .select()
+
   if (data) {
     const { data: userData, error: userError } = await supabase
       .from('users')
-      .update({ profilePicture: imagesUploadedToStorage })
+      .update({ profilePicture: imagesUploadedToStorage[0] })
       .eq('id', userId)
       .select()
 

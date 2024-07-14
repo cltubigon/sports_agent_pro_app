@@ -9,6 +9,7 @@ const ProfilePictureComponent = forwardRef(function ProfilePictureComponent(
   ref
 ) {
   const { profilePicture, avatar } = props?.user
+  console.log('profilePicture', profilePicture)
   return (
     <div
       className={twMerge(
@@ -16,11 +17,11 @@ const ProfilePictureComponent = forwardRef(function ProfilePictureComponent(
         props?.parameters?.containerStyle
       )}
     >
-      {profilePicture?.length > 0 ? (
+      {profilePicture ? (
         <Image
-          src={`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL}${profilePicture[0]?.fullPath}`}
+          src={`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL}${profilePicture?.fullPath}`}
           placeholder="blur"
-          blurDataURL={profilePicture[0]?.blurDataURL}
+          blurDataURL={profilePicture?.blurDataURL}
           quality={100}
           alt="user image"
           fill
