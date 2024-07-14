@@ -2,7 +2,6 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
 import {
-  fetchGalleryImages,
   revalidatePathCustom,
   updateProfilePicture,
 } from '../actions'
@@ -10,9 +9,7 @@ import ButtonLoader from '@/app/components/ButtonLoader'
 import { useStore } from 'zustand'
 import utilityStore from '@/utilities/store/utilityStore'
 
-const GalleryUpload = ({
-  parameters: { user, images, setimages, setpopup },
-}) => {
+const GalleryUpload = ({ parameters: { user, images, setpopup } }) => {
   const { settoast } = useStore(utilityStore)
   const [loading, setloading] = useState(null)
 

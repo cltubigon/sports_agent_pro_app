@@ -2,9 +2,7 @@ import React, { useState } from 'react'
 import LocalUpload from './LocalUpload'
 import GalleryUpload from './GalleryUpload'
 
-const UploadProfile = ({
-  parameters: { user, images, setimages, setpopup },
-}) => {
+const UploadProfile = ({ parameters: { user, images, setpopup } }) => {
   const [tab, settab] = useState('local')
   const handleTabClick = (tabName) => {
     settab(tabName)
@@ -33,11 +31,9 @@ const UploadProfile = ({
           Select from gallery
         </p>
       </div>
-      {tab === 'local' && (
-        <LocalUpload parameters={{ user, setpopup }} />
-      )}
+      {tab === 'local' && <LocalUpload parameters={{ user, setpopup }} />}
       {tab === 'gallery' && (
-        <GalleryUpload parameters={{ user, images, setimages, setpopup }} />
+        <GalleryUpload parameters={{ user, images, setpopup }} />
       )}
     </div>
   )

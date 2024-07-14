@@ -17,9 +17,8 @@ import {
 import ButtonLoader from '@/app/components/ButtonLoader'
 import Toast from '@/app/components/Toast'
 
-const Media = ({ user, images }) => {
-  console.log('media')
-  // const [images, setimages] = useState(imagesFromSupabase)
+const Media = ({ user, images: imagesFromSupabase }) => {
+  const [images, setimages] = useState(imagesFromSupabase)
   const [toast, settoast] = useState(null)
   const [selectedImages, setSelectedImages] = useState([])
   const [loading, setloading] = useState(null)
@@ -41,13 +40,13 @@ const Media = ({ user, images }) => {
       revalidatePathCustom('/profile')
       setSelectedImages([])
       setImagesWithBlurDataUrl(null)
-      // setimages(await fetchGalleryImages(user))
       setloading(null)
       setpopup(false)
       settoast({
         description: 'Uploaded successful.',
         status: 'success',
       })
+      setimages(await fetchGalleryImages(user))
     } else if (error) {
       settoast({
         description: error?.message,
@@ -85,7 +84,7 @@ const Media = ({ user, images }) => {
       return
     }
     revalidatePathCustom('/profile')
-    // setimages(tempImageRemove)
+    setimages(tempImageRemove)
     setloading(null)
     setimagesToRemove([])
     setpopup(false)

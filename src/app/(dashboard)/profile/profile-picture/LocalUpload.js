@@ -4,7 +4,7 @@ import CltDropzone from '@/app/components/dropzone/Dropzone'
 import { uploadProfilePicture } from '@/app/components/dropzone/uploadImagesToSupabase'
 import Toast from '@/app/components/Toast'
 import React, { useState } from 'react'
-import { fetchGalleryImages, revalidatePathCustom } from '../actions'
+import { revalidatePathCustom } from '../actions'
 import { useStore } from 'zustand'
 import utilityStore from '@/utilities/store/utilityStore'
 

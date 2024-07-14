@@ -1,4 +1,3 @@
-import Icon_user_details from '@/app/components/icons/Icon_user_details'
 import React from 'react'
 
 const SectionContainer = ({ children, ...props }) => {

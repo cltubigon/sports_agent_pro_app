@@ -2,14 +2,12 @@ import Image from 'next/image'
 import React, { forwardRef } from 'react'
 import placeholderImage from './images/profile_picture_placeholder.png'
 import { twMerge } from 'tailwind-merge'
-import Icon_upload from '../../icons/Icon_upload'
 
 const ProfilePictureComponent = forwardRef(function ProfilePictureComponent(
   { children, className, ...props },
   ref
 ) {
   const { profilePicture, avatar } = props?.user
-  console.log('profilePicture', profilePicture)
   return (
     <div
       className={twMerge(

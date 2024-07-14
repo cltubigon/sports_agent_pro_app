@@ -1,10 +1,7 @@
 'use client'
-import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
-import placeholder2 from '../images/profile_picture_placeholder.png'
+import React, { useState } from 'react'
 import Icon_upload from '@/app/components/icons/Icon_upload'
 import Popup from '@/app/components/Popup'
-// import UploadProfile from './UploadProfile'
 const UploadProfile = dynamic(() => import('./UploadProfile'), {
   loading: () => <LoadingComponent className={'min-h-[573px]'} />,
 })
@@ -15,12 +12,8 @@ import dynamic from 'next/dynamic'
 import LoadingComponent from '@/app/components/LoadingComponent'
 import ProfilePictureComponent from '@/app/components/ThisWebsiteOnly/profilePicture/ProfilePictureComponent'
 
-const ProfilePicture = ({ user, images: theImages }) => {
-  console.log('user', user)
-  const [images, setimages] = useState(theImages)
+const ProfilePicture = ({ user, images }) => {
   const { toast, settoast } = useStore(utilityStore)
-  console.log('images', images)
-
   const [popup, setpopup] = useState(null)
 
   const handleImageClick = async () => {
@@ -32,7 +25,7 @@ const ProfilePicture = ({ user, images: theImages }) => {
         <Toast parameters={{ toast, settoast }} />
         {popup && (
           <Popup data={{ setpopup, bgNotClickable: true, noScrollbar: true }}>
-            <UploadProfile parameters={{ user, images, setimages, setpopup }} />
+            <UploadProfile parameters={{ user, images, setpopup }} />
           </Popup>
         )}
         <ProfilePictureComponent

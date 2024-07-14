@@ -7,11 +7,13 @@ import Button from '@/app/components/Button'
 import Icon_spinner from '@/app/components/icons/Icon_spinner'
 import { updateLocationFunc } from './actions'
 import Icon_location from '@/app/components/icons/Icon_location'
+import Toast from '@/app/components/Toast'
 
 const Locations = ({ user }) => {
   const [loading, setloading] = useState(null)
   const [currentLocation, setcurrentLocation] = useState(user?.currentLocation)
   const [homeTown, sethomeTown] = useState(user?.homeTown)
+  const [toast, settoast] = useState(null)
 
   const handleClick = async () => {
     setloading(true)
@@ -19,10 +21,22 @@ const Locations = ({ user }) => {
       data: { currentLocation, homeTown },
       id: user?.id,
     })
-    setloading(false)
+    if (error) {
+      settoast({
+        description: error,
+        status: 'error',
+      })
+    } else {
+      setloading(false)
+      settoast({
+        description: 'Update successful',
+        status: 'success',
+      })
+    }
   }
   return (
     <SectionContainer data={{ title: 'Locations', Icon: Icon_location }}>
+      <Toast parameters={{ toast, settoast }} />
       <div className={'flex-col flex gap-4'}>
         <GoogleMapAutoCompleteAddress
           parameters={{

@@ -12,11 +12,11 @@ import {
 } from './listOfArray'
 import { formatDateToUTCString } from '@/utilities/date-and-time/formatDateToUTCString'
 import { updateBasicInfo } from './actions'
-// import { converToDateInputFormat } from '@/utilities/date-and-time/convertToDateInputFormat'
 import Icon_spinner from '@/app/components/icons/Icon_spinner'
 import DateInput from '@/app/components/inputsFields/DateInput'
 import SectionContainer from './SectionContainer'
 import Icon_user_details2 from '@/app/components/icons/Icon_user_details2'
+import Toast from '@/app/components/Toast'
 
 const BasicInfo = ({ user }) => {
   const {
@@ -31,6 +31,7 @@ const BasicInfo = ({ user }) => {
   )
   const [genderIdentity, setgenderIdentity] = useState(user?.genderIdentity)
   const [sports, setsports] = useState(user?.sports)
+  const [toast, settoast] = useState(null)
   const [currentTeams, setcurrentTeams] = useState(user?.currentTeams)
 
   const onSubmit = async (formVal) => {
@@ -44,11 +45,22 @@ const BasicInfo = ({ user }) => {
     }
     setloading(true)
     const { error } = await updateBasicInfo({ id: user?.id, data })
-    console.log('error', error)
-    setloading(false)
+    if (error) {
+      settoast({
+        description: error,
+        status: 'error',
+      })
+    } else {
+      setloading(false)
+      settoast({
+        description: 'Update successful',
+        status: 'success',
+      })
+    }
   }
   return (
     <SectionContainer data={{ title: 'Basic info', Icon: Icon_user_details2 }}>
+      <Toast parameters={{ toast, settoast }} />
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={'flex flex-col gap-4'}>
           <div className={'flex flex-col md:flex-row gap-4 md:gap-5'}>

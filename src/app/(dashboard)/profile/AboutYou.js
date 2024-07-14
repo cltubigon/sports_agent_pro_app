@@ -8,8 +8,8 @@ import Select_Custom from '@/app/components/inputsFields/Select_Custom'
 import { listEthnicity, listInterests, listLanguages } from './listOfArray'
 import { updateBio } from './actions'
 import SectionContainer from './SectionContainer'
-import Icon_card from '@/app/components/icons/Icon_card'
 import Icon_user_details from '@/app/components/icons/Icon_user_details'
+import Toast from '@/app/components/Toast'
 
 const AboutYou = ({ user }) => {
   const {
@@ -22,16 +22,28 @@ const AboutYou = ({ user }) => {
   const [identifiers, setidentifiers] = useState(user?.identifiersInterests)
   const [language, setlanguage] = useState(user?.language)
   const [ethnicity, setethnicity] = useState(user?.ethnicity)
+  const [toast, settoast] = useState(null)
 
   const onSubmit = async (formVal) => {
     const data = { ...formVal, identifiers, language, ethnicity }
     setloading(true)
     const { error } = await updateBio({ id: user?.id, data })
-    console.log('error', error)
-    setloading(false)
+    if (error) {
+      settoast({
+        description: error,
+        status: 'error',
+      })
+    } else {
+      setloading(false)
+      settoast({
+        description: 'Update successful',
+        status: 'success',
+      })
+    }
   }
   return (
     <SectionContainer data={{ title: 'About you', Icon: Icon_user_details }}>
+      <Toast parameters={{ toast, settoast }} />
       <p className={'-mt-4 text-sm'}>
         Get discovered by adding more profile information.
       </p>

@@ -16,7 +16,6 @@ import ProfilePicture from './profile-picture/ProfilePicture'
 const ProfilePage = async () => {
   const user = await getCurrentUser()
   const images = await fetchGalleryImages(user)
-  console.log('profile page')
 
   const menu = [
     { name: 'Profile', value: 'profile' },

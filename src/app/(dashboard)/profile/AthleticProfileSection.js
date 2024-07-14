@@ -14,6 +14,7 @@ import Icon_spinner from '@/app/components/icons/Icon_spinner'
 import SectionContainer from './SectionContainer'
 import { updateAthleticProfile } from './actions'
 import Icon_running from '@/app/components/icons/Icon_running'
+import Toast from '@/app/components/Toast'
 
 const AthleticProfileSection = ({ user }) => {
   const [loading, setloading] = useState(false)
@@ -23,6 +24,7 @@ const AthleticProfileSection = ({ user }) => {
   const [leaguesAndConferences, setleaguesAndConferences] = useState(
     user?.leaguesAndConferences
   )
+  const [toast, settoast] = useState(null)
   const [athleticAccolades, setathleticAccolades] = useState(
     user?.athleticAccolades
   )
@@ -38,11 +40,22 @@ const AthleticProfileSection = ({ user }) => {
     }
     setloading(true)
     const { error } = await updateAthleticProfile({ id: user?.id, data })
-    console.log('error', error)
-    setloading(false)
+    if (error) {
+      settoast({
+        description: error,
+        status: 'error',
+      })
+    } else {
+      setloading(false)
+      settoast({
+        description: 'Update successful',
+        status: 'success',
+      })
+    }
   }
   return (
     <SectionContainer data={{ title: 'Athletic profile', Icon: Icon_running }}>
+      <Toast parameters={{ toast, settoast }} />
       <div className={'flex flex-col gap-4'}>
         <div className={''}>
           <p className={'mb-1'}>Position</p>

@@ -1,6 +1,5 @@
 'use server'
 import { createServer } from '@/config/supabase/supabaseServer'
-import { formatDateToUTCString } from '@/utilities/date-and-time/formatDateToUTCString'
 import { revalidatePath } from 'next/cache'
 
 export const fetchGalleryImages = async (user) => {
@@ -27,17 +26,8 @@ export const updateProfilePicture = async ({ dataImg, userId }) => {
   if (error) {
     return { data: null, error: error?.message }
   }
-  // revalidatePath('/profile')
 }
 
-// export const fetchProfilePicture = async (user) => {
-//   const supabase = createServer()
-//   const { data: images, error } = await supabase
-//     .from('profile_picture')
-//     .select('*')
-//     .eq('owner_id', user?.id)
-//   return images
-// }
 export const revalidatePathCustom = (path) => {
   // accepts string
   revalidatePath(path)
@@ -142,7 +132,6 @@ export const updateAthleticProfile = async ({ data, id }) => {
 }
 
 export const updateLocationFunc = async ({ data, id }) => {
-  console.log('data', data)
   const { currentLocation, homeTown } = data
 
   const supabase = createServer()
@@ -167,7 +156,6 @@ export const updateLocationFunc = async ({ data, id }) => {
 }
 
 export const deletePhoto = async ({ path, bucket }) => {
-  console.log({ path, bucket })
   const supabase = createServer()
   const { error: storageError } = await supabase.storage
     .from(bucket)
