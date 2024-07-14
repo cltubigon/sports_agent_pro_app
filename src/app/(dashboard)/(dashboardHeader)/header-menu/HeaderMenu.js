@@ -1,34 +1,31 @@
 'use client'
-import Icon_user2 from '@/app/components/icons/Icon_user2'
 import { capitalizeAllFirstLetter } from '@/utilities/capitalizeAllFirstLetter'
-import Image from 'next/image'
 import Link from 'next/link'
 import React, { useRef, useState } from 'react'
 import LogoutButton from '../LogoutButton'
 import Menu from '@/app/components/Menu'
+import ProfilePictureComponent from '@/app/components/ThisWebsiteOnly/profilePicture/ProfilePictureComponent'
 
 const HeaderMenu = ({ currentUser }) => {
-  const display_name = currentUser?.display_name
-  const avatar = currentUser?.avatar
+  const { display_name, firstName, lastName } = currentUser
+  console.log('currentUser', currentUser)
 
   const [showModal, setShowModal] = useState(false)
   const buttonRef = useRef(null)
 
   return (
     <div className={'flex gap-3 items-center w-fit relative group ml-auto'}>
-      <p className={''}>{capitalizeAllFirstLetter(display_name)}</p>
-      {avatar ? (
-        <Image
-          src={avatar}
-          width={50}
-          height={50}
-          quality={100}
-          alt="user image"
-          className="rounded-full border-[1px] border-[#ccc]"
-        />
-      ) : (
-        <Icon_user2 className="text-[#ADB4B6] size-[50px] rounded-full overflow-hidden border-[1px] border-[#ADB4B6]" />
-      )}
+      <p className={''}>
+        {firstName && lastName
+          ? `${capitalizeAllFirstLetter(firstName)} ${capitalizeAllFirstLetter(
+              lastName
+            )}`
+          : capitalizeAllFirstLetter(display_name)}
+      </p>
+      <ProfilePictureComponent
+        user={currentUser}
+        parameters={{ containerStyle: 'size-[50px]' }}
+      />
       <div
         className={
           'clt-modal cursor-pointer w-full z-10 h-[50px] absolute top-0 left-0'

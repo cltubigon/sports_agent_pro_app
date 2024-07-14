@@ -10,6 +10,12 @@ const profilePageStore = create(
         state.images = data
       })
     },
+    profilePic: null,
+    setprofilePic: (data) => {
+      set((state) => {
+        state.profilePic = data
+      })
+    },
   })),
   {
     name: 'profilePageStore',

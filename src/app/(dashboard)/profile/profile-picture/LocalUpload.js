@@ -1,10 +1,13 @@
 'use client'
 import ButtonLoader from '@/app/components/ButtonLoader'
 import CltDropzone from '@/app/components/dropzone/Dropzone'
-import { uploadImagesToSupabase } from '@/app/components/dropzone/uploadImagesToSupabase'
+import {
+  uploadImagesToSupabase,
+  uploadProfilePicture,
+} from '@/app/components/dropzone/uploadImagesToSupabase'
 import Toast from '@/app/components/Toast'
 import React, { useState } from 'react'
-import { fetchGalleryImages } from '../actions'
+import { fetchGalleryImages, revalidatePathCustom } from '../actions'
 import { formatDateToUTCString } from '@/utilities/date-and-time/formatDateToUTCString'
 import { useStore } from 'zustand'
 import utilityStore from '@/utilities/store/utilityStore'
@@ -18,23 +21,23 @@ const LocalUpload = ({ parameters: { user, images, setimages, setpopup } }) => {
   const handleClick = async () => {
     if (!imagesWithBlurDataUrl) return
     setloading({ id: 'uploadProfile' })
-    const { data, error } = await uploadImagesToSupabase({
+    const { data, error } = await uploadProfilePicture({
       folder: 'gallery',
       images: imagesWithBlurDataUrl,
       userId: user?.id,
-      pageToRevalidate: '/profile',
-      isProfilePicture: formatDateToUTCString(new Date()),
     })
     if (data) {
-      const fetchedData = await fetchGalleryImages(user)
-      setimages(fetchedData)
-      if (fetchedData) {
-        setpopup(false)
-        settoast({
-          description: 'Profile updated',
-          status: 'success',
-        })
-      }
+      revalidatePathCustom('/profile')
+      setpopup(false)
+      settoast({
+        description: 'Profile updated',
+        status: 'success',
+      })
+    } else if (error) {
+      settoast({
+        description: error,
+        status: 'error',
+      })
     }
     setloading(null)
   }
@@ -60,7 +63,7 @@ const LocalUpload = ({ parameters: { user, images, setimages, setpopup } }) => {
           placeholder: 'Click to upload file, or drag & drop file here.',
         }}
       />
-      <div className={'md:max-w-[70%] md:mx-auto mt-2'}>
+      <div className={'md:max-w-[70%] md:mx-auto mt-3'}>
         <ButtonLoader
           onClick={handleClick}
           className={'w-full'}

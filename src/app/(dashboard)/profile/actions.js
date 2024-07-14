@@ -36,6 +36,10 @@ export const updateProfilePicture = async (id) => {
 //     .eq('owner_id', user?.id)
 //   return images
 // }
+export const revalidatePathCustom = (path) => {
+  // accepts string
+  revalidatePath(path)
+}
 
 export const updateBasicInfo = async ({ data, id }) => {
   const {

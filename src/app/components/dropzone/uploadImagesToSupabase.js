@@ -10,56 +10,49 @@ const generateDateString = () => {
   return `${day}${month}${year}${milliSeconds}`
 }
 
-// export const uploadProfilePicture = async ({
-//   folder,
-//   images,
-//   userId,
-//   pageToRevalidate,
-// }) => {
-//   const supabase = createClient()
-//   const uploadFile = images?.map(async (imgObj) => {
-//     const imageName = imgObj?.file?.path.replace(' ', '_').toLowerCase()
-//     const dateString = generateDateString()
-//     const { data: imageData, error } = await supabase.storage
-//       .from(folder)
-//       .upload(`${userId}/${dateString}-${imageName}`, imgObj?.file, {
-//         cacheControl: '3600',
-//         upsert: false,
-//       })
-//     return { ...imageData, blurDataURL: imgObj?.blurDataURL }
-//   })
+export const uploadProfilePicture = async ({ folder, images, userId }) => {
+  console.log('images', images)
+  const supabase = createClient()
+  const uploadFile = images?.map(async (imgObj) => {
+    const imageName = imgObj?.file?.path.replace(' ', '_').toLowerCase()
+    const dateString = generateDateString()
+    const { data: imageData, error } = await supabase.storage
+      .from(folder)
+      .upload(`${userId}/${dateString}-${imageName}`, imgObj?.file, {
+        cacheControl: '3600',
+        upsert: false,
+      })
+    return {
+      ...imageData,
+      blurDataURL: imgObj?.blurDataURL,
+    }
+  })
 
-//   const imagesUploadedToStorage = await Promise.all(uploadFile)
+  const imagesUploadedToStorage = await Promise.all(uploadFile)
+  console.log('imagesUploadedToStorage', imagesUploadedToStorage)
+  const { data, error } = await supabase
+    .from(folder)
+    .insert(imagesUploadedToStorage)
+    .select()
+  if (data) {
+    const { data: userData, error: userError } = await supabase
+      .from('users')
+      .update({ profilePicture: imagesUploadedToStorage })
+      .eq('id', userId)
+      .select()
 
-//   const { data: galleryData, error: galleryError } = await supabase
-//     .from('gallery')
-//     .insert(imagesUploadedToStorage)
-//     .select()
+    if (userError) {
+      console.log('userError', userError)
+      return { data: null, error: userError?.message }
+    }
+    return { data: userData, error: null }
+  } else if (error) {
+    console.log('error', error)
+    return { data: null, error: error?.message }
+  }
+}
 
-//   const { data: profileData, error: profileError } = await supabase
-//     .from('profile_picture')
-//     .upsert(imagesUploadedToStorage)
-//     .select()
-
-//   if (galleryData && profileData) {
-//     return { data: [galleryData, profileData], error: null }
-//   } else if (profileError) {
-//     console.log('profileError', profileError)
-//     return { data: null, error: profileError?.message }
-//   } else if (galleryError) {
-//     console.log('galleryError', galleryError)
-//     return { data: null, error: galleryError?.message }
-//   }
-//   revalidatePath(pageToRevalidate || '/')
-// }
-
-export const uploadImagesToSupabase = async ({
-  folder,
-  images,
-  userId,
-  pageToRevalidate,
-  isProfilePicture,
-}) => {
+export const uploadImagesToSupabase = async ({ folder, images, userId }) => {
   console.log('images', images)
   const supabase = createClient()
   const uploadFile = images?.map(async (imgObj) => {
@@ -75,7 +68,6 @@ export const uploadImagesToSupabase = async ({
     return {
       ...imageData,
       blurDataURL: imgObj?.blurDataURL,
-      isProfilePicture: isProfilePicture || null,
     }
   })
 
@@ -90,6 +82,4 @@ export const uploadImagesToSupabase = async ({
     console.log('error', error)
     return { data: null, error: error?.message }
   }
-
-  revalidatePath(pageToRevalidate || '/')
 }

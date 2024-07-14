@@ -12,8 +12,10 @@ const converToDateInputFormat = (data) => {
 }
 
 const DateInput = forwardRef(function DateInput({ children, ...props }, ref) {
+  console.log('props', props)
   return (
     <Input
+      ref={ref}
       type="date"
       defaultValue={converToDateInputFormat(props?.default)}
       {...props}
