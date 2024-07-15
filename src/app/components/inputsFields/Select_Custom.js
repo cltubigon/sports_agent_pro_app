@@ -18,7 +18,7 @@ import { twMerge } from 'tailwind-merge'
 //     options: items,
 //     selectedItem,
 //     setselectedItem,
-//     containerHeight: 200,
+//     containerHeight: 230,
 //     classModalId: 'clt-modal2',
 //     multiSelect: true,         // optional
 //     optionsStyle: '',          // optional
@@ -134,7 +134,7 @@ export default function Select_Custom({
                     onClick={(e) => removeItem(e, item)}
                     className={twMerge(
                       classId,
-                      'py-1 px-3 bg-secondary-100 rounded-full',
+                      'py-1 px-3 bg-secondary-200 rounded-full',
                       multiSelectStyle
                     )}
                   >
@@ -180,9 +180,9 @@ export default function Select_Custom({
                 className={twMerge(
                   `p-3 ${
                     selectedItem?.some((sItem) => sItem?.value === item.value)
-                      ? `${twMerge('bg-neutral-100', optionsStyleSelected)}`
+                      ? `${twMerge('bg-neutral-200', optionsStyleSelected)}`
                       : `${twMerge(
-                          'hover:bg-neutral-50',
+                          'hover:bg-secondary-200',
                           optionsStyleNotSelected
                         )}`
                   }`,

@@ -60,14 +60,13 @@ export const updateBasicInfo = async ({ data, id }) => {
     .select()
     .eq('id', id)
   if (result) {
+    revalidatePath('/profile')
     return { error: null }
   }
   if (error) {
     console.log('error', error)
     return { error: error?.message }
   }
-
-  revalidatePath('/profile')
 }
 
 export const updateBio = async ({ data, id }) => {
@@ -86,14 +85,13 @@ export const updateBio = async ({ data, id }) => {
     .select()
     .eq('id', id)
   if (result) {
+    revalidatePath('/profile')
     return { error: null }
   }
   if (error) {
     console.log('error', error)
     return { error: error?.message }
   }
-
-  revalidatePath('/profile')
 }
 
 export const updateAthleticProfile = async ({ data, id }) => {
@@ -121,14 +119,13 @@ export const updateAthleticProfile = async ({ data, id }) => {
     .select()
     .eq('id', id)
   if (result) {
+    revalidatePath('/profile')
     return { error: null }
   }
   if (error) {
     console.log('error', error)
     return { error: error?.message }
   }
-
-  revalidatePath('/profile')
 }
 
 export const updateLocationFunc = async ({ data, id }) => {
@@ -145,14 +142,13 @@ export const updateLocationFunc = async ({ data, id }) => {
     .select()
     .eq('id', id)
   if (result) {
+    revalidatePath('/profile')
     return { error: null }
   }
   if (error) {
     console.log('error', error)
     return { error: error?.message }
   }
-
-  revalidatePath('/profile')
 }
 
 export const deletePhoto = async ({ path, bucket }) => {

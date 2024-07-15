@@ -7,7 +7,7 @@ const Icon_check3 = forwardRef(function Icon_check3(
 ) {
   return (
     <svg
-      className={twMerge('size-4', className)}
+      className={twMerge('size-5', className)}
       {...props}
       ref={ref}
       viewBox="0 0 24 24"

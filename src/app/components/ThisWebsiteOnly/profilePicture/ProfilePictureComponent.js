@@ -7,7 +7,7 @@ const ProfilePictureComponent = forwardRef(function ProfilePictureComponent(
   { children, className, ...props },
   ref
 ) {
-  const { profilePicture, avatar } = props?.user
+  // Accepts and OBJECT user
   return (
     <div
       className={twMerge(
@@ -15,11 +15,11 @@ const ProfilePictureComponent = forwardRef(function ProfilePictureComponent(
         props?.parameters?.containerStyle
       )}
     >
-      {profilePicture ? (
+      {props?.user?.profilePicture ? (
         <Image
-          src={`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL}${profilePicture?.fullPath}`}
+          src={`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL}${props?.user?.profilePicture?.fullPath}`}
           placeholder="blur"
-          blurDataURL={profilePicture?.blurDataURL}
+          blurDataURL={props?.user?.profilePicture?.blurDataURL}
           quality={100}
           alt="user image"
           fill
@@ -32,9 +32,9 @@ const ProfilePictureComponent = forwardRef(function ProfilePictureComponent(
           {...props}
           ref={ref}
         />
-      ) : avatar ? (
+      ) : props?.user?.avatar ? (
         <Image
-          src={avatar}
+          src={props?.user?.avatar}
           quality={100}
           alt="user image"
           fill

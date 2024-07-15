@@ -11,7 +11,7 @@ import {
   listWhichBestDescribesYou,
 } from './listOfArray'
 import { formatDateToUTCString } from '@/utilities/date-and-time/formatDateToUTCString'
-import { updateBasicInfo } from './actions'
+import { revalidatePathCustom, updateBasicInfo } from './actions'
 import Icon_spinner from '@/app/components/icons/Icon_spinner'
 import DateInput from '@/app/components/inputsFields/DateInput'
 import SectionContainer from './SectionContainer'

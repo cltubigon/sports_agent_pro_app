@@ -8,7 +8,7 @@ const ViewProfileButton = ({ user, className }) => {
   return (
     <div className={twMerge('flex gap-3', className)}>
       <div className={'w-fit'}>
-        <Link href={`/${user?.id}`} prefetch>
+        <Link href={`/${user?.id}`} target="_blank" prefetch>
           <Button variant="button2">View Profile</Button>
         </Link>
       </div>

@@ -7,7 +7,8 @@ const Icon_check = ({ className }) => {
       <svg
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
-        className={twMerge('size-[39px]', className)}
+        className={twMerge('size-10', className)}
+        fill="currentColor"
       >
         <path
           fillRule="evenodd"

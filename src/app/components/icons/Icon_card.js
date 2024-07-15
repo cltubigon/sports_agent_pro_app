@@ -9,7 +9,7 @@ const Icon_card = forwardRef(function Icon_card({ className, ...props }, ref) {
       viewBox="0 0 24 24"
       strokeWidth={1}
       stroke="currentColor"
-      className={twMerge('size-4', className)}
+      className={twMerge('size-5', className)}
       {...props}
       ref={ref}
     >

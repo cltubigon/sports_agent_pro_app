@@ -42,17 +42,15 @@ const GoogleMapAutoCompleteAddress = ({
       service.getQueryPredictions({ input: e.target.value }, displaySuggestions)
     }
   }
-
   return (
     <>
       <div className={'relative'}>
-        <form ref={formRef}>
+        <form ref={formRef} className="ml-auto relative">
           <Input
             ref={autocompleteInput}
             defaultValue={selected}
             onChange={handleInputChange}
             onInput={() => setShowModal(true)}
-            // placeholder="Enter your address"
             {...props}
             type="text"
           />
@@ -61,8 +59,7 @@ const GoogleMapAutoCompleteAddress = ({
               showModal={showModal}
               setShowModal={setShowModal}
               referenceElement={autocompleteInput}
-              containerHeight={225}
-              containerWidth={350}
+              containerHeight={250}
               className="divide-y-[1px] rounded-md py-2 h-40 divide-neutral-200 flex flex-col justify-start"
             >
               {suggestions?.map((item, index) => {

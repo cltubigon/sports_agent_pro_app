@@ -8,7 +8,7 @@ const Icon_facebook = forwardRef(function Icon_facebook(
   return (
     <svg
       fill="#0866ff"
-      className={twMerge('size-4', className)}
+      className={twMerge('size-5', className)}
       {...props}
       ref={ref}
       viewBox="0 0 24 24"

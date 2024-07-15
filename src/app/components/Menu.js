@@ -21,9 +21,9 @@ import { twMerge } from 'tailwind-merge'
 //     showModal={showModal}
 //     setShowModal={setShowModal}
 //     referenceElement={buttonRef}
-//     containerHeight={160}
-//     containerWidth={350}
+//     containerHeight={230}
 //     className="w-[350px]"
+//     containerWidth={350}     //optional
 //     spaceFromElement={10}    //optional
 //   >
 //     Hello world
@@ -62,7 +62,7 @@ const Menu = ({ children, classId, ...props }) => {
     spaceFromElement,
   } = props
   const reference = referenceElement?.current?.getBoundingClientRect()
-  const modalRef = useRef(null)
+  const referenceHeight = referenceElement?.current?.offsetHeight
 
   let yPosition = getYPosition({
     reference,
@@ -76,11 +76,8 @@ const Menu = ({ children, classId, ...props }) => {
     const currElem = e.target?.className
     const currParent = e.target?.parentElement?.className
 
-    console.log({ currElem, currParent, e })
-
     if (typeof currElem === 'string' && typeof currParent === 'string') {
       if (!currElem?.includes(classId) && !currParent?.includes(classId)) {
-        console.log('menu set')
         setShowModal(() => !showModal)
       }
     }
@@ -99,21 +96,21 @@ const Menu = ({ children, classId, ...props }) => {
   return (
     <>
       <div
-        ref={modalRef}
         className={twMerge(
           `${classId} flex flex-col justify-center overflow-auto absolute z-20 bg-white border-[1px] select-none border-[#ccc] shadow-md p-4 w-full`,
           props?.className
         )}
         style={{
           top:
-            yPosition === 'top' &&
-            `-${containerHeight + (spaceFromElement || 0)}px`,
-          bottom:
             yPosition === 'bottom' &&
-            `-${containerHeight + (spaceFromElement || 0)}px`,
+            `${referenceHeight + (spaceFromElement || 0)}px`,
+          bottom:
+            yPosition === 'top' &&
+            `${referenceHeight + (spaceFromElement || 0)}px`,
           left: xPosition === 'left' && '0',
           right: xPosition === 'right' && '0',
-          height: `${containerHeight}px`,
+          height: 'fit-content',
+          maxHeight: `${containerHeight}px`,
         }}
       >
         {children}

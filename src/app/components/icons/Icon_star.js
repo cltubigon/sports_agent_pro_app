@@ -1,25 +1,21 @@
 import React, { forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-const Icon_down = forwardRef(function Icon_down({ className, ...props }, ref) {
+const Icon_star = forwardRef(function Icon_star({ className, ...props }, ref) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
       viewBox="0 0 24 24"
-      strokeWidth={2}
-      stroke="currentColor"
       className={twMerge('size-5', className)}
       {...props}
       ref={ref}
     >
       <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="m19.5 8.25-7.5 7.5-7.5-7.5"
+        fill="currentColor"
+        d="M12 .288l2.833 8.718h9.167l-7.417 5.389 2.833 8.718-7.416-5.388-7.417 5.388 2.833-8.718-7.416-5.389h9.167z"
       />
     </svg>
   )
 })
 
-export default Icon_down
+export default Icon_star
