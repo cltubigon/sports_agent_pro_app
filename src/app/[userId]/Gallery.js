@@ -1,9 +1,11 @@
 import Image from 'next/image'
 import React from 'react'
+import ImagePreview from '../components/ImagePreview'
 
 const Gallery = ({ user, images }) => {
   return (
     <div className={'py-3 md:py-1'}>
+      <ImagePreview />
       <div className={'max-w-[1500px] mx-auto px-3 md:px-6 2xl:px-0'}>
         <div className={'flex gap-[1%] overflow-x-auto md:overflow-x-hidden'}>
           {images
