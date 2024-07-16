@@ -17,7 +17,7 @@ const TestPage = () => {
 
       FB.getLoginStatus(function (response) {
         console.log('response', response)
-        statusChangeCallback(response)
+        // statusChangeCallback(response)
       })
     }
   }
