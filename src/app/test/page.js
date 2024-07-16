@@ -15,39 +15,27 @@ const TestPage = () => {
         version: 'v16.0',
       })
 
-      FB.getLoginStatus(function (response) {
-        console.log('response', response)
-        // statusChangeCallback(response)
-      })
+      //   FB.getLoginStatus(function (response) {
+      //     console.log('response', response)
+      //     // statusChangeCallback(response)
+      //   })
     }
   }
   return (
     <div className={'py-10 md:py-[80px]'}>
       <div id="fb-root"></div>
-      {/* <script
-        async
-        defer
-        crossorigin="anonymous"
-        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v20.0&appId=985678833043287"
-        nonce="0sVNlcOb"
-      ></script> */}
+      <Script
+        src="https://connect.facebook.net/en_US/sdk.js"
+        strategy="lazyOnload"
+        onLoad={onLoad}
+      />
       <div className={'container md:px-6 lg:px-10 xl:px-0 '}>
-        <Script
-          src="https://connect.facebook.net/en_US/sdk.js"
-          strategy="lazyOnload"
-          onLoad={onLoad}
-        />
         <h5 className={'font-tinos text-xl md:text-2xl font-bold mb-5'}>
           Test Page
         </h5>
         <Button>
           <Icon_facebook /> Facebook Login
         </Button>
-
-        {/* <fb:login-button
-          scope="public_profile,email"
-          onlogin="checkLoginState();"
-        ></fb:login-button> */}
         <div
           className="fb-login-button"
           datawidth=""
@@ -65,3 +53,13 @@ const TestPage = () => {
 }
 
 export default TestPage
+
+{
+  /* <script
+  async
+  defer
+  crossorigin="anonymous"
+  src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v20.0&appId=985678833043287"
+  nonce="0sVNlcOb"
+></script> */
+}
