@@ -15,6 +15,10 @@ export async function signup(data) {
     password: password,
     options: {
       emailRedirectTo: `${process.env.NEXT_PUBLIC_ROOT_DOMAIN}/callback`,
+      // data: {
+      //   first_name: 'John',
+      //   age: 27,
+      // },
     },
   })
 
