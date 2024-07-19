@@ -69,6 +69,8 @@ export async function updateSession(request) {
 
   if (user) {
     if (pathname === '/login' || pathname === '/signup' || pathname === '/') {
+      const params = url.searchParams.get('step')
+      if (pathname === '/signup' && params === '4') return
       return NextResponse.redirect(new URL('/dashboard', request.url))
     }
   } else if (

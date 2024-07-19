@@ -21,17 +21,17 @@ const Checkbox = forwardRef(function Checkbox(
       />
       <div
         className={
-          'peer-checked:hidden min-w-4 min-h-4 border-[1px] rounded-[3px] border-[#D1D5DB] relative'
+          'peer-checked:hidden min-w-[25px] min-h-[25px] border-[1px] rounded-[5px] border-neutral-300 relative'
         }
-      ></div>
+      />
       <div
         className={
-          'hidden peer-checked:block bg-primary-200 min-w-4 min-h-4 border-[1px] rounded-[3px] border-[#D1D5DB] relative'
+          'hidden peer-checked:block bg-primary min-w-[25px] min-h-[25px] border-[1px] rounded-[5px] border-neutral-300 relative'
         }
       >
         <Icon_check2
           className={
-            'text-primary absolute min-w-5 min-h-5 mx-auto my-auto top-[-4px] bottom-0 left-[-1px] right-0'
+            'text-white absolute size-[14px] m-auto my-auto top-0 bottom-0 left-0 right-0'
           }
         />
       </div>

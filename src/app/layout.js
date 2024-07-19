@@ -1,6 +1,6 @@
 import TanstackProvider from '@/config/providers/TanstackProvider'
 import './globals.css'
-import { openSans } from '@/utilities/fonts/fonts'
+import { oswald, urbanist } from '@/utilities/fonts/fonts'
 
 export const metadata = {
   title: 'Sports Agent Pro',
@@ -13,7 +13,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={openSans.className}>
+    <html lang="en" className={`${urbanist.variable} ${oswald.variable}`}>
       <body>
         <TanstackProvider>{children}</TanstackProvider>
       </body>

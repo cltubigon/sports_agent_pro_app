@@ -14,6 +14,8 @@ import Link from 'next/link'
 import Icon_spinner from '@/app/components/icons/Icon_spinner'
 import { useSearchParams } from 'next/navigation'
 import OAuthGoogleSignIn from './OAuthGoogleSignIn'
+import Icon_eye_opened from '@/app/components/icons/Icon_eye_opened'
+import Icon_eye_closed from '@/app/components/icons/Icon_eye_closed'
 
 const ClientLogin = () => {
   const { register, handleSubmit, formState } = useForm({
@@ -92,7 +94,7 @@ const ClientLogin = () => {
           </div>
           <div>
             <label htmlFor="password">Password:</label>
-            <InputGroup>
+            <InputGroup data-icon="">
               <Input
                 type={!showPassword ? 'password' : 'text'}
                 // defaultValue={localData?.password}
@@ -103,7 +105,7 @@ const ClientLogin = () => {
                 })}
               />
               <InputPasswordVisibility onClick={showHideClicked}>
-                {!showPassword ? 'show' : 'hide'}
+                {!showPassword ? <Icon_eye_opened /> : <Icon_eye_closed />}
               </InputPasswordVisibility>
             </InputGroup>
             <div className={'flex justify-between mt-1 mb-3'}>
@@ -136,7 +138,7 @@ const ClientLogin = () => {
               <span className="px-4">Or continue with</span>
             </Divider>
           </div>
-          <OAuthGoogleSignIn />
+          <OAuthGoogleSignIn>Google</OAuthGoogleSignIn>
         </div>
       </form>
     </LoginSignupContainer>

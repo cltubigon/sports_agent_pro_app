@@ -4,31 +4,55 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
 export async function signup(data) {
+  const { email, password, phoneNumber, first_name, last_name, accountType } =
+    data
   const supabase = createServer()
-  const { email, password } = data
-
-  let {
-    data: { user },
-    error,
-  } = await supabase.auth.signUp({
+  const { data: user, error } = await supabase.auth.signInWithOtp({
     email: email,
     password: password,
     options: {
-      emailRedirectTo: `${process.env.NEXT_PUBLIC_ROOT_DOMAIN}/callback`,
-      // data: {
-      //   first_name: 'John',
-      //   age: 27,
-      // },
+      // set this to false if you do not want the user to be automatically signed up
+      // shouldCreateUser: false,
+      data: {
+        name: `${first_name} ${last_name}`,
+        first_name,
+        last_name,
+        phoneNumber,
+        accountType,
+      },
     },
   })
 
+  console.log('user', user)
   if (error) {
-    return error
+    console.log('error', error)
+    return error?.message
   }
-  if (!user?.user_metadata?.email) {
-    return 'Email already exists.'
-  } else {
+  if (user) {
     revalidatePath('/', 'layout')
-    redirect(`/confirm-signup/?email=${email}`)
+    redirect(`/signup?step=3`)
   }
+}
+
+export const verifyOtp = async (data) => {
+  const { email, token } = data
+  const supabase = createServer()
+  const {
+    data: { session },
+    error,
+  } = await supabase.auth.verifyOtp({
+    email,
+    token: token,
+    type: 'email',
+  })
+  console.log('session', session)
+  if (error) {
+    return { error: error.message }
+  } else {
+    return { error: null }
+  }
+}
+
+const resendOtp = () => {
+  signInWithOtp()
 }

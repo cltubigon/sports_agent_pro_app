@@ -7,17 +7,16 @@ import Menu from '@/app/components/Menu'
 import ProfilePictureComponent from '@/app/components/ThisWebsiteOnly/profilePicture/ProfilePictureComponent'
 
 const HeaderMenu = ({ currentUser }) => {
-  const { display_name, firstName, lastName } = currentUser
+  const { display_name, first_name, last_name } = currentUser
 
   const [showModal, setShowModal] = useState(false)
   const buttonRef = useRef(null)
-
   return (
     <div className={'flex gap-3 items-center w-fit relative group ml-auto'}>
       <p className={''}>
-        {firstName && lastName
-          ? `${capitalizeAllFirstLetter(firstName)} ${capitalizeAllFirstLetter(
-              lastName
+        {first_name && last_name
+          ? `${capitalizeAllFirstLetter(first_name)} ${capitalizeAllFirstLetter(
+              last_name
             )}`
           : capitalizeAllFirstLetter(display_name)}
       </p>

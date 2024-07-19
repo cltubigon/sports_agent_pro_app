@@ -3,7 +3,7 @@ import { forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 const variants = {
-  dark: `leading-[22px] flex gap-2 items-center justify-center w-fit h-fit text-sm rounded-[5px] font-semibold text-white px-[17px] py-2 bg-primary hover:bg-primary-700 transition-all duration-300 ${openSans.className} active:bg-primary-800`,
+  dark: `leading-[22px] flex gap-2 items-center justify-center w-fit h-fit text-sm rounded-[5px] font-bold h-[63px] text-white px-[38px] py-2 bg-primary hover:bg-primary-700 transition-all duration-300 ${openSans.className} active:bg-primary-800`,
   button2: `leading-[22px] flex gap-2 items-center justify-center h-fit text-sm rounded-[5px] font-semibold px-[17px] py-[7px] border-[1px] border-primary bg-white md:hover:bg-primary-200 active:bg-primary-200 text-primary transition-all duration-300 ${openSans.className}`,
   light: `leading-[22px] flex gap-2 items-center justify-center h-fit text-sm rounded-[5px] font-semibold px-[17px] py-2 bg-white hover:bg-neutral-200 text-black transition-all duration-300 ${openSans.className}`,
 }

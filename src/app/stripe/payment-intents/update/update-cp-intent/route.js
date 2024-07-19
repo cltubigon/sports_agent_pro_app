@@ -6,8 +6,8 @@ export const POST = async (request) => {
   const {
     pIntentId,
     donationAmount,
-    donorFirstName,
-    donorLastName,
+    donorFirst_name,
+    donorLast_name,
     donorEmailAddress,
     description,
   } = data
@@ -18,8 +18,8 @@ export const POST = async (request) => {
     description,
     receipt_email: donorEmailAddress,
     metadata: {
-      owner_firstName: donorFirstName,
-      owner_lastName: donorLastName,
+      owner_first_name: donorFirst_name,
+      owner_last_name: donorLast_name,
       owner_email: donorEmailAddress,
     },
   })

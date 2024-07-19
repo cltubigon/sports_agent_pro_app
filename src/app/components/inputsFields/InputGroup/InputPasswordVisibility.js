@@ -21,19 +21,21 @@ import Button from '../../Button'
     })}
   />
   <InputPasswordVisibility onClick={showHideClicked}>
-    {!showPassword ? 'show' : 'hide'}
+    {!showPassword ? <Icon_eye_opened /> : <Icon_eye_closed />}
   </InputPasswordVisibility>
 </InputGroup> */
 }
 
 const InputPasswordVisibility = ({ children, ...props }) => {
   return (
-    <Button
+    <div
+      className={
+        'absolute right-2 top-0 bottom-0 my-auto text-xl p-1 text-neutral-600 w-fit h-fit select-none'
+      }
       {...props}
-      className="absolute right-2 top-0 bottom-0 my-auto py-1 px-2 text-xs bg-neutral-100 hover:bg-neutral-50 active:bg-neutral-200 text-neutral-600"
     >
       {children}
-    </Button>
+    </div>
   )
 }
 

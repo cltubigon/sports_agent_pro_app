@@ -4,7 +4,7 @@ import { loadStripe } from '@stripe/stripe-js'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useStore } from 'zustand'
-import utilityStorePersist from '@/utilities/store/storePersist'
+import utilityStorePersist from '@/utilities/store/utilityStorePersist'
 import CheckoutForm from './CheckoutForm'
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 

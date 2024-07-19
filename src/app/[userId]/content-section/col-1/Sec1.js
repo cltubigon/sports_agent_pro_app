@@ -17,13 +17,13 @@ const Sec1 = ({ person }) => {
       <div className={'flex justify-between gap-2'}>
         <div className={''}>
           <div className={'flex gap-1 items-center'}>
-            {/* {person?.firstName ||
-              (person?.lastName && (
+            {/* {person?.first_name ||
+              (person?.last_name && (
                 
               ))} */}
-            {(person?.firstName || person?.lastName) && (
+            {(person?.first_name || person?.last_name) && (
               <h3 className={'font-tinos text-2xl md:text-3xl font-semibold'}>
-                {`${person?.firstName} ${person?.lastName}`}
+                {`${person?.first_name} ${person?.last_name}`}
               </h3>
             )}
             <Icon_check className={'size-6 text-secondary-700'} />

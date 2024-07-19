@@ -65,22 +65,22 @@ const BasicInfo = ({ user }) => {
         <div className={'flex flex-col gap-4'}>
           <div className={'flex flex-col md:flex-row gap-4 md:gap-5'}>
             <Input
-              id="firstName"
-              defaultValue={user?.firstName}
+              id="first_name"
+              defaultValue={user?.first_name}
               placeholder="First name"
-              {...register('firstName', {
+              {...register('first_name', {
                 required: 'First name is required',
               })}
-              error={errors?.firstName?.message}
+              error={errors?.first_name?.message}
             />
             <Input
-              id="lastName"
-              defaultValue={user?.lastName}
+              id="last_name"
+              defaultValue={user?.last_name}
               placeholder="Last name"
-              {...register('lastName', {
+              {...register('last_name', {
                 required: 'Last name is required',
               })}
-              error={errors?.lastName?.message}
+              error={errors?.last_name?.message}
             />
           </div>
           <div className={''}>

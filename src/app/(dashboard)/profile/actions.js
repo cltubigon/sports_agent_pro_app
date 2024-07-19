@@ -35,8 +35,8 @@ export const revalidatePathCustom = (path) => {
 
 export const updateBasicInfo = async ({ data, id }) => {
   const {
-    firstName,
-    lastName,
+    first_name,
+    last_name,
     whichBestDescribesYou,
     dateOfBirth,
     genderIdentity,
@@ -49,8 +49,8 @@ export const updateBasicInfo = async ({ data, id }) => {
   const { data: result, error } = await supabase
     .from('users')
     .update({
-      firstName: firstName,
-      lastName: lastName,
+      first_name: first_name,
+      last_name: last_name,
       whichBestDescribesYou: whichBestDescribesYou,
       dateOfBirth: dateOfBirth,
       genderIdentity: genderIdentity,

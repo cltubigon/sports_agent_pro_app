@@ -1,19 +1,19 @@
-import { NextResponse } from "next/server"
+import { NextResponse } from 'next/server'
 
-import { createServer } from "@/config/supabase/supabaseServer"
+import { createServer } from '@/config/supabase/supabaseServer'
 
 // Creating a handler to a GET request to route /auth/confirm
 export async function GET(request) {
   const { searchParams } = new URL(request.url)
-  const token_hash = searchParams.get("token_hash")
-  const type = searchParams.get("type")
-  const next = "/dashboard"
+  const token_hash = searchParams.get('token_hash')
+  const type = searchParams.get('type')
+  const next = '/dashboard'
 
   // Create redirect link without the secret token
   const redirectTo = request.nextUrl.clone()
   redirectTo.pathname = next
-  redirectTo.searchParams.delete("token_hash")
-  redirectTo.searchParams.delete("type")
+  redirectTo.searchParams.delete('token_hash')
+  redirectTo.searchParams.delete('type')
 
   if (token_hash && type) {
     const supabase = createServer()
@@ -22,12 +22,12 @@ export async function GET(request) {
       token_hash,
     })
     if (!error) {
-      redirectTo.searchParams.delete("next")
+      redirectTo.searchParams.delete('next')
       return NextResponse.redirect(redirectTo)
     }
   }
 
   // return the user to an error page with some instructions
-  redirectTo.pathname = "/error"
+  redirectTo.pathname = '/error'
   return NextResponse.redirect(redirectTo)
 }

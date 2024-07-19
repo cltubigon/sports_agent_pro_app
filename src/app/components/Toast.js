@@ -8,7 +8,8 @@ import { useRouter } from 'next/navigation'
 // settoast({
 //    description: 'Lorem ipsum',
 //    status: 'error',
-//    redirect: '/path'
+//    redirect: '/path',        // optional
+//    duration: 3000            // optional
 // })
 
 // Example: <Toast parameters={{ toast, settoast }} />
@@ -58,7 +59,7 @@ const Toast = ({ parameters: { toast, settoast } }) => {
       {toast && (
         <div
           className={twMerge(
-            'z-[999] rounded-md shadow-md pl-6 pr-2 py-4 w-[290px] fixed bottom-4 left-0 right-0 mx-auto md:top-4 md:bottom-[unset] md:left-[unset] md:right-8 flex-wrap',
+            'z-[999] rounded-md shadow-md pl-6 pr-2 py-4 w-[290px] fixed top-4 left-0 right-0 mx-auto md:top-4 md:bottom-[unset] md:left-[unset] md:right-8 flex-wrap',
             statusBackground
           )}
         >

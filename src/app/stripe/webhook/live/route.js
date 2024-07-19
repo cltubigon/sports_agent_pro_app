@@ -23,9 +23,9 @@ export const POST = async (req) => {
         const pi = event.data.object
         const {
           metadata: {
-            owner_firstName,
+            owner_first_name,
             owner_email,
-            owner_lastName,
+            owner_last_name,
             recipient,
             source,
           },
@@ -44,8 +44,8 @@ export const POST = async (req) => {
           .insert([
             {
               created_at: created_at,
-              first_name: owner_firstName,
-              last_name: owner_lastName,
+              first_name: owner_first_name,
+              last_name: owner_last_name,
               donor_email: owner_email,
               payment_intent_id: id,
               amount: amount,

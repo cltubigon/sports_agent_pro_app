@@ -114,7 +114,9 @@ const ClientSignup = () => {
               <span className="px-4">Or continue with</span>
             </Divider>
           </div>
-          <OAuthGoogleSignIn>Google</OAuthGoogleSignIn>
+          <OAuthGoogleSignIn>
+            Google
+          </OAuthGoogleSignIn>
         </div>
       </form>
     </LoginSignupContainer>

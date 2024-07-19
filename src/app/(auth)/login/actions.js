@@ -16,13 +16,16 @@ export async function login({ data, redirectTo }) {
   redirect(redirectTo ? `/${redirectTo}` : '/dashboard')
 }
 
-export const handleLoginWithOAuth = async (provider) => {
+export const handleLoginWithOAuth = async ({accountType, social: provider}) => {
   const supabase = createServer()
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider,
     options: {
       redirectTo:
         process.env.NEXT_PUBLIC_ROOT_DOMAIN + '/confirm-signup/callback',
+      data: {
+        accountType
+      },
     },
   })
 

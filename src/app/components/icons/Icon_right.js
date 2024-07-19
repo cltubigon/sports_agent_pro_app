@@ -10,7 +10,7 @@ const Icon_right = forwardRef(function Icon_right(
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill="currentColor"
-      className={twMerge('w-3 h-3', className)}
+      className={twMerge('size-5', className)}
       {...props}
       ref={ref}
     >
