@@ -17,8 +17,8 @@ const SignupPage = () => {
       >
         <MenuContainer />
         <div className={'w-full h-full flex flex-col px-8 md:px-10 lg:px-20'}>
-          <StepsContainer />
           <Suspense fallback={<p className={''}>Loading...</p>}>
+            <StepsContainer />
             <BottomSection />
           </Suspense>
         </div>
