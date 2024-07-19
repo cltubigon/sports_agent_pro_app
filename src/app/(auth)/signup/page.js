@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import MenuContainer from './menu-container/MenuContainer'
 import StepsContainer from './steps-container/StepsContainer'
 import BottomSection from './BottomSection'
@@ -18,7 +18,9 @@ const SignupPage = () => {
         <MenuContainer />
         <div className={'w-full h-full flex flex-col px-8 md:px-10 lg:px-20'}>
           <StepsContainer />
-          <BottomSection />
+          <Suspense fallback={<p className={''}>Loading...</p>}>
+            <BottomSection />
+          </Suspense>
         </div>
       </div>
     </div>
