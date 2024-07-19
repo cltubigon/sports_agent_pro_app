@@ -15,7 +15,9 @@ const SignupPage = () => {
           'w-full h-full max-w-[1500px] xl:max-h-[800px] mx-auto bg-white xl:rounded-md flex flex-col lg:flex-row lg:overflow-hidden'
         }
       >
-        <MenuContainer />
+        <Suspense fallback={<p className={''}>Loading...</p>}>
+          <MenuContainer />
+        </Suspense>
         <div className={'w-full h-full flex flex-col px-8 md:px-10 lg:px-20'}>
           <Suspense fallback={<p className={''}>Loading...</p>}>
             <StepsContainer />
