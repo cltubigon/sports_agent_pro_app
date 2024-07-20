@@ -2,8 +2,15 @@ import React, { Suspense } from 'react'
 import MenuContainer from './menu-container/MenuContainer'
 import StepsContainer from './steps-container/StepsContainer'
 import BottomSection from './BottomSection'
+import { getCurrentUser } from '@/config/supabase/getCurrentUser'
+import { redirect } from 'next/navigation'
 
-const SignupPage = () => {
+const SignupPage = async () => {
+  const user = await getCurrentUser()
+  // if (!user?.currentLocation) {
+  //   redirect('/signup?step=2')
+  // }
+  console.log('user', user)
   return (
     <div
       className={
@@ -20,7 +27,7 @@ const SignupPage = () => {
         </Suspense>
         <div className={'w-full h-full flex flex-col px-8 md:px-10 lg:px-20'}>
           <Suspense fallback={<p className={''}>Loading...</p>}>
-            <StepsContainer />
+            <StepsContainer user={user} />
             <BottomSection />
           </Suspense>
         </div>

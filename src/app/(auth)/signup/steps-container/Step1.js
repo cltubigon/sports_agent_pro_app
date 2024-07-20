@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 import Icon_running2 from '@/app/components/icons/Icon_running2'
 import Icon_teaching from '@/app/components/icons/Icon_teaching'
@@ -6,16 +7,31 @@ import Button from '@/app/components/Button'
 import Link from 'next/link'
 import { useStore } from 'zustand'
 import signupStore from '@/utilities/store/signupStore'
+import { useEffect } from 'react'
 
-const Step1 = () => {
+const Step1 = ({ activeStepParams, setcount }) => {
   const { accountType, setaccountType } = useStore(signupStore)
   console.log('accountType', accountType)
 
+  useEffect(() => {
+    const store = JSON.parse(localStorage.getItem('signupStore'))
+    if (!store?.state?.accountType) {
+      setaccountType('brand')
+    }
+  }, [])
+
   const handleClick = (type) => {
+    if (setcount) {
+      setcount(1)
+    }
     setaccountType(type)
   }
   return (
-    <div className={'max-sm:py-5 md:h-full flex flex-col justify-center'}>
+    <div
+      className={`max-sm:py-5 ${
+        !activeStepParams && activeStepParams !== '4' && 'md:h-full'
+      } flex flex-col justify-center`}
+    >
       <h3
         className={
           'max-sm:text-center font-oswald text-3xl md:text-[50px] leading-[51px] font-bold mb-9 max-sm:mt-3'
@@ -118,11 +134,13 @@ const Step1 = () => {
           </div>
         </div>
       </div>
-      <div className={'w-fit'}>
-        <Link href={'/signup?step=2'}>
-          <Button className="max-sm:mb-5">CONTINUE</Button>
-        </Link>
-      </div>
+      {!activeStepParams && activeStepParams !== '4' && (
+        <div className={'w-fit'}>
+          <Link href={'/signup?step=2'}>
+            <Button className="max-sm:mb-5">CONTINUE</Button>
+          </Link>
+        </div>
+      )}
     </div>
   )
 }

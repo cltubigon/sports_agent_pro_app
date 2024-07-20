@@ -20,12 +20,12 @@ import { twMerge } from 'tailwind-merge'
 //     setselectedItem,
 //     containerHeight: 230,
 //     classModalId: 'clt-modal2',
+//     containerWidth: 260,       // optional
 //     multiSelect: true,         // optional
 //     optionsStyle: '',          // optional
 //     optionsStyleSelected: '',      // optional
 //     optionsStyleNotSelected: '',   // optional
 //     placeholder: '- Hello World -',               // optional
-//     containerWidth: 260,       // optional
 //     menuStyle: 'w-[260px]',    // optional
 //     placeholderStyle: '',      // optional
 //     singleSelectedStyle: '',   // optional
@@ -102,7 +102,7 @@ export default function Select_Custom({
       <div
         className={twMerge(
           variation,
-          `${classId} py-[10px] px-4 select-none border-[1px] border-secondary-300 relative rounded-md`,
+          `${classId} py-[10px] px-4 select-none border-[1px] h-[63px] border-neutral-300 relative rounded-md flex flex-col justify-center`,
           className
         )}
         {...props}
@@ -180,7 +180,7 @@ export default function Select_Custom({
                 className={twMerge(
                   `p-3 ${
                     selectedItem?.some((sItem) => sItem?.value === item.value)
-                      ? `${twMerge('bg-neutral-200', optionsStyleSelected)}`
+                      ? `${twMerge('bg-neutral-100', optionsStyleSelected)}`
                       : `${twMerge(
                           'hover:bg-secondary-200',
                           optionsStyleNotSelected

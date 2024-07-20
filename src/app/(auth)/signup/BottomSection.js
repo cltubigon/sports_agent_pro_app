@@ -6,9 +6,10 @@ import { useSearchParams } from 'next/navigation'
 
 const BottomSection = () => {
   const activeStepParams = useSearchParams().get('step')
+  console.log('activeStepParams', activeStepParams)
   return (
     <>
-      {activeStepParams !== '3' && (
+      {(activeStepParams !== '3' && activeStepParams !== '4') && (
         <div
           className={`relative ${
             activeStepParams === '2' ? 'min-h-[110px]' : 'min-h-[73px]'

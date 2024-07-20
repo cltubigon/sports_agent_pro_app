@@ -54,7 +54,7 @@ const GoogleMapAutoCompleteAddress = ({
             {...props}
             type="text"
           />
-          {showModal && (
+          {showModal && suggestions?.length > 0 && (
             <Menu
               showModal={showModal}
               setShowModal={setShowModal}

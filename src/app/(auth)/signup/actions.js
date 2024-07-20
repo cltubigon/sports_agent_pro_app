@@ -53,6 +53,22 @@ export const verifyOtp = async (data) => {
   }
 }
 
-const resendOtp = () => {
-  signInWithOtp()
+export const stepFourUpdateInfo = async ({ data, id }) => {
+  const { accountType, whichBestDescribesYou, genderIdentity } = data
+
+  const supabase = createServer()
+
+  const { data: result, error } = await supabase
+    .from('users')
+    .update(data)
+    .select()
+    .eq('id', id)
+  if (result) {
+    revalidatePath('/profile')
+    return { error: null }
+  }
+  if (error) {
+    console.log('error', error)
+    return { error: error?.message }
+  }
 }
