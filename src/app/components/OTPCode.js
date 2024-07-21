@@ -35,14 +35,15 @@ const OTPCode = ({ parameters: { setOTP, sending } }) => {
   }, [activeIndex])
 
   useEffect(() => {
-    if (!code.some((item) => item === '') && !sending) {
-      const timeout = setTimeout(() => {
-        setcode(new Array(6).fill(''))
-        setactiveIndex(0)
-      }, 1500)
-      setOTP(code.join(''))
+    if (activeIndex !== 0 && !sending) {
+      setcode(new Array(6).fill(''))
+      setactiveIndex(0)
+    }
+  }, [sending])
 
-      return () => clearTimeout(timeout)
+  useEffect(() => {
+    if (!code.some((item) => item === '') && !sending) {
+      setOTP(code.join(''))
     }
   }, [code])
 

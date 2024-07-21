@@ -1,21 +1,20 @@
 'use client'
 import React, { useState } from 'react'
 import Input from '@/app/components/inputsFields/InputGroup/Input'
-import Divider from '@/app/components/Divider'
-import Button from '@/app/components/Button'
-import Checkbox from '@/app/components/inputsFields/Checkbox'
 import { useForm } from 'react-hook-form'
 import { login } from './actions'
 import Toast from '@/app/components/Toast'
 import InputGroup from '@/app/components/inputsFields/InputGroup/InputGroup'
 import InputPasswordVisibility from '@/app/components/inputsFields/InputGroup/InputPasswordVisibility'
-import LoginSignupContainer from '@/app/components/LoginSignupContainer'
 import Link from 'next/link'
-import Icon_spinner from '@/app/components/icons/Icon_spinner'
 import { useSearchParams } from 'next/navigation'
 import OAuthGoogleSignIn from './OAuthGoogleSignIn'
 import Icon_eye_opened from '@/app/components/icons/Icon_eye_opened'
 import Icon_eye_closed from '@/app/components/icons/Icon_eye_closed'
+import Icon_email from '@/app/components/icons/Icon_email'
+import Icon_padlock from '@/app/components/icons/Icon_padlock'
+import ButtonLoader from '@/app/components/ButtonLoader'
+import Checkbox from '@/app/components/inputsFields/Checkbox'
 
 const ClientLogin = () => {
   const { register, handleSubmit, formState } = useForm({
@@ -28,6 +27,7 @@ const ClientLogin = () => {
       }
     },
   })
+  const { errors } = formState
   const [toast, settoast] = useState(null)
   const [loading, setloading] = useState(false)
   const [showPassword, setshowPassword] = useState(false)
@@ -38,110 +38,142 @@ const ClientLogin = () => {
 
   const searchParams = useSearchParams().get('next')
 
-  const onSubmit = (data) => {
-    setloading(true)
-    const initiateLogin = async () => {
-      const error = await login({ data, redirectTo: searchParams })
-      if (error) {
-        setloading(false)
-        settoast({
-          description: error,
-          status: 'error',
-        })
+  const onSubmit = async (data) => {
+    setloading({ id: 'login' })
+    const error = await login({ data, redirectTo: searchParams })
+    if (error) {
+      settoast({
+        description: error,
+        status: 'error',
+      })
+    } else {
+      if (data.savePassword) {
+        const { email, password } = data
+        localStorage.setItem(
+          'saved password',
+          JSON.stringify({
+            email,
+            password,
+            savePassword: data?.savePassword,
+          })
+        )
       } else {
-        setloading(false)
-        if (data.savePassword) {
-          const { email, password } = data
-          localStorage.setItem(
-            'saved password',
-            JSON.stringify({
-              email,
-              password,
-              savePassword: data?.savePassword,
-            })
-          )
-        } else {
-          localStorage.removeItem('saved password')
-        }
+        localStorage.removeItem('saved password')
       }
     }
-    initiateLogin()
+    setloading(null)
   }
   const showHideClicked = () => {
     setshowPassword(() => !showPassword)
   }
 
   return (
-    <LoginSignupContainer>
-      <Toast parameters={{ toast, settoast }} />
-      <form style={{ width: '100%' }} onSubmit={handleSubmit(onSubmit)}>
-        <div className={'flex flex-col gap-4'}>
-          <div>
-            <label htmlFor="email">Email address:</label>
-            <Input
-              className="border-[#D1D5DB]"
-              id="email"
-              // defaultValue={localData?.email}
-              {...register('email', {
-                required: 'Enter your email address',
-                pattern: {
-                  // eslint-disable-next-line no-useless-escape
-                  value: /^[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+$/i,
-                  message: 'Please enter a valid email',
-                },
-              })}
-            />
-          </div>
-          <div>
-            <label htmlFor="password">Password:</label>
-            <InputGroup data-icon="">
-              <Input
-                type={!showPassword ? 'password' : 'text'}
-                // defaultValue={localData?.password}
-                className="border-[#D1D5DB]"
-                id="password"
-                {...register('password', {
-                  required: 'Password is required',
-                })}
-              />
-              <InputPasswordVisibility onClick={showHideClicked}>
-                {!showPassword ? <Icon_eye_opened /> : <Icon_eye_closed />}
-              </InputPasswordVisibility>
-            </InputGroup>
-            <div className={'flex justify-between mt-1 mb-3'}>
-              <Checkbox id="savePassword" {...register('savePassword')}>
-                Remember me
-              </Checkbox>
-              <Link href="/forgot-password">
-                <p className={'text-primary select-none'}>Forgot password?</p>
-              </Link>
+    <>
+      <div
+        className={`pt-5 pb-[40px] md:pt-20 md:pb-20 md:h-auto lg:h-full flex flex-col justify-center`}
+      >
+        <h3
+          className={
+            'font-oswald text-3xl md:text-[50px] leading-[51px] font-bold mb-[30px] max-sm:mt-3'
+          }
+        >
+          LOG IN
+        </h3>
+        <Toast parameters={{ toast, settoast }} />
+        <form style={{ width: '100%' }} onSubmit={handleSubmit(onSubmit)}>
+          <div className={'flex flex-col gap-4'}>
+            <div className={'w-full flex flex-col'}>
+              <label
+                htmlFor="first_name"
+                className={'text-lg mb-[2px] text-neutral-400'}
+              >
+                Email<span className="text-primary">*</span>
+              </label>
+              <InputGroup data-icon="left">
+                <Input
+                  className="border-[#D1D5DB]"
+                  error={errors?.email?.message}
+                  id="email"
+                  {...register('email', {
+                    required: 'Enter your email address',
+                    pattern: {
+                      value: /^[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+$/i,
+                      message: 'Please enter a valid email',
+                    },
+                  })}
+                />
+                <Icon_email className="peer-focus-visible:text-secondary absolute top-0 bottom-0 my-auto left-4 text-neutral-300" />
+              </InputGroup>
+            </div>
+            <div className={'w-full flex flex-col'}>
+              <label
+                htmlFor="password"
+                className={'text-lg mb-[2px] text-neutral-400'}
+              >
+                Password<span className="text-primary">*</span>
+              </label>
+              <InputGroup data-icon="leftright">
+                <Input
+                  error={errors?.password?.message}
+                  id="password"
+                  type={showPassword ? 'text' : 'password'}
+                  {...register('password', {
+                    required: 'Password is required',
+                  })}
+                />
+                <Icon_padlock className="peer-focus-visible:text-secondary absolute top-0 bottom-0 my-auto left-4 text-neutral-300 size-[18px]" />
+                <InputPasswordVisibility onClick={showHideClicked}>
+                  {!showPassword ? (
+                    <Icon_eye_opened className="size-4" />
+                  ) : (
+                    <Icon_eye_closed className="size-4" />
+                  )}
+                </InputPasswordVisibility>
+              </InputGroup>
+              <div className={'flex my-[6px] justify-between'}>
+                <Checkbox
+                  id="savePassword"
+                  className="text-lg text-neutral-400"
+                  {...register('savePassword')}
+                >
+                  Save password
+                </Checkbox>
+                <Link
+                  href={'/forgot-password'}
+                  className={'text-lg text-neutral-400 w-fit'}
+                >
+                  Forgot password?
+                </Link>
+              </div>
+            </div>
+            <div>
+              <ButtonLoader
+                type="submit"
+                parameters={{ id: 'login', loading, setloading }}
+              >
+                LOG IN
+              </ButtonLoader>
             </div>
           </div>
-          <div>
-            <Button type="submit" className="w-full">
-              <div className={'relative'}>
-                Sign In{' '}
-                {loading && (
-                  <Icon_spinner className="animate-spin absolute right-[-35px] top-0 bottom-0 my-auto" />
-                )}
-              </div>
-            </Button>
-            <Link href={'/signup'}>
-              <p
-                className={'text-center mt-1 text-primary'}
-              >{`Don't have an account?`}</p>
+          <p className={'text-lg text-neutral-400 mt-1'}>
+            {`Don't have any account? `}
+            <Link href={'/signup'} className="text-primary hover:underline">
+              Sign Up
             </Link>
-          </div>
-
-          <div className="my-2">
-            <Divider className="border-b-[1px] border-[#E5E7EB] mt-3">
-              <span className="px-4">Or continue with</span>
-            </Divider>
-          </div>
-          <OAuthGoogleSignIn>Google</OAuthGoogleSignIn>
-        </div>
-      </form>
-    </LoginSignupContainer>
+          </p>
+        </form>
+      </div>
+      <div
+        className={`relative min-h-[110px] border-t-[1px] w-full border-neutral-300 flex flex-col justify-center`}
+      >
+        <p className={'bg-white absolute text-lg -top-4 pr-3 left-0 w-fit'}>
+          Or continue with
+        </p>
+        <OAuthGoogleSignIn className={'max-w-[280px] mr-auto'}>
+          Login with Google
+        </OAuthGoogleSignIn>
+      </div>
+    </>
   )
 }
 

@@ -47,7 +47,7 @@ export const verifyOtp = async (data) => {
     token: token,
     type: 'email',
   })
-  console.log('session', session)
+  
   if (error) {
     const theError = error?.message
     return theError

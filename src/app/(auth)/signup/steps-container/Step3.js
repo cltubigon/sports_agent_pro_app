@@ -30,7 +30,7 @@ const Step3 = () => {
       settoast({
         description: 'You are verified',
         status: 'success',
-        duration: 1000,
+        duration: 800,
         redirect: '/signup?step=4',
       })
     } else if (error) {
@@ -41,6 +41,8 @@ const Step3 = () => {
     }
     setsending(false)
   }
+
+  console.log('sending, OTP', sending, OTP)
 
   useEffect(() => {
     if (!sending && OTP) verifyOTP()

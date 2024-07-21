@@ -1,8 +1,6 @@
-import React, { Suspense } from 'react'
 // import Button from './components/Button'
 // import LogoutButton from './(dashboard)/_(dashboardHeader)/LogoutButton'
-import ClientLoginFallback from './(auth)/login/ClientLoginFallback'
-import ClientLogin from './(auth)/login/ClientLogin'
+import LoginPage from './(auth)/login/page'
 
 export const metadata = {
   title: 'Sports Agent Pro',
@@ -19,9 +17,7 @@ const Homepage = async () => {
       {/* <p className={''}>Homepage</p> */}
       {/* {isLoggedIn && <LogoutButton />} */}
 
-      <Suspense fallback={<ClientLoginFallback />}>
-        <ClientLogin />
-      </Suspense>
+      <LoginPage />
       {/* </div> */}
       {/* <Footer /> */}
     </>

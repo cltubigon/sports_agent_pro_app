@@ -3,6 +3,7 @@ import React from 'react'
 import { twMerge } from 'tailwind-merge'
 import saplogo from '@/app/images/SAP_logo.png'
 import Icon_check2 from '@/app/components/icons/Icon_check2'
+import Link from 'next/link'
 
 const DesktopMenu = ({
   parameters: { isStep2, isStep3, isStep4, isGreaterThanStep4 },
@@ -13,12 +14,14 @@ const DesktopMenu = ({
         'hidden lg:flex flex-col bg-secondary w-full lg:max-w-[280px] xl:max-w-[390px] 2xl:max-w-[470px] xl:rounded-md p-10'
       }
     >
-      <Image
-        src={saplogo}
-        alt="Sports Agent Pro logo"
-        quality={100}
-        className="lg:mb-5"
-      />
+      <Link href={'/'} className="w-fit">
+        <Image
+          src={saplogo}
+          alt="Sports Agent Pro logo"
+          quality={100}
+          className="lg:mb-5"
+        />
+      </Link>
       <div className={'flex flex-col h-full gap-[102px] justify-center'}>
         <div
           className={`flex relative gap-4 items-center text-white after:absolute after:top-[35px] after:w-1 after:bg-white after:h-[88px] after:left-[10px] ${
