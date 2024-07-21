@@ -42,8 +42,6 @@ const Step3 = () => {
     setsending(false)
   }
 
-  console.log('sending, OTP', sending, OTP)
-
   useEffect(() => {
     if (!sending && OTP) verifyOTP()
   }, [OTP])

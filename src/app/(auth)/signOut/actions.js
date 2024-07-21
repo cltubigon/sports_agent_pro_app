@@ -12,7 +12,6 @@ export const logout = async () => {
 
   if (error) {
     if (error) {
-      console.log('error', error)
       redirect('/error')
     }
   }

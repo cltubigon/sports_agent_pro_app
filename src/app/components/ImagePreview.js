@@ -25,7 +25,6 @@ const ImagePreview = ({ children, ...props }) => {
     }
     setactiveSlide(activeSlide + 1)
   }
-  console.log('activeSlide', activeSlide)
   return (
     <div className="fixed top-0 left-0 w-full h-full bg-secondary bg-opacity-95 z-[990]">
       <div className={'flex items-center justify-center h-full relative'}>

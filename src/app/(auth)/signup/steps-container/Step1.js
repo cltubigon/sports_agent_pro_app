@@ -11,7 +11,6 @@ import { useEffect } from 'react'
 
 const Step1 = ({ activeStepParams, setcount }) => {
   const { accountType, setaccountType } = useStore(signupStore)
-  console.log('accountType', accountType)
 
   useEffect(() => {
     const store = JSON.parse(localStorage.getItem('signupStore'))

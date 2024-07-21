@@ -64,7 +64,6 @@ export const updateBasicInfo = async ({ data, id }) => {
     return { error: null }
   }
   if (error) {
-    console.log('error', error)
     return { error: error?.message }
   }
 }
@@ -89,7 +88,6 @@ export const updateBio = async ({ data, id }) => {
     return { error: null }
   }
   if (error) {
-    console.log('error', error)
     return { error: error?.message }
   }
 }
@@ -123,7 +121,6 @@ export const updateAthleticProfile = async ({ data, id }) => {
     return { error: null }
   }
   if (error) {
-    console.log('error', error)
     return { error: error?.message }
   }
 }
@@ -146,7 +143,6 @@ export const updateLocationFunc = async ({ data, id }) => {
     return { error: null }
   }
   if (error) {
-    console.log('error', error)
     return { error: error?.message }
   }
 }
@@ -163,8 +159,6 @@ export const deletePhoto = async ({ path, bucket }) => {
     .in('path', path)
 
   if (storageError || databaseError) {
-    console.log('storageError', storageError)
-    console.log('databaseError', databaseError)
     const error = { storageError, databaseError }
     return error
   }

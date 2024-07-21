@@ -47,7 +47,6 @@ const CltDropzone = ({
     } else {
       setSelectedImages(acceptedFiles)
       if (rejectedFiles?.length > 0) {
-        console.log('rejectedFiles', rejectedFiles)
         settoast({
           description: 'Files rejected',
           status: 'error',

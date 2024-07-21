@@ -31,7 +31,7 @@ const Step4 = ({ activeStepParams, user }) => {
   const handleSubmit = async () => {
     const account_type = accountType
     setaccountType(null)
-    console.log('accountType', accountType)
+    
     setloading({ id: 'updateInfo' })
     const error = await stepFourUpdateInfo({
       data: {
@@ -49,7 +49,6 @@ const Step4 = ({ activeStepParams, user }) => {
       return
     }
   }
-  console.log({ accountType, count, user })
   return (
     <div
       className={

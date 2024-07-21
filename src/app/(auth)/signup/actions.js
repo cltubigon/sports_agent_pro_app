@@ -8,7 +8,6 @@ export async function signup(data) {
   const { email, password, phoneNumber, first_name, last_name, accountType } =
     data
   const supabase = createServer()
-  console.log('password', password)
   const { data: user, error } = await supabase.auth.signInWithOtp({
     email: email,
     password: password,
@@ -25,9 +24,7 @@ export async function signup(data) {
     },
   })
 
-  console.log('user', user)
   if (error) {
-    console.log('error', error)
     return error?.message
   }
   if (user) {

@@ -29,7 +29,6 @@ const Step2 = () => {
 
   const onSubmit = async (submittedData) => {
     const data = { ...submittedData, accountType }
-    console.log('data', data)
     if (!accountType) {
       settoast({
         description: 'You must select account type.',

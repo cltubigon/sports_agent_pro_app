@@ -11,7 +11,7 @@ export const revalidate = 180
 const BillingPage = async () => {
   const currentUser = await getCurrentUser()
   const { role } = currentUser
-  console.log('Rendering billing')
+  
   const menu = [
     { name: 'Your Plan', value: 'your_plan' },
     { name: '', value: 'spacer' },

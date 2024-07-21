@@ -105,7 +105,6 @@ const MobileNav = ({ parameters: { nav, pathName } }) => {
                 <div className={'flex flex-col divide-y divide-[#e5e5e5]'}>
                   {nav?.map((item, index) => {
                     const { name, path } = item
-                    console.log('path', path)
                     return (
                       <div
                         key={index}

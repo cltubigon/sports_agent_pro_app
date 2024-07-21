@@ -76,7 +76,6 @@ const Media = ({ user, images: imagesFromSupabase }) => {
       bucket: 'gallery',
     })
     if (error) {
-      console.log('error', error)
       settoast({
         description: error?.message,
         status: 'error',

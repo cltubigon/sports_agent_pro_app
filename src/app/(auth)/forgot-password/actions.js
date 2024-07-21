@@ -9,6 +9,5 @@ export const resetPasswordForEmail = async (data) => {
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
     redirectTo: `${process.env.NEXT_PUBLIC_ROOT_DOMAIN}/reset-password/api`,
   })
-  console.log('error', error)
   return error?.code || null
 }

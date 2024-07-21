@@ -11,7 +11,6 @@ const generateDateString = () => {
 }
 
 export const uploadProfilePicture = async ({ folder, images, userId }) => {
-  console.log('images', images)
   const supabase = createClient()
   const uploadFile = images?.map(async (imgObj) => {
     const imageName = imgObj?.file?.path.replace(' ', '_').toLowerCase()
@@ -29,7 +28,6 @@ export const uploadProfilePicture = async ({ folder, images, userId }) => {
   })
 
   const imagesUploadedToStorage = await Promise.all(uploadFile)
-  console.log('imagesUploadedToStorage', imagesUploadedToStorage)
   const { data, error } = await supabase
     .from(folder)
     .insert(imagesUploadedToStorage)
@@ -43,18 +41,15 @@ export const uploadProfilePicture = async ({ folder, images, userId }) => {
       .select()
 
     if (userError) {
-      console.log('userError', userError)
       return { data: null, error: userError?.message }
     }
     return { data: userData, error: null }
   } else if (error) {
-    console.log('error', error)
     return { data: null, error: error?.message }
   }
 }
 
 export const uploadImagesToSupabase = async ({ folder, images, userId }) => {
-  console.log('images', images)
   const supabase = createClient()
   const uploadFile = images?.map(async (imgObj) => {
     const imageName = imgObj?.file?.path.replace(' ', '_').toLowerCase()
@@ -65,7 +60,6 @@ export const uploadImagesToSupabase = async ({ folder, images, userId }) => {
         cacheControl: '3600',
         upsert: false,
       })
-    console.log('imageData', imageData)
     return {
       ...imageData,
       blurDataURL: imgObj?.blurDataURL,
@@ -80,7 +74,6 @@ export const uploadImagesToSupabase = async ({ folder, images, userId }) => {
   if (data) {
     return { data: data, error: null }
   } else if (error) {
-    console.log('error', error)
     return { data: null, error: error?.message }
   }
 }
