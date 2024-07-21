@@ -50,7 +50,7 @@ const DisplayNameContainer = ({ currentUser }) => {
           <Input
             id="displayName"
             placeholder="Enter your name"
-            disabled={display_name && true}
+            // disabled={display_name && true}
             defaultValue={capitalizeAllFirstLetter(display_name) || undefined}
             className="border-neutral-200 placeholder:text-neutral-200"
             {...register('displayName', {
@@ -62,7 +62,7 @@ const DisplayNameContainer = ({ currentUser }) => {
             type="submit"
             disabled={!displayNameField}
             className={`h-auto ${
-              displayNameField ? 'w-[114px]' : 'w-0 -mr-10'
+              displayNameField ? 'w-[114px]' : 'w-0 -mr-[88px]'
             } relative`}
           >
             Update{' '}

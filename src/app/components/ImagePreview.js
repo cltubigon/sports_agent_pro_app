@@ -51,7 +51,7 @@ const ImagePreview = ({ children, ...props }) => {
         <div
           onClick={handleLeft}
           className={
-            'group hover:-translate-x-[6px] h-full absolute left-0 min-w-[100px] bg-black bg-opacity-10 flex items-center justify-center transition-all duration-300'
+            'cursor-pointer group hover:-translate-x-[6px] h-full absolute left-0 min-w-[100px] bg-black bg-opacity-10 flex items-center justify-center transition-all duration-300'
           }
         >
           <Icon_left className="size-16 rounded-full p-2 text-white  bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-300 z-10" />
@@ -60,7 +60,7 @@ const ImagePreview = ({ children, ...props }) => {
         <div
           onClick={handleRight}
           className={
-            'group hover:translate-x-[6px] h-full absolute right-0 min-w-[100px] bg-black bg-opacity-10 flex items-center justify-center transition-all duration-300'
+            'cursor-pointer group hover:translate-x-[6px] h-full absolute right-0 min-w-[100px] bg-black bg-opacity-10 flex items-center justify-center transition-all duration-300'
           }
         >
           <Icon_right className="size-16 rounded-full p-2 text-white  bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-300 z-10" />

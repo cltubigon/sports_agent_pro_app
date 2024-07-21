@@ -19,7 +19,7 @@ const DashboardContentMenu = ({ children, menu }) => {
   }
   return (
     <>
-      <div className={'p-5 border-neutral-300 border-b-[1px]'}>
+      <div className={'p-5 border-neutral-200 border-b-[1px]'}>
         <h2 className={'text-xl font-semibold text-primary'}>{children}</h2>
       </div>
       <div className={'flex overflow-x-auto'}>
@@ -33,7 +33,7 @@ const DashboardContentMenu = ({ children, menu }) => {
                 'hover:bg-neutral-100'
               } ${
                 activeMenu !== value &&
-                'border-neutral-300 border-b-[1px] bg-neutral-50'
+                'border-neutral-200 border-b-[1px] bg-neutral-50'
               } ${value === 'spacer' ? 'w-full hidden md:block' : 'min-w-fit'}`}
               onClick={() => handleClick(value)}
               key={index}

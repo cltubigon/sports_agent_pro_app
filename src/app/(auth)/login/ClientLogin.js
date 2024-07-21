@@ -157,7 +157,11 @@ const ClientLogin = () => {
           </div>
           <p className={'text-lg text-neutral-400 mt-1'}>
             {`Don't have any account? `}
-            <Link href={'/signup'} className="text-primary hover:underline">
+            <Link
+              href={'/signup'}
+              className="text-primary hover:underline"
+              prefetch
+            >
               Sign Up
             </Link>
           </p>

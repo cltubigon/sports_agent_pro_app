@@ -1,31 +1,21 @@
 import Link from 'next/link'
-import { dashboardMenuList } from './dashboardMenuList'
+import Image from 'next/image'
+import saplogo from '@/app/images/SAP-logo-colored.png'
+import Menu from './Menu'
 
 const DashboardMenuDesktop = () => {
   return (
     <div
       className={
-        'bg-primary max-sm:fixed h-screen text-white xl:w-[300px] 2xl:w-[360px] py-10 px-5'
+        'bg-white border-r-[1px] border-neutral-200 max-sm:fixed h-screen text-neutral-400 xl:w-[240px] 2xl:w-[297px] py-10 px-6'
       }
     >
       <div className={'h-fit mb-10 w-fit'}>
         <Link href={'/dashboard'} prefetch>
-          <h3 className={'text-2xl md:text-3xl font-bold'}>Sports Agent Pro</h3>
+          <Image src={saplogo} alt="SAP logo" quality={100} />
         </Link>
       </div>
-      <div className={'flex flex-col divide-y divide-primary-700'}>
-        {dashboardMenuList.map((menu, index) => {
-          const { name, link, Icon } = menu
-          return (
-            <Link href={link} key={index} prefetch>
-              <div className={'flex items-center gap-4 py-4'}>
-                <Icon className={'text-white size-7'} />
-                <p className={''}>{name}</p>
-              </div>
-            </Link>
-          )
-        })}
-      </div>
+      <Menu />
     </div>
   )
 }

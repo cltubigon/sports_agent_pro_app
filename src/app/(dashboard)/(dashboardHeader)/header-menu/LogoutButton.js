@@ -1,5 +1,6 @@
 'use client'
 import { logout } from '@/app/(auth)/signOut/actions'
+import Button from '@/app/components/Button'
 import Icon_spinner from '@/app/components/icons/Icon_spinner'
 import React, { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -15,7 +16,10 @@ const LogoutButton = ({ className }) => {
     <>
       <div
         onClick={handleLogout}
-        className={twMerge('text-black cursor-pointer select-none w-full', className)}
+        className={twMerge(
+          'text-black cursor-pointer select-none w-full',
+          className
+        )}
       >
         <p className="w-fit relative">
           Logout{' '}

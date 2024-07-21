@@ -12,6 +12,7 @@ import Media from './Media'
 import LoadingComponent from '@/app/components/LoadingComponent'
 import { fetchGalleryImages } from './actions'
 import ProfilePicture from './profile-picture/ProfilePicture'
+import DashboardLoader from '@/app/components/ThisWebsiteOnly/Dashboard/loader/DashboardLoader'
 
 const ProfilePage = async () => {
   const user = await getCurrentUser()

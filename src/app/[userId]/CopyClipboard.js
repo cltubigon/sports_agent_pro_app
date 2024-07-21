@@ -37,7 +37,9 @@ const CopyClipboard = () => {
       <div
         onClick={handleCopy}
         className={`flex items-center justify-center gap-1 rounded-md md:border-[1px] py-2 md:px-[15px] cursor-pointer select-none  ${
-          copied ? 'border-green-700' : 'border-secondary hover:bg-neutral-200'
+          copied
+            ? 'border-secondary'
+            : 'border-neutral-300 hover:bg-neutral-100'
         }`}
       >
         {!copied && (
@@ -48,8 +50,8 @@ const CopyClipboard = () => {
         )}
         {copied && (
           <>
-            <Icon_check2 className="text-green-700" />
-            <p className={'text-sm text-green-700'}>Text copied</p>
+            <Icon_check2 className="text-secondary" />
+            <p className={'text-sm text-secondary'}>Text copied</p>
           </>
         )}
       </div>

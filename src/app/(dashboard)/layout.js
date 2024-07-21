@@ -21,7 +21,7 @@ export default async function DashboardLayout({ children }) {
       <div className={'block lg:hidden'}>
         <DashboardMenuMobile />
       </div>
-      <div className={'flex flex-col w-full lg:gap-5 lg:bg-[#F7F7F7]'}>
+      <div className={'flex flex-col w-full lg:gap-5 lg:bg-[#f6fafd]'}>
         <DashboardHeader />
         <div
           className={

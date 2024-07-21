@@ -28,7 +28,7 @@ const Content = ({ person }) => {
               'flex flex-col justify-center h-[400px] rounded-md border-[1px] border-neutral-400 shadow-md'
             }
           >
-            <p className={'font-bold text-primary text-lg text-center'}>
+            <p className={'font-bold text-secondary text-lg text-center'}>
               Coming Soon!
             </p>
           </div>
@@ -37,7 +37,7 @@ const Content = ({ person }) => {
               'flex flex-col justify-center h-[184px] rounded-md border-[1px] border-neutral-400 shadow-md'
             }
           >
-            <p className={'font-bold text-primary text-lg text-center'}>
+            <p className={'font-bold text-secondary text-lg text-center'}>
               Coming Soon!
             </p>
           </div>
