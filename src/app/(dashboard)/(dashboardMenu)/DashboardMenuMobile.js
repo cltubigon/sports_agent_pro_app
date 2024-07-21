@@ -40,7 +40,7 @@ const DashboardMenuMobile = () => {
   return (
     <>
       <div
-        className={`dashboard-menu bg-primary fixed h-screen text-white py-10 z-[999] overflow-hidden shadow-md ${
+        className={`dashboard-menu bg-secondary fixed h-screen text-white py-10 z-[999] overflow-hidden shadow-md ${
           isMobileMenuOpen ? 'w-[300px] px-5' : 'w-0'
         } transition-all duration-500`}
       >
@@ -63,7 +63,7 @@ const DashboardMenuMobile = () => {
         </div>
         <div
           className={
-            'dashboard-menu flex flex-col min-w-[250px] divide-y divide-primary-400'
+            'dashboard-menu flex flex-col min-w-[250px] divide-y divide-secondary-600'
           }
         >
           {dashboardMenuList.map((menu, index) => {

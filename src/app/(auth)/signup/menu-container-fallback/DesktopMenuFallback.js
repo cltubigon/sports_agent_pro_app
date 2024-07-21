@@ -1,12 +1,8 @@
 import Image from 'next/image'
 import React from 'react'
-import { twMerge } from 'tailwind-merge'
 import saplogo from '@/app/images/SAP_logo.png'
-import Icon_check2 from '@/app/components/icons/Icon_check2'
 
-const DesktopMenuFallback = ({
-  parameters: { isStep2, isStep3, isStep4, isGreaterThanStep4 },
-}) => {
+const DesktopMenuFallback = () => {
   return (
     <div
       className={

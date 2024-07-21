@@ -135,7 +135,7 @@ const Step1 = ({ activeStepParams, setcount }) => {
       </div>
       {!activeStepParams && activeStepParams !== '4' && (
         <div className={'w-fit'}>
-          <Link href={'/signup?step=2'}>
+          <Link href={'/signup?step=2'} prefetch>
             <Button className="max-sm:mb-5">CONTINUE</Button>
           </Link>
         </div>

@@ -44,7 +44,7 @@ const HeaderMenu = ({ currentUser }) => {
           containerHeight={149}
           containerWidth={250}
           spaceFromElement={8}
-          className={`clt-modal w-[250px] border-[1px] border-neutral-300 p-0 divide-y-[1px] divide-neutral-200 opacity-0 ${
+          className={`clt-modal w-[250px] text-neutral-900 border-[1px] border-neutral-300 p-0 divide-y-[1px] divide-neutral-200 opacity-0 ${
             showModal ? 'opacity-100' : 'opacity-0'
           } transition-all duration-500`}
         >

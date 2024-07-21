@@ -8,7 +8,7 @@ const DashboardHeader = async () => {
   return (
     <div
       className={
-        'w-full bg-secondary-950 text-white lg:text-[unset] lg:bg-white fixed top-0 left-0 md:static z-[900] border-b-[1px] border-neutral-200'
+        'w-full bg-secondary text-white lg:text-[unset] lg:bg-white fixed top-0 left-0 md:static z-[900] border-b-[1px] border-neutral-200'
       }
     >
       <div className={'px-5 py-2 flex items-center'}>

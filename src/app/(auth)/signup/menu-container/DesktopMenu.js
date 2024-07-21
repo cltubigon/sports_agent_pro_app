@@ -14,7 +14,7 @@ const DesktopMenu = ({
         'hidden lg:flex flex-col bg-secondary w-full lg:max-w-[280px] xl:max-w-[390px] 2xl:max-w-[470px] xl:rounded-md p-10'
       }
     >
-      <Link href={'/'} className="w-fit">
+      <Link href={'/'} className="w-fit" prefetch>
         <Image
           src={saplogo}
           alt="Sports Agent Pro logo"

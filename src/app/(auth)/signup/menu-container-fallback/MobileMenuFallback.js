@@ -1,11 +1,8 @@
 import Image from 'next/image'
 import React from 'react'
 import saplogo from '@/app/images/SAP_logo.png'
-import Icon_right from '@/app/components/icons/Icon_right'
 
-const MobileMenuFallback = ({
-  parameters: { isStep2, isStep3, isStep4, isGreaterThanStep4 },
-}) => {
+const MobileMenuFallback = () => {
   return (
     <div className="block lg:hidden">
       <div className={'bg-secondary px-10 py-5'}>

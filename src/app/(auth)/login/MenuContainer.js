@@ -10,7 +10,7 @@ const MenuContainer = () => {
         'lg:flex flex-col bg-secondary w-full lg:max-w-[280px] xl:max-w-[390px] 2xl:max-w-[470px] xl:rounded-md px-8 py-4 lg:px-10 lg:py-10'
       }
     >
-      <Link href={'/'} className='w-fit'>
+      <Link href={'/'} prefetch className="w-fit">
         <Image
           src={saplogo}
           alt="Sports Agent Pro logo"
