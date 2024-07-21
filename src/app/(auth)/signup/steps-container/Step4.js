@@ -9,23 +9,19 @@ import {
 import signupStore from '@/utilities/store/signupStore'
 import { useStore } from 'zustand'
 import Button from '@/app/components/Button'
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import { stepFourUpdateInfo } from '../actions'
+import ButtonLoader from '@/app/components/ButtonLoader'
 
 const Step4 = ({ activeStepParams, user }) => {
-  const route = useRouter()
   const [toast, settoast] = useState(null)
   const [count, setcount] = useState(null)
   const { accountType, setaccountType } = useStore(signupStore)
   const [whichBestDescribesYou, setwhichBestDescribesYou] = useState(
     user?.whichBestDescribesYou
   )
+  const [loading, setloading] = useState(null)
   const [genderIdentity, setgenderIdentity] = useState(user?.genderIdentity)
-
-  if (!user) {
-    route.push('/signup')
-  }
-  alert('asfd')
 
   //   useEffect(() => {
   //     const localData = JSON.parse(localStorage.getItem('signupStore'))
@@ -33,10 +29,16 @@ const Step4 = ({ activeStepParams, user }) => {
   //   }, [])
 
   const handleSubmit = async () => {
-    const { error } = await stepFourUpdateInfo({
-      data: accountType,
-      whichBestDescribesYou,
-      genderIdentity,
+    const account_type = accountType
+    setaccountType(null)
+    console.log('accountType', accountType)
+    setloading({ id: 'updateInfo' })
+    const error = await stepFourUpdateInfo({
+      data: {
+        account_type,
+        whichBestDescribesYou,
+        genderIdentity,
+      },
       id: user?.id,
     })
     if (error) {
@@ -46,11 +48,8 @@ const Step4 = ({ activeStepParams, user }) => {
       })
       return
     }
-    setaccountType(null)
-    route.push('/dashboard')
   }
-
-  console.log({ accountType, whichBestDescribesYou, genderIdentity })
+  console.log({ accountType, count, user })
   return (
     <div
       className={
@@ -58,58 +57,61 @@ const Step4 = ({ activeStepParams, user }) => {
       }
     >
       <Toast parameters={{ toast, settoast }} />
-      {!user?.accountType && count < 1 && (
+      {!user?.account_type && count < 1 && (
         <Step1 activeStepParams={activeStepParams} setcount={setcount} />
       )}
-      {user?.accountType ||
-        (accountType && count && (
-          <>
-            <h3
-              className={
-                'max-sm:text-center font-oswald text-3xl md:text-[50px] leading-[51px] font-bold mb-[29px] max-sm:mt-3'
-              }
-            >
-              ACCOUNT DETAILS
-            </h3>
-            <div className={'flex flex-col gap-3'}>
-              <div className={''}>
-                <p className={'text-neutral-500 mb-[2px] text-lg'}>
-                  Which best describes you?*
-                </p>
-                <Select_Custom
-                  parameters={{
-                    options: listWhichBestDescribesYou,
-                    selectedItem: whichBestDescribesYou,
-                    setselectedItem: setwhichBestDescribesYou,
-                    containerHeight: 200,
-                    classModalId: 'which-best-describes',
-                    menuStyle: 'h-[300px]',
-                  }}
-                />
-                <p className={'text-neutral-500 mb-[2px] text-lg'}>
-                  Don’t worry, this can be changed later.
-                </p>
-              </div>
-              <div className={''}>
-                <p className={'text-neutral-500 mb-[2px] text-lg'}>
-                  Which best describes you?*
-                </p>
-                <Select_Custom
-                  parameters={{
-                    options: listGenderIdentities,
-                    selectedItem: genderIdentity,
-                    setselectedItem: setgenderIdentity,
-                    containerHeight: 230,
-                    classModalId: 'genderIdentity',
-                  }}
-                />
-              </div>
+      {(user?.account_type || count) && (
+        <>
+          <h3
+            className={
+              'max-sm:text-center font-oswald text-3xl md:text-[50px] leading-[51px] font-bold mb-[29px] max-sm:mt-3'
+            }
+          >
+            ACCOUNT DETAILS
+          </h3>
+          <div className={'flex flex-col gap-3'}>
+            <div className={''}>
+              <p className={'text-neutral-500 mb-[2px] text-lg'}>
+                Which best describes you?*
+              </p>
+              <Select_Custom
+                parameters={{
+                  options: listWhichBestDescribesYou,
+                  selectedItem: whichBestDescribesYou,
+                  setselectedItem: setwhichBestDescribesYou,
+                  containerHeight: 200,
+                  classModalId: 'which-best-describes',
+                  menuStyle: 'h-[300px]',
+                }}
+              />
+              <p className={'text-neutral-500 mb-[2px] text-lg'}>
+                Don’t worry, this can be changed later.
+              </p>
             </div>
-            <Button onClick={handleSubmit} className="mt-5">
-              CONTINUE
-            </Button>
-          </>
-        ))}
+            <div className={''}>
+              <p className={'text-neutral-500 mb-[2px] text-lg'}>
+                Which best describes you?*
+              </p>
+              <Select_Custom
+                parameters={{
+                  options: listGenderIdentities,
+                  selectedItem: genderIdentity,
+                  setselectedItem: setgenderIdentity,
+                  containerHeight: 230,
+                  classModalId: 'genderIdentity',
+                }}
+              />
+            </div>
+          </div>
+          <ButtonLoader
+            parameters={{ id: 'updateInfo', loading, setloading }}
+            onClick={handleSubmit}
+            className="mt-5"
+          >
+            CONTINUE
+          </ButtonLoader>
+        </>
+      )}
     </div>
   )
 }

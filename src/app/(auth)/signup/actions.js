@@ -2,11 +2,13 @@
 import { createServer } from '@/config/supabase/supabaseServer'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
+import { updatePassword } from '../change-password-loggedInOnly/actions'
 
 export async function signup(data) {
   const { email, password, phoneNumber, first_name, last_name, accountType } =
     data
   const supabase = createServer()
+  console.log('password', password)
   const { data: user, error } = await supabase.auth.signInWithOtp({
     email: email,
     password: password,
@@ -18,7 +20,7 @@ export async function signup(data) {
         first_name,
         last_name,
         phoneNumber,
-        accountType,
+        account_type: accountType,
       },
     },
   })
@@ -35,7 +37,7 @@ export async function signup(data) {
 }
 
 export const verifyOtp = async (data) => {
-  const { email, token } = data
+  const { email, token, password } = data
   const supabase = createServer()
   const {
     data: { session },
@@ -47,15 +49,16 @@ export const verifyOtp = async (data) => {
   })
   console.log('session', session)
   if (error) {
-    return { error: error.message }
+    const theError = error?.message
+    return theError
   } else {
-    return { error: null }
+    const newPassword = password
+    await updatePassword({ data: { newPassword } })
+    return null
   }
 }
 
 export const stepFourUpdateInfo = async ({ data, id }) => {
-  const { accountType, whichBestDescribesYou, genderIdentity } = data
-
   const supabase = createServer()
 
   const { data: result, error } = await supabase
@@ -65,10 +68,10 @@ export const stepFourUpdateInfo = async ({ data, id }) => {
     .eq('id', id)
   if (result) {
     revalidatePath('/profile')
-    return { error: null }
   }
   if (error) {
-    console.log('error', error)
-    return { error: error?.message }
+    const theError = error?.message
+    return theError
   }
+  redirect('/dashboard')
 }

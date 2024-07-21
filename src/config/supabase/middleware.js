@@ -66,13 +66,18 @@ export async function updateSession(request) {
 
   const url = new URL(request.url)
   const { pathname } = url
+  const params = url.searchParams.get('step')
 
   if (user) {
     if (pathname === '/login' || pathname === '/signup' || pathname === '/') {
-      const params = url.searchParams.get('step')
       if (pathname === '/signup' && params === '4') return
-      return NextResponse.redirect(new URL('/dashboard', request.url))
+      else return NextResponse.redirect(new URL('/dashboard', request.url))
     }
+  } else if (
+    (pathname === '/signup' && params === '3' && !user) ||
+    (pathname === '/signup' && params === '4' && !user)
+  ) {
+    return NextResponse.redirect(new URL('/signup', request.url))
   } else if (
     (!user && pathname === '/login') ||
     (!user && pathname === '/signup')

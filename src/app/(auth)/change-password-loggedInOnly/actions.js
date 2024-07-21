@@ -6,11 +6,15 @@ import { createServer } from '@/config/supabase/supabaseServer'
 
 export const updatePassword = async ({ data }) => {
   const { newPassword } = data
+  console.log('data', data)
+  console.log('newPassword', newPassword)
   const supabase = createServer()
-  const { error } = await supabase.auth.updateUser({
+  const { data: updatedPassword, error } = await supabase.auth.updateUser({
     password: newPassword,
   })
   if (error) {
+    console.log('error', error)
     return { error: error?.code }
   }
+  console.log('updatedPassword', updatedPassword)
 }

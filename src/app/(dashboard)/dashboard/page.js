@@ -1,7 +1,8 @@
 import React from 'react'
-import ClientDashboard from './ClientDashboard'
 import ContentContainerDashboard from '@/app/components/ThisWebsiteOnly/Dashboard/ContentContainerDashboard'
 import DashboardContentMenu from '@/app/components/ThisWebsiteOnly/Dashboard/DashboardContentMenu'
+import { getCurrentUser } from '@/config/supabase/getCurrentUser'
+import { redirect } from 'next/navigation'
 
 export const metadata = {
   title: {
@@ -12,7 +13,8 @@ export const metadata = {
 }
 
 const DashboardPage = async () => {
-  console.log('Rendering Dashboard')
+  // const user = await getCurrentUser()
+  // // if (!user?.account_type) redirect('/signup?step=4')
   return (
     <ContentContainerDashboard>
       <DashboardContentMenu>Dashboard</DashboardContentMenu>

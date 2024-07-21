@@ -7,10 +7,14 @@ import { redirect } from 'next/navigation'
 
 const SignupPage = async () => {
   const user = await getCurrentUser()
-  // if (!user?.currentLocation) {
-  //   redirect('/signup?step=2')
-  // }
-  console.log('user', user)
+  if (
+    user?.account_type &&
+    user?.whichBestDescribesYou?.length > 0 &&
+    user?.genderIdentity?.length > 0
+  ) {
+    redirect('/dashboard')
+  }
+
   return (
     <div
       className={

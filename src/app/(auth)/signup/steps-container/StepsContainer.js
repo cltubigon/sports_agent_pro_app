@@ -1,5 +1,4 @@
 'use client'
-import React from 'react'
 import Step1 from './Step1'
 import { useSearchParams } from 'next/navigation'
 import Step2 from './Step2'
