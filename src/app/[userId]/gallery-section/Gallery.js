@@ -8,15 +8,9 @@ const Gallery = ({ user, images }) => {
   const [previewImages, setpreviewImages] = useState([])
 
   const handleOpen = ({ index }) => {
-    // if (index === images?.length - 1) {
-    //   const startAt = [images[images?.length - 1]]
-    //   console.log('startAt', startAt)
-    //   setpreviewImages([...startAt])
-    //   // setpreviewImages([])
-    // }
     const startAt = images.slice(index, images?.length)
-    setpreviewImages([...startAt])
-    console.log({ index, startAt })
+    const endAt = images.slice(0, index)
+    setpreviewImages([...startAt, ...endAt])
     setisOpen(true)
   }
   console.log('previewImages', previewImages)
