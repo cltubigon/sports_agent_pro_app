@@ -133,14 +133,14 @@ const ClientLogin = () => {
               <div className={'flex my-[6px] justify-between'}>
                 <Checkbox
                   id="savePassword"
-                  className="text-lg text-neutral-400"
+                  className="md:text-lg text-neutral-400"
                   {...register('savePassword')}
                 >
                   Save password
                 </Checkbox>
                 <Link
                   href={'/forgot-password'}
-                  className={'text-lg text-neutral-400 w-fit'}
+                  className={'md:text-lg text-neutral-400 w-fit'}
                 >
                   Forgot password?
                 </Link>
@@ -155,7 +155,7 @@ const ClientLogin = () => {
               </ButtonLoader>
             </div>
           </div>
-          <p className={'text-lg text-neutral-400 mt-1'}>
+          <p className={'md:text-lg text-neutral-400 mt-1'}>
             {`Don't have any account? `}
             <Link
               href={'/signup'}
