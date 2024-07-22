@@ -12,4 +12,9 @@ export const dashboardMenuList = [
     link: '/account',
     Icon: Icon_user,
   },
+  // {
+  //   name: 'Courses',
+  //   link: '/courses',
+  //   Icon: Icon_user,
+  // },
 ]
