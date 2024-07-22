@@ -12,24 +12,24 @@ const CustomNavigation = ({
       <div
         onClick={handlePrev}
         className={twMerge(
-          'absolute cursor-pointer top-0 bottom-0 p-2 rounded-full bg-white w-fit h-fit shadow-md z-40 my-auto left-[10px] hidden group-hover/swiper:block select-none',
+          'absolute cursor-pointer top-0 bottom-0 p-2 rounded-full bg-black bg-opacity-10 w-fit h-fit shadow-md z-40 my-auto left-[10px] hidden group-hover/swiper:block select-none',
           //   required to add group-swiper
           //   in the wrapper
           className
         )}
       >
-        <Icon_left className="size-8 text-primary" />
+        <Icon_left className="size-8 text-white" />
       </div>
       <div
         onClick={handleNext}
         className={twMerge(
-          'absolute cursor-pointer top-0 bottom-0 p-2 rounded-full bg-white w-fit h-fit shadow-md z-40 my-auto right-[10px] hidden group-hover/swiper:block  select-none',
+          'absolute cursor-pointer top-0 bottom-0 p-2 rounded-full bg-black bg-opacity-10 w-fit h-fit shadow-md z-40 my-auto right-[10px] hidden group-hover/swiper:block  select-none',
           //   add group-swiper
           //   in the wrapper
           className
         )}
       >
-        <Icon_right className="size-8 text-primary" />
+        <Icon_right className="size-8 text-white" />
       </div>
     </>
   )

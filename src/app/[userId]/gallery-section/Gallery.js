@@ -1,11 +1,28 @@
+'use client'
 import Image from 'next/image'
-import React from 'react'
-import ImagePreview from '../components/ImagePreview'
+import React, { useState } from 'react'
+import ImagePreview from '@/app/components/imagePreview/ImagePreview'
 
 const Gallery = ({ user, images }) => {
+  const [isOpen, setisOpen] = useState(false)
+  const [previewImages, setpreviewImages] = useState([])
+
+  const handleOpen = ({ index }) => {
+    // if (index === images?.length - 1) {
+    //   const startAt = [images[images?.length - 1]]
+    //   console.log('startAt', startAt)
+    //   setpreviewImages([...startAt])
+    //   // setpreviewImages([])
+    // }
+    const startAt = images.slice(index, images?.length)
+    setpreviewImages([...startAt])
+    console.log({ index, startAt })
+    setisOpen(true)
+  }
+  console.log('previewImages', previewImages)
   return (
     <div className={'py-3 md:py-1'}>
-      <ImagePreview />
+      <ImagePreview parameters={{ images: previewImages, isOpen, setisOpen }} />
       <div className={'max-w-[1500px] mx-auto px-3 md:px-6 2xl:px-0'}>
         <div className={'flex gap-[1%] overflow-x-auto md:overflow-x-hidden'}>
           {images
@@ -27,6 +44,7 @@ const Gallery = ({ user, images }) => {
                     src={`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL}${fullPath}`}
                     alt="user images"
                     placeholder={'blur'}
+                    onClick={() => handleOpen({ index })}
                     blurDataURL={blurDataURL}
                     quality={100}
                     fill

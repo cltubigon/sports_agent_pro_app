@@ -8,14 +8,16 @@ const MobileMenu = ({ parameters: { isStep2, isStep3, isStep4 } }) => {
   return (
     <div className="block lg:hidden">
       <div className={'bg-secondary px-10 py-5'}>
-        <Link href={'/'} prefetch>
-          <Image
-            src={saplogo}
-            alt="Sports Agent Pro logo"
-            quality={100}
-            className="max-sm:w-[100px] lg:mb-[133px] mx-auto md:mx-[unset]"
-          />
-        </Link>
+        <div className={'w-fit mx-auto'}>
+          <Link href={'/'} prefetch>
+            <Image
+              src={saplogo}
+              alt="Sports Agent Pro logo"
+              quality={100}
+              className="max-sm:w-[100px] lg:mb-[133px] mx-auto md:mx-[unset]"
+            />
+          </Link>
+        </div>
       </div>
       <div
         className={

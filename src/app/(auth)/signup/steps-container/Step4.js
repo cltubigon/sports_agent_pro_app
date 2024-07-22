@@ -1,5 +1,5 @@
 import Toast from '@/app/components/Toast'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Step1 from './Step1'
 import Select_Custom from '@/app/components/inputsFields/Select_Custom'
 import {
@@ -8,8 +8,6 @@ import {
 } from '@/app/(dashboard)/profile/listOfArray'
 import signupStore from '@/utilities/store/signupStore'
 import { useStore } from 'zustand'
-import Button from '@/app/components/Button'
-import { redirect, useRouter } from 'next/navigation'
 import { stepFourUpdateInfo } from '../actions'
 import ButtonLoader from '@/app/components/ButtonLoader'
 
@@ -31,7 +29,7 @@ const Step4 = ({ activeStepParams, user }) => {
   const handleSubmit = async () => {
     const account_type = accountType
     setaccountType(null)
-    
+
     setloading({ id: 'updateInfo' })
     const error = await stepFourUpdateInfo({
       data: {
@@ -52,7 +50,7 @@ const Step4 = ({ activeStepParams, user }) => {
   return (
     <div
       className={
-        'max-sm:py-5 py-10 md:h-full flex flex-col justify-center overflow-y-auto'
+        'pt-5 pb-[170px] md:pb-10 md:pt-10 md:h-full flex flex-col justify-center overflow-y-auto'
       }
     >
       <Toast parameters={{ toast, settoast }} />
