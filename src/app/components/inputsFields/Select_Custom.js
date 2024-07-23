@@ -102,7 +102,7 @@ export default function Select_Custom({
       <div
         className={twMerge(
           variation,
-          `${classId} py-[10px] px-4 select-none border-[1px] h-[63px] border-neutral-300 relative rounded-md flex flex-col justify-center`,
+          `${classId} py-[10px] px-4 select-none border-[1px] min-h-[63px] border-neutral-300 relative rounded-md flex flex-col justify-center`,
           className
         )}
         {...props}

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React, { forwardRef } from 'react'
-import placeholderImage from './images/profile_picture_placeholder.png'
+import placeholderImage from './images/profile_picture_placeholder.jpg'
 import { twMerge } from 'tailwind-merge'
 
 const ProfilePictureComponent = forwardRef(function ProfilePictureComponent(

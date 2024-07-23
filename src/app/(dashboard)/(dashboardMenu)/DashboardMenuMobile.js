@@ -1,7 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
-import Image from 'next/image'
-import logo from '@/app/images/lt-logo-white.png'
 import { useStore } from 'zustand'
 import utilityStore from '@/utilities/store/utilityStore'
 import Icon_close from '@/app/components/icons/Icon_close'
@@ -9,6 +7,8 @@ import Link from 'next/link'
 import { dashboardMenuList } from './dashboardMenuList'
 import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
+import Image from 'next/image'
+import saplogo from '@/app/images/SAP_logo.png'
 
 const DashboardMenuMobile = () => {
   const { isMobileMenuOpen, setIsMobileMenuOpen } = useStore(utilityStore)
@@ -50,15 +50,14 @@ const DashboardMenuMobile = () => {
             onClick={handleCLose}
           />
         )}
-        <div className={'h-fit mb-5 lg:mb-10 w-full'}>
-          <Link href={'/dashboard'} prefetch>
-            <h3
-              className={
-                'dashboard-menu text-2xl md:text-3xl font-bold min-w-[255px]'
-              }
-            >
-              Sports Agent Pro
-            </h3>
+        <div className={'h-fit mb-10 w-fit'}>
+          <Link href={'/network'} prefetch>
+            <Image
+              src={saplogo}
+              alt="SAP logo"
+              quality={100}
+              className="min-h-[78px] min-w-[133px]"
+            />
           </Link>
         </div>
         <div

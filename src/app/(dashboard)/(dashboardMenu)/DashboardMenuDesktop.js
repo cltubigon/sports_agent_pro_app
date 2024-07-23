@@ -11,7 +11,7 @@ const DashboardMenuDesktop = () => {
       }
     >
       <div className={'h-fit mb-10 w-fit'}>
-        <Link href={'/dashboard'} prefetch>
+        <Link href={'/network'} prefetch>
           <Image src={saplogo} alt="SAP logo" quality={100} />
         </Link>
       </div>

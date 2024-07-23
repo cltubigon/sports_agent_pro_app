@@ -11,7 +11,7 @@ export const fetchGalleryImages = async (user) => {
   return images
 }
 
-export const updateProfilePicture = async ({ dataImg, userId }) => {
+export const InformationPicture = async ({ dataImg, userId }) => {
   const supabase = createServer()
 
   const { data, error } = await supabase
@@ -33,109 +33,29 @@ export const revalidatePathCustom = (path) => {
   revalidatePath(path)
 }
 
-export const updateBasicInfo = async ({ data, id }) => {
-  const {
-    first_name,
-    last_name,
-    whichBestDescribesYou,
-    dateOfBirth,
-    genderIdentity,
-    sports,
-    currentTeams,
-  } = data
-
+export const updateProfilePicture = async ({ dataImg, userId }) => {
   const supabase = createServer()
 
-  const { data: result, error } = await supabase
+  const { data, error } = await supabase
     .from('users')
-    .update({
-      first_name: first_name,
-      last_name: last_name,
-      whichBestDescribesYou: whichBestDescribesYou,
-      dateOfBirth: dateOfBirth,
-      genderIdentity: genderIdentity,
-      sports: sports,
-      currentTeams: currentTeams,
-    })
+    .update({ profilePicture: dataImg })
+    .eq('id', userId)
     .select()
-    .eq('id', id)
-  if (result) {
-    revalidatePath('/profile')
-    return { error: null }
+
+  if (data) {
+    return { data: data, error: null }
   }
   if (error) {
-    return { error: error?.message }
+    return { data: null, error: error?.message }
   }
 }
 
-export const updateBio = async ({ data, id }) => {
-  const { bio, ethnicity, identifiers, language } = data
-
+export const updateProfileInformation = async ({ data, id }) => {
   const supabase = createServer()
 
   const { data: result, error } = await supabase
     .from('users')
-    .update({
-      bio: bio,
-      identifiersInterests: identifiers,
-      language: language,
-      ethnicity: ethnicity,
-    })
-    .select()
-    .eq('id', id)
-  if (result) {
-    revalidatePath('/profile')
-    return { error: null }
-  }
-  if (error) {
-    return { error: error?.message }
-  }
-}
-
-export const updateAthleticProfile = async ({ data, id }) => {
-  const {
-    position,
-    previousTeams,
-    experience,
-    leaguesAndConferences,
-    athleticAccolades,
-    discipline,
-  } = data
-
-  const supabase = createServer()
-
-  const { data: result, error } = await supabase
-    .from('users')
-    .update({
-      position: position,
-      previousTeams: previousTeams,
-      experience: experience,
-      leaguesAndConferences: leaguesAndConferences,
-      athleticAccolades: athleticAccolades,
-      discipline: discipline,
-    })
-    .select()
-    .eq('id', id)
-  if (result) {
-    revalidatePath('/profile')
-    return { error: null }
-  }
-  if (error) {
-    return { error: error?.message }
-  }
-}
-
-export const updateLocationFunc = async ({ data, id }) => {
-  const { currentLocation, homeTown } = data
-
-  const supabase = createServer()
-
-  const { data: result, error } = await supabase
-    .from('users')
-    .update({
-      currentLocation: currentLocation,
-      homeTown: homeTown,
-    })
+    .update(data)
     .select()
     .eq('id', id)
   if (result) {

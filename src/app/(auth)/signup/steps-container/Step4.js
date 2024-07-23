@@ -10,6 +10,8 @@ import signupStore from '@/utilities/store/signupStore'
 import { useStore } from 'zustand'
 import { stepFourUpdateInfo } from '../actions'
 import ButtonLoader from '@/app/components/ButtonLoader'
+import { updateProfileInformation } from '@/app/(dashboard)/profile/actions'
+import { useRouter } from 'next/navigation'
 
 const Step4 = ({ activeStepParams, user }) => {
   const [toast, settoast] = useState(null)
@@ -26,25 +28,41 @@ const Step4 = ({ activeStepParams, user }) => {
   //     setaccountType(localData?.state?.accountType)
   //   }, [])
 
+  const route = useRouter()
+
   const handleSubmit = async () => {
     const account_type = accountType
-    setaccountType(null)
-
     setloading({ id: 'updateInfo' })
-    const error = await stepFourUpdateInfo({
-      data: {
+    
+    const updateData = async (data) => {
+      const { error } = await updateProfileInformation({
+        data,
+        id: user?.id,
+      })
+      if (error) {
+        settoast({
+          description: error,
+          status: 'error',
+        })
+        return
+      } else {
+        setaccountType(null)
+        route.push('/dashboard')
+      }
+    }
+    if (user?.account_type) {
+      const data = {
+        whichBestDescribesYou,
+        genderIdentity,
+      }
+      await updateData(data)
+    } else {
+      const data = {
         account_type,
         whichBestDescribesYou,
         genderIdentity,
-      },
-      id: user?.id,
-    })
-    if (error) {
-      settoast({
-        description: error,
-        status: 'error',
-      })
-      return
+      }
+      await updateData(data)
     }
   }
   return (
@@ -87,7 +105,7 @@ const Step4 = ({ activeStepParams, user }) => {
             </div>
             <div className={''}>
               <p className={'text-neutral-500 mb-[2px] text-lg'}>
-                Which best describes you?*
+                Gender identity*
               </p>
               <Select_Custom
                 parameters={{

@@ -1,11 +1,11 @@
 'use client'
 import React, { useState } from 'react'
-import SectionContainer from './SectionContainer'
+import SectionContainer from '../SectionContainer'
 import Script from 'next/script'
 import GoogleMapAutoCompleteAddress from '@/app/components/GoogleMapAutoCompleteAddress'
 import Button from '@/app/components/Button'
 import Icon_spinner from '@/app/components/icons/Icon_spinner'
-import { updateLocationFunc } from './actions'
+import { updateProfileInformation } from '../actions'
 import Icon_location from '@/app/components/icons/Icon_location'
 import Toast from '@/app/components/Toast'
 
@@ -17,7 +17,7 @@ const Locations = ({ user }) => {
 
   const handleClick = async () => {
     setloading(true)
-    const { error } = await updateLocationFunc({
+    const { error } = await updateProfileInformation({
       data: { currentLocation, homeTown },
       id: user?.id,
     })

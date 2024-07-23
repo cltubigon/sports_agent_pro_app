@@ -5,20 +5,20 @@ import Select_Custom from '@/app/components/inputsFields/Select_Custom'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import {
+  listBrandCategories,
+  listBrandWhichBestDescribesYou,
   listCurrentTeam,
   listGenderIdentities,
   listSports,
   listWhichBestDescribesYou,
-} from './listOfArray'
-import { formatDateToUTCString } from '@/utilities/date-and-time/formatDateToUTCString'
-import { revalidatePathCustom, updateBasicInfo } from './actions'
+} from '../listOfArray'
+import { updateProfileInformation } from '../actions'
 import Icon_spinner from '@/app/components/icons/Icon_spinner'
-import DateInput from '@/app/components/inputsFields/DateInput'
-import SectionContainer from './SectionContainer'
+import SectionContainer from '../SectionContainer'
 import Icon_user_details2 from '@/app/components/icons/Icon_user_details2'
 import Toast from '@/app/components/Toast'
 
-const BasicInfo = ({ user }) => {
+const BrandProfile = ({ user }) => {
   const {
     register,
     handleSubmit,
@@ -33,6 +33,7 @@ const BasicInfo = ({ user }) => {
   const [sports, setsports] = useState(user?.sports)
   const [toast, settoast] = useState(null)
   const [currentTeams, setcurrentTeams] = useState(user?.currentTeams)
+  const [brandCategory, setbrandCategory] = useState(user?.brandCategory)
 
   const onSubmit = async (formVal) => {
     const data = {
@@ -41,10 +42,10 @@ const BasicInfo = ({ user }) => {
       genderIdentity,
       sports,
       currentTeams,
-      dateOfBirth: formatDateToUTCString(formVal?.dateOfBirth),
+      brandCategory,
     }
     setloading(true)
-    const { error } = await updateBasicInfo({ id: user?.id, data })
+    const { error } = await updateProfileInformation({ id: user?.id, data })
     if (error) {
       settoast({
         description: error,
@@ -62,7 +63,7 @@ const BasicInfo = ({ user }) => {
     <SectionContainer data={{ title: 'Basic info', Icon: Icon_user_details2 }}>
       <Toast parameters={{ toast, settoast }} />
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={'flex flex-col gap-4'}>
+        <div className={'flex flex-col gap-4 pb-10'}>
           <div className={'flex flex-col md:flex-row gap-4 md:gap-5'}>
             <Input
               id="first_name"
@@ -87,25 +88,12 @@ const BasicInfo = ({ user }) => {
             <p className={'mb-1'}>Which best describes you?</p>
             <Select_Custom
               parameters={{
-                options: listWhichBestDescribesYou,
+                options: listBrandWhichBestDescribesYou,
                 selectedItem: whichBestDescribesYou,
                 setselectedItem: setwhichBestDescribesYou,
                 containerHeight: 220,
                 classModalId: 'clt-describes-you',
               }}
-            />
-          </div>
-          <div className={''}>
-            <p className={'mb-1'}>Date of birth</p>
-            {/* <Input
-              type="date"
-              defaultValue={user?.dateOfBirth}
-              id="dateOfBirth"
-              {...register('dateOfBirth')}
-            /> */}
-            <DateInput
-              default={user?.dateOfBirth}
-              {...register('dateOfBirth')}
             />
           </div>
           <div className={''}>
@@ -146,6 +134,19 @@ const BasicInfo = ({ user }) => {
               }}
             />
           </div>
+          <div className={''}>
+            <p className={'mb-1'}>Brand category</p>
+            <Select_Custom
+              parameters={{
+                options: listBrandCategories,
+                selectedItem: brandCategory,
+                setselectedItem: setbrandCategory,
+                containerHeight: 220,
+                classModalId: 'clt-brand-categories',
+                multiSelect: true,
+              }}
+            />
+          </div>
           <Button type="submit" className="px-10 relative ml-auto">
             Update Basic Info
             {loading && (
@@ -158,4 +159,4 @@ const BasicInfo = ({ user }) => {
   )
 }
 
-export default BasicInfo
+export default BrandProfile

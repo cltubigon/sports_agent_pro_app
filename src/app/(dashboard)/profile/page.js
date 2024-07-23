@@ -1,18 +1,12 @@
 import ContentContainerDashboard from '@/app/components/ThisWebsiteOnly/Dashboard/ContentContainerDashboard'
 import DashboardContentMenu from '@/app/components/ThisWebsiteOnly/Dashboard/DashboardContentMenu'
-import React, { Suspense } from 'react'
-import BasicInfo from './BasicInfo'
 import { getCurrentUser } from '@/config/supabase/getCurrentUser'
 import { capitalizeAllFirstLetter } from '@/utilities/capitalizeAllFirstLetter'
-import AboutYou from './AboutYou'
 import ViewProfileButton from './ViewProfileButton'
-import AthleticProfileSection from './AthleticProfileSection'
-import Locations from './Locations'
-import Media from './Media'
-import LoadingComponent from '@/app/components/LoadingComponent'
 import { fetchGalleryImages } from './actions'
 import ProfilePicture from './profile-picture/ProfilePicture'
-import DashboardLoader from '@/app/components/ThisWebsiteOnly/Dashboard/loader/DashboardLoader'
+import AthleteProfile from './athlete-profile/AthleteProfile'
+import BrandProfile from './brand-profile/BrandProfile'
 
 const ProfilePage = async () => {
   const user = await getCurrentUser()
@@ -28,7 +22,7 @@ const ProfilePage = async () => {
   const formatSportsTeam = combinedSportsTeam?.join(' • ')
   return (
     <ContentContainerDashboard>
-      <DashboardContentMenu menu={menu}>Account</DashboardContentMenu>
+      <DashboardContentMenu menu={menu}>Profile</DashboardContentMenu>
       <div className={'p-5'}>
         {/* Profile Pic */}
         <div className={'flex flex-col md:flex-row md:justify-between gap-5'}>
@@ -61,19 +55,10 @@ const ProfilePage = async () => {
             className={'hidden lg:flex min-w-[116px]'}
           />
         </div>
-
-        {/* Basic Info */}
-        <BasicInfo user={user} />
-        {/* About You */}
-        <AboutYou user={user} />
-        {/* Media */}
-        <Suspense fallback={<LoadingComponent />}>
-          <Media user={user} images={images} />
-        </Suspense>
-        {/* Locations */}
-        <Locations user={user} />
-        {/* Athletic Profile */}
-        <AthleticProfileSection user={user} />
+        {user?.account_type === 'athlete' && (
+          <AthleteProfile user={user} images={images} />
+        )}
+        {user?.account_type === 'brand' && <BrandProfile user={user} />}
       </div>
     </ContentContainerDashboard>
   )

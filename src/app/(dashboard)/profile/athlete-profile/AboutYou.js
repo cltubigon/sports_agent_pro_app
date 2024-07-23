@@ -5,9 +5,9 @@ import { useForm } from 'react-hook-form'
 import Icon_spinner from '@/app/components/icons/Icon_spinner'
 import Textarea from '@/app/components/inputsFields/Textrea'
 import Select_Custom from '@/app/components/inputsFields/Select_Custom'
-import { listEthnicity, listInterests, listLanguages } from './listOfArray'
-import { updateBio } from './actions'
-import SectionContainer from './SectionContainer'
+import { listEthnicity, listInterests, listLanguages } from '../listOfArray'
+import { updateProfileInformation } from '../actions'
+import SectionContainer from '../SectionContainer'
 import Icon_user_details from '@/app/components/icons/Icon_user_details'
 import Toast from '@/app/components/Toast'
 
@@ -25,9 +25,14 @@ const AboutYou = ({ user }) => {
   const [toast, settoast] = useState(null)
 
   const onSubmit = async (formVal) => {
-    const data = { ...formVal, identifiers, language, ethnicity }
+    const data = {
+      ...formVal,
+      identifiersInterests: identifiers,
+      language,
+      ethnicity,
+    }
     setloading(true)
-    const { error } = await updateBio({ id: user?.id, data })
+    const { error } = await updateProfileInformation({ id: user?.id, data })
     if (error) {
       settoast({
         description: error,

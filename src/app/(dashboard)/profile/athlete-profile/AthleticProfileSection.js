@@ -9,10 +9,10 @@ import {
   listLeagueConferences,
   listPosition,
   listPreviousTeams,
-} from './listOfArray'
+} from '../listOfArray'
 import Icon_spinner from '@/app/components/icons/Icon_spinner'
-import SectionContainer from './SectionContainer'
-import { updateAthleticProfile } from './actions'
+import SectionContainer from '../SectionContainer'
+import { updateProfileInformation } from '../actions'
 import Icon_running from '@/app/components/icons/Icon_running'
 import Toast from '@/app/components/Toast'
 
@@ -39,7 +39,7 @@ const AthleticProfileSection = ({ user }) => {
       discipline,
     }
     setloading(true)
-    const { error } = await updateAthleticProfile({ id: user?.id, data })
+    const { error } = await updateProfileInformation({ id: user?.id, data })
     if (error) {
       settoast({
         description: error,

@@ -1,5 +1,4 @@
 import { createClient } from '@/config/supabase/supabaseClient'
-import { revalidatePath } from 'next/cache'
 
 const generateDateString = () => {
   const date = new Date()

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 import React, { useEffect, useState } from 'react'
-import SectionContainer from './SectionContainer'
+import SectionContainer from '../SectionContainer'
 import Icon_image from '@/app/components/icons/Icon_image'
 import CltDropzone from '@/app/components/dropzone/Dropzone'
 import Button from '@/app/components/Button'
@@ -9,7 +9,7 @@ import { uploadImagesToSupabase } from '@/app/components/dropzone/uploadImagesTo
 import Image from 'next/image'
 import Popup from '@/app/components/Popup'
 import Icon_trash from '@/app/components/icons/Icon_trash'
-import { deletePhoto, revalidatePathCustom } from './actions'
+import { deletePhoto, revalidatePathCustom } from '../actions'
 import ButtonLoader from '@/app/components/ButtonLoader'
 import Toast from '@/app/components/Toast'
 
