@@ -14,7 +14,7 @@ const SignupPage = async () => {
     user?.whichBestDescribesYou?.length > 0 &&
     user?.genderIdentity?.length > 0
   ) {
-    redirect('/dashboard')
+    redirect('/network')
   }
 
   return (

@@ -54,21 +54,3 @@ export const verifyOtp = async (data) => {
     return null
   }
 }
-
-// export const stepFourUpdateInfo = async ({ data, id }) => {
-//   const supabase = createServer()
-
-//   const { data: result, error } = await supabase
-//     .from('users')
-//     .update(data)
-//     .select()
-//     .eq('id', id)
-//   if (result) {
-//     revalidatePath('/profile')
-//   }
-//   if (error) {
-//     const theError = error?.message
-//     return theError
-//   }
-//   redirect('/dashboard')
-// }

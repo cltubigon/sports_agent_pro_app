@@ -11,6 +11,7 @@ const Sec1 = ({ person }) => {
   const position = person?.position?.slice(0, 3)?.map((item) => item?.name)
   const combinedSportsPosition = [...sports, ...position]
   const formattedSportsPosition = combinedSportsPosition?.join(' • ')
+  console.log('person?.display_name', person?.display_name)
   return (
     <div className={'w-full pb-6'}>
       {/* First Sec 1 */}
@@ -21,9 +22,13 @@ const Sec1 = ({ person }) => {
               (person?.last_name && (
                 
               ))} */}
-            {(person?.first_name || person?.last_name) && (
+            {(person?.first_name ||
+              person?.last_name ||
+              person?.display_name) && (
               <h3 className={'font-tinos text-2xl md:text-3xl font-semibold'}>
-                {`${person?.first_name} ${person?.last_name}`}
+                {person?.first_name && person.last_name
+                  ? `${person?.first_name} ${person?.last_name}`
+                  : person?.display_name}
               </h3>
             )}
             <Icon_check className={'size-6 text-secondary-700'} />

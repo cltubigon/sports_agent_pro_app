@@ -13,7 +13,7 @@ export async function login({ data, redirectTo }) {
   }
 
   revalidatePath('/', 'layout')
-  redirect(redirectTo ? `/${redirectTo}` : '/dashboard')
+  redirect(redirectTo ? `/${redirectTo}` : '/network')
 }
 
 export const handleLoginWithOAuth = async ({

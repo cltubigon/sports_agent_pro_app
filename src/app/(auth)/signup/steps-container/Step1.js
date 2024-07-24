@@ -140,6 +140,13 @@ const Step1 = ({ activeStepParams, setcount }) => {
           </Link>
         </div>
       )}
+      {activeStepParams && activeStepParams === '4' && (
+        <div className={'w-fit'}>
+          <Button onClick={() => setcount(1)} className="max-sm:mb-5">
+            CONTINUE
+          </Button>
+        </div>
+      )}
     </div>
   )
 }

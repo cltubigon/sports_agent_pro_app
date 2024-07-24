@@ -29,10 +29,12 @@ const ProfilePage = async () => {
           <div className={'flex gap-5 items-center w-full'}>
             <ProfilePicture user={user} images={images} />
             <div className={''}>
-              {(user?.first_name || user?.last_name) && (
+              {(user?.first_name || user?.last_name || user?.display_name) && (
                 <h5 className={'font-tinos text-xl md:text-2xl font-bold'}>
                   {capitalizeAllFirstLetter(
-                    `${user?.first_name || ''} ${user?.last_name || ''}`
+                    `${user?.first_name || ''} ${
+                      user?.last_name || user?.display_name || ''
+                    }`
                   )}
                 </h5>
               )}

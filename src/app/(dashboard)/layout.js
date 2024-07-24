@@ -21,11 +21,11 @@ export default async function DashboardLayout({ children }) {
       <div className={'block lg:hidden'}>
         <DashboardMenuMobile />
       </div>
-      <div className={'flex flex-col w-full lg:gap-5 lg:bg-[#f6fafd]'}>
+      <div className={'flex flex-col w-full lg:bg-[#f6fafd]'}>
         <DashboardHeader />
         <div
           className={
-            'lg:px-5 max-h-screen border-t-[1px] border-[#F7F7F7] lg:border-t-none overflow-y-auto box-border relative'
+            'max-h-screen border-t-[1px] border-[#F7F7F7] lg:border-t-none overflow-y-auto box-border relative'
           }
         >
           <div className={'flex flex-col lg:rounded-md'}>{children}</div>

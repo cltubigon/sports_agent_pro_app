@@ -10,13 +10,13 @@ const immerPersist = (config) =>
 const utilityStorePersist = create(
   immerPersist((set, get) => ({
     // selectedProducts: [],
-    // // ******* Countdown Timer *******
-    // remainingTimeVerify: 0,
-    // setremainingTimeVerify: (data) => {
-    //   set((state) => {
-    //     state.remainingTimeVerify = data
-    //   })
-    // },
+    // ******* Discover - Favorites *******
+    favorites: [],
+    setfavorites: (data) => {
+      set((state) => {
+        state.favorites = data
+      })
+    },
   }))
 )
 

@@ -16,6 +16,12 @@ const utilityStore = create(
         state.isMobileMenuOpen = data
       })
     },
+    showFavorites: false,
+    setshowFavorites: (data) => {
+      set((state) => {
+        state.showFavorites = data
+      })
+    },
   })),
   {
     name: 'utilityStore',

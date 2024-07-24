@@ -4,6 +4,7 @@ import AthleteAbout from './col-1/About'
 import AthleteInterests from './col-1/Interests'
 
 const Content = ({ person }) => {
+  // console.log('person', person)
   return (
     <div className={'py-3 md:py-5'}>
       <div
@@ -15,7 +16,9 @@ const Content = ({ person }) => {
         <div className={'divide-y-[1px] divide-neutral-400 w-full'}>
           <Sec1 person={person} />
           <AthleteAbout person={person} />
-          <AthleteInterests person={person} />
+          {person?.identifiersInterests?.length > 0 && (
+            <AthleteInterests person={person} />
+          )}
         </div>
         {/* Second Column */}
         <div

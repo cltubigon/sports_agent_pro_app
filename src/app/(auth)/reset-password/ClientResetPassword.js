@@ -37,7 +37,7 @@ const ClientResetPassword = () => {
       settoast({
         description: 'Successfully updated your password!',
         status: 'success',
-        redirect: '/dashboard',
+        redirect: '/network',
       })
     }
     if (error) {

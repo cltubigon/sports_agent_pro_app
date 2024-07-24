@@ -3,12 +3,12 @@ import React, { useState } from 'react'
 import Step1 from './Step1'
 import Select_Custom from '@/app/components/inputsFields/Select_Custom'
 import {
+  listBrandWhichBestDescribesYou,
   listGenderIdentities,
   listWhichBestDescribesYou,
 } from '@/app/(dashboard)/profile/listOfArray'
 import signupStore from '@/utilities/store/signupStore'
 import { useStore } from 'zustand'
-import { stepFourUpdateInfo } from '../actions'
 import ButtonLoader from '@/app/components/ButtonLoader'
 import { updateProfileInformation } from '@/app/(dashboard)/profile/actions'
 import { useRouter } from 'next/navigation'
@@ -23,17 +23,12 @@ const Step4 = ({ activeStepParams, user }) => {
   const [loading, setloading] = useState(null)
   const [genderIdentity, setgenderIdentity] = useState(user?.genderIdentity)
 
-  //   useEffect(() => {
-  //     const localData = JSON.parse(localStorage.getItem('signupStore'))
-  //     setaccountType(localData?.state?.accountType)
-  //   }, [])
-
   const route = useRouter()
 
   const handleSubmit = async () => {
     const account_type = accountType
     setloading({ id: 'updateInfo' })
-    
+
     const updateData = async (data) => {
       const { error } = await updateProfileInformation({
         data,
@@ -89,16 +84,37 @@ const Step4 = ({ activeStepParams, user }) => {
               <p className={'text-neutral-500 mb-[2px] text-lg'}>
                 Which best describes you?*
               </p>
-              <Select_Custom
-                parameters={{
-                  options: listWhichBestDescribesYou,
-                  selectedItem: whichBestDescribesYou,
-                  setselectedItem: setwhichBestDescribesYou,
-                  containerHeight: 200,
-                  classModalId: 'which-best-describes',
-                  menuStyle: 'h-[300px]',
-                }}
-              />
+              {user?.account_type && (
+                <Select_Custom
+                  parameters={{
+                    options:
+                      user?.account_type === 'athlete' ||
+                      user?.account_type === 'coach'
+                        ? listWhichBestDescribesYou
+                        : listBrandWhichBestDescribesYou,
+                    selectedItem: whichBestDescribesYou,
+                    setselectedItem: setwhichBestDescribesYou,
+                    containerHeight: 200,
+                    classModalId: 'which-best-describes',
+                    menuStyle: 'h-[300px]',
+                  }}
+                />
+              )}
+              {!user?.account_type && (
+                <Select_Custom
+                  parameters={{
+                    options:
+                      accountType === 'athlete' || accountType === 'coach'
+                        ? listWhichBestDescribesYou
+                        : listBrandWhichBestDescribesYou,
+                    selectedItem: whichBestDescribesYou,
+                    setselectedItem: setwhichBestDescribesYou,
+                    containerHeight: 200,
+                    classModalId: 'which-best-describes',
+                    menuStyle: 'h-[300px]',
+                  }}
+                />
+              )}
               <p className={'text-neutral-500 mb-[2px] text-lg'}>
                 Don’t worry, this can be changed later.
               </p>
