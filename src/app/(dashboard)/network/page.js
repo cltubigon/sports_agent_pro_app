@@ -30,7 +30,7 @@ const DiscoverPage = async () => {
     <>
       <div
         className={
-          'max-sm:mt-[68px] w-full py-5 border-b-[1px] border-neutral-200 bg-white px-5 flex flex-col md:flex-row items-center justify-between'
+          'max-sm:mt-[68px] w-full py-5 border-b-[1px] border-neutral-200 bg-white px-5 flex items-center justify-between'
         }
       >
         <h3 className={'font-oswald text-2xl md:text-3xl font-bold'}>
