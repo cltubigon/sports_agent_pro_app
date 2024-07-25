@@ -4,7 +4,6 @@ import AthleteAbout from './col-1/About'
 import AthleteInterests from './col-1/Interests'
 
 const Content = ({ person }) => {
-  // console.log('person', person)
   return (
     <div className={'py-3 md:py-5'}>
       <div

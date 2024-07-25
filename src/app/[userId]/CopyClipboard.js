@@ -51,7 +51,7 @@ const CopyClipboard = () => {
         {copied && (
           <>
             <Icon_check2 className="text-secondary" />
-            <p className={'text-sm text-secondary'}>Text copied</p>
+            <p className={'text-sm text-secondary'}>URL copied</p>
           </>
         )}
       </div>

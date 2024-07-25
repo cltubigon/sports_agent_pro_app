@@ -6,7 +6,6 @@ import { capitalizeAllFirstLetter } from '@/utilities/capitalizeAllFirstLetter'
 import Heart from '../heart/Heart'
 
 const AthleteComp = ({ person, currentUser }) => {
-  console.log('person', person)
   return (
     <>
       {person.map((item, index) => {

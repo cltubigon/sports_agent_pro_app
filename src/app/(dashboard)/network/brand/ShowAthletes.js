@@ -7,8 +7,6 @@ import Favorites from './Favorites'
 
 const ShowAthletes = ({ person, currentUser }) => {
   const { showFavorites } = useStore(utilityStore)
-  // console.log('showFavorites', showFavorites)
-  console.log('currentUser?.id', currentUser?.id)
   return (
     <>
       {!showFavorites && (

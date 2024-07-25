@@ -13,7 +13,6 @@ const Gallery = ({ user, images }) => {
     setpreviewImages([...startAt, ...endAt])
     setisOpen(true)
   }
-  console.log('previewImages', previewImages)
   return (
     <div className={'py-3 md:py-1'}>
       <ImagePreview parameters={{ images: previewImages, isOpen, setisOpen }} />

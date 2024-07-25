@@ -12,8 +12,6 @@ const Favorites = ({ person, currentUser }) => {
       JSON.parse(localStorage.getItem('utilityStorePersist'))?.state?.favorites
     )
   }
-  console.log('favorites', favorites)
-  console.log('comp', comp)
   useEffect(() => {
     funcSetFavorites()
   }, [comp])
@@ -24,7 +22,6 @@ const Favorites = ({ person, currentUser }) => {
   const filteredPeople = person?.filter((item) =>
     filtered?.some((i) => i?.id === item?.id)
   )
-  console.log('filteredPeople', filteredPeople)
   return (
     <>
       <AthleteComp person={filteredPeople} currentUser={currentUser} />

@@ -11,7 +11,6 @@ const Sec1 = ({ person }) => {
   const position = person?.position?.slice(0, 3)?.map((item) => item?.name)
   const combinedSportsPosition = [...sports, ...position]
   const formattedSportsPosition = combinedSportsPosition?.join(' • ')
-  console.log('person?.display_name', person?.display_name)
   return (
     <div className={'w-full pb-6'}>
       {/* First Sec 1 */}
