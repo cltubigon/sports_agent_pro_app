@@ -2,6 +2,8 @@ export const courseList = [
   {
     title: 'Course 1',
     id: 'course-1',
+    description:
+      'Veritatis aspernatur et dignissimos iusto quo inventore aliquam et exercitationem. Aut atque culpa et eligendi repellendus ut possimus distinctio ut galisum eius a maxime.',
     module: [
       {
         title: 'Module 1',
@@ -134,6 +136,8 @@ export const courseList = [
   {
     title: 'Course 2',
     id: 'course-2',
+    description:
+      'Est quisquam veritatis ut Quis ipsa quo repellendus enim eos repudiandae dolor. Et repellendus debitis aut fugiat assumenda eum minus amet At minus minima eos ipsam voluptate.',
     module: [
       {
         title: 'Module 1',

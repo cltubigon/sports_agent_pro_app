@@ -48,11 +48,6 @@ const LessonPage = ({ params }) => {
           lessonData={selectedLesson}
           cardStyle={'min-h-[350px]'}
           selectedModule={selectedModule}
-          // isFirst={selectedModule.lessons[0].id === selectedLesson.id}
-          // isLast={
-          //   selectedModule.lessons[selectedModule.lessons.length - 1].id ===
-          //   selectedLesson.id
-          // }
         />
       </ContentSection>
     </>

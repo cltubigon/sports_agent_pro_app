@@ -7,7 +7,6 @@ import React, { useRef, useState } from 'react'
 const Title = ({ courseId, lessonId, selectedModule }) => {
   const [showModal, setShowModal] = useState(false)
   const buttonRef = useRef(null)
-  console.log({ courseId, lessonId, selectedModule })
   return (
     <div className={'relative flex items-center'}>
       <div

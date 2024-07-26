@@ -21,6 +21,8 @@ const Content = ({
     url = `/courses/${courseId}/${moduleId}`
   } else if (courseId) {
     url = `/courses/${courseId}`
+  } else if (!courseId) {
+    url = `/courses`
   }
   const isFirst = selectedModule?.lessons[0].id === lessonId
   const isLast =
@@ -32,7 +34,7 @@ const Content = ({
     <div
       className={`w-full py-8 lg:py-[unset] ${
         !lessonData &&
-        'grid grid-cols-1 md:grid-cols-3 px-5 xl:grid-cols-5 gap-3'
+        'grid grid-cols-1 md:grid-cols-3 px-5 2xl:grid-cols-5 gap-3'
       }`}
     >
       {!lessonData &&
@@ -52,9 +54,11 @@ const Content = ({
                 </div>
                 <div className={'px-4 pt-4 pb-6'}>
                   {title && <p className={'font-oswald text-xl'}>{title}</p>}
-                  <p className={'text-neutral-400 line-clamp-5'}>
-                    {description || content[0]}
-                  </p>
+                  {(content || description) && (
+                    <p className={'text-neutral-400 line-clamp-5'}>
+                      {description || content[0]}
+                    </p>
+                  )}
                 </div>
               </Card>
             </Link>

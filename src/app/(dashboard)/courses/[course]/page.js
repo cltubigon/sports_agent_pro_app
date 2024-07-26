@@ -2,11 +2,14 @@ import React from 'react'
 import { courseList } from '../courseList'
 import HeaderContainer from '@/app/(dashboard)/courses/HeaderContainer'
 import BreadCrumb from '@/app/(dashboard)/courses/BreadCrumb'
-import Title from '@/app/(dashboard)/courses/Title'
 import ContentSection from '@/app/(dashboard)/courses/ContentSection'
 import Content from '@/app/(dashboard)/courses/Content'
 import { notFound } from 'next/navigation'
 import Navigation from '@/app/(dashboard)/courses/Navigation'
+
+export async function generateStaticParams() {
+  return courseList
+}
 
 const CoursePage = ({ params }) => {
   const course = courseList.find((item) => item.id === params.course)
@@ -15,7 +18,6 @@ const CoursePage = ({ params }) => {
     <>
       <HeaderContainer>
         <BreadCrumb courseTitle={course.title} />
-        {/* <Title /> */}
       </HeaderContainer>
       <ContentSection>
         <Navigation arrItems={courseList} courseId={course.id} />

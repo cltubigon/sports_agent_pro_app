@@ -2,7 +2,6 @@ import React from 'react'
 
 import HeaderContainer from '@/app/(dashboard)/courses/HeaderContainer'
 import BreadCrumb from '@/app/(dashboard)/courses/BreadCrumb'
-import Title from '@/app/(dashboard)/courses/Title'
 import ContentSection from '@/app/(dashboard)/courses/ContentSection'
 import Navigation from '@/app/(dashboard)/courses/Navigation'
 import Content from '@/app/(dashboard)/courses/Content'
@@ -16,7 +15,6 @@ const ModulePage = ({ params }) => {
     (item) => item.id === module
   )
   if (!selectedModule) return notFound()
-  console.log('module params', selectedModule)
   return (
     <div>
       <HeaderContainer>
