@@ -8,6 +8,8 @@ import Content from '@/app/(dashboard)/courses/Content'
 import { courseList } from '@/app/(dashboard)/courses/courseList'
 import { notFound } from 'next/navigation'
 
+export const revalidate = 605800
+
 const LessonPage = ({ params }) => {
   const { course, module, lesson } = params
   const selectedCourse = courseList.find((item) => item.id === course)

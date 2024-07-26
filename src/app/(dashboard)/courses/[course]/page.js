@@ -7,6 +7,8 @@ import Content from '@/app/(dashboard)/courses/Content'
 import { notFound } from 'next/navigation'
 import Navigation from '@/app/(dashboard)/courses/Navigation'
 
+export const revalidate = 605800
+
 const CoursePage = ({ params }) => {
   const course = courseList.find((item) => item.id === params.course)
   if (!course) return notFound()
