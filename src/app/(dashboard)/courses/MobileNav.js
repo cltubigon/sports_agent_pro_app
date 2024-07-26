@@ -4,7 +4,7 @@ import Menu from '@/app/components/Menu'
 import Link from 'next/link'
 import React, { useRef, useState } from 'react'
 
-const Title = ({ courseId, lessonId, selectedModule }) => {
+const MobileNav = ({ courseId, lessonId, selectedModule }) => {
   const [showModal, setShowModal] = useState(false)
   const buttonRef = useRef(null)
   return (
@@ -50,4 +50,4 @@ const Title = ({ courseId, lessonId, selectedModule }) => {
   )
 }
 
-export default Title
+export default MobileNav

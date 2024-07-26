@@ -1,7 +1,7 @@
 import React from 'react'
 import HeaderContainer from '@/app/(dashboard)/courses/HeaderContainer'
 import BreadCrumb from '@/app/(dashboard)/courses/BreadCrumb'
-import Title from '@/app/(dashboard)/courses/Title'
+import MobileNav from '@/app/(dashboard)/courses/MobileNav'
 import ContentSection from '@/app/(dashboard)/courses/ContentSection'
 import Navigation from '@/app/(dashboard)/courses/Navigation'
 import Content from '@/app/(dashboard)/courses/Content'
@@ -30,7 +30,7 @@ const LessonPage = ({ params }) => {
           selectedCourse={selectedCourse}
           selectedModule={selectedModule}
         />
-        <Title
+        <MobileNav
           selectedModule={selectedModule}
           courseId={selectedCourse.id}
           lessonId={selectedLesson.id}

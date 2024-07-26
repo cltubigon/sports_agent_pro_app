@@ -1,5 +1,4 @@
 import React from 'react'
-
 import HeaderContainer from '@/app/(dashboard)/courses/HeaderContainer'
 import BreadCrumb from '@/app/(dashboard)/courses/BreadCrumb'
 import ContentSection from '@/app/(dashboard)/courses/ContentSection'
@@ -25,7 +24,6 @@ const ModulePage = ({ params }) => {
           moduleTitle={selectedModule.title}
           selectedCourse={selectedCourse}
         />
-        {/* <Title /> */}
       </HeaderContainer>
       <ContentSection>
         <Navigation
