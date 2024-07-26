@@ -8,13 +8,13 @@ const MobileNav = ({ courseId, lessonId, selectedModule }) => {
   const [showModal, setShowModal] = useState(false)
   const buttonRef = useRef(null)
   return (
-    <div className={'relative flex items-center'}>
+    <div className={'hidden relative lg:flex items-center'}>
       <div
         className={'all-lessons flex items-center gap-2 select-none'}
         ref={buttonRef}
         onClick={() => setShowModal(!showModal)}
       >
-        <Icon_down className='size-6 mr-5' />
+        <Icon_down className="size-6 mr-5" />
         {/* <p className={''}>Show All</p> */}
       </div>
       {showModal && (
