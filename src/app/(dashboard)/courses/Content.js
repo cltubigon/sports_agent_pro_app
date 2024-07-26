@@ -65,7 +65,7 @@ const Content = ({
           )
         })}
       {lessonData && (
-        <div className={'bg-white px-5 lg:px-[unset] lg:py-6'}>
+        <div className={'bg-white px-5 2xl:px-[unset] lg:py-6'}>
           <div className="w-full max-w-[840px] mx-auto">
             <h3
               className={
@@ -75,7 +75,7 @@ const Content = ({
               {lessonData.title}
             </h3>
             <div
-              className={'relative h-[280px] md:h-[350px] lg:h-[530px] mb-6'}
+              className={'relative h-[280px] md:h-[350px] xl:h-[430px] 2xl:h-[530px] mb-6'}
             >
               <Image
                 src={lessonData.image || placeholder}
