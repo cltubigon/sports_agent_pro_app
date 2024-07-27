@@ -8,4 +8,6 @@ export const restrictedPages = [
   '/network',
   '/courses',
   '/profile',
+  '/opportunities',
+  '/build',
 ]

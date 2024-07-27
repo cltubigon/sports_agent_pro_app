@@ -57,7 +57,8 @@ const ProfilePage = async () => {
             className={'hidden lg:flex min-w-[116px]'}
           />
         </div>
-        {user?.account_type === 'athlete' && (
+        {(user?.account_type === 'athlete' ||
+          user?.account_type === 'coach') && (
           <AthleteProfile user={user} images={images} />
         )}
         {user?.account_type === 'brand' && <BrandProfile user={user} />}

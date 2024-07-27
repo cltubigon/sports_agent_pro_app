@@ -10,8 +10,8 @@ export const dashboardMenuList = [
     Icon: Icon_globe,
   },
   {
-    name: 'Dashboard',
-    link: '/dashboard',
+    name: 'Opportunities',
+    link: '/opportunities',
     Icon: Icon_dashboard,
   },
   {
