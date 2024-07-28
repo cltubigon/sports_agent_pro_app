@@ -11,6 +11,6 @@ export const updatePassword = async ({ data }) => {
     password: newPassword,
   })
   if (error) {
-    return { error: error?.code }
+    return { error: error?.message }
   }
 }
