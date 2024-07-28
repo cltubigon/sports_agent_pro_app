@@ -3,6 +3,8 @@ import Input from '@/app/components/inputsFields/InputGroup/Input'
 import InputGroup from '@/app/components/inputsFields/InputGroup/InputGroup'
 import React, { useEffect, useRef, useState } from 'react'
 
+{/* <OTPCode parameters={{ setOTP, sending }} /> */}
+
 const OTPCode = ({ parameters: { setOTP, sending } }) => {
   const [code, setcode] = useState(new Array(6).fill(''))
   const [activeIndex, setactiveIndex] = useState(0)

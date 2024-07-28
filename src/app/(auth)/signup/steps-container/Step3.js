@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import signupStore from '@/utilities/store/signupStore'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useStore } from 'zustand'
 import { verifyOtp } from '../actions'
 import Toast from '@/app/components/Toast'
@@ -21,8 +21,8 @@ const Step3 = () => {
     if (!submittedData) return
     setsending(true)
     const { email, password } = submittedData
-    const data = { email, password, token: OTP }
-    const error = await verifyOtp(data)
+    const data = { email, token: OTP }
+    const error = await verifyOtp({ data, password })
     if (!error) {
       removeResendLocalStorage()
       setsubmittedData(null)

@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-const Icon_right2 = forwardRef(function Icon_right2(
+const Icon_left2 = forwardRef(function Icon_left2(
   { className, ...props },
   ref
 ) {
@@ -19,10 +19,10 @@ const Icon_right2 = forwardRef(function Icon_right2(
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
-        d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9"
+        d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15"
       />
     </svg>
   )
 })
 
-export default Icon_right2
+export default Icon_left2

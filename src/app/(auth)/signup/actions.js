@@ -33,8 +33,8 @@ export async function signup(data) {
   }
 }
 
-export const verifyOtp = async (data) => {
-  const { email, token, password } = data
+export const verifyOtp = async ({ data, password, hasRedirect }) => {
+  const { email, token } = data
   const supabase = createServer()
   const {
     data: { session },
@@ -44,13 +44,17 @@ export const verifyOtp = async (data) => {
     token: token,
     type: 'email',
   })
-  
+
   if (error) {
     const theError = error?.message
     return theError
   } else {
-    const newPassword = password
-    await updatePassword({ data: { newPassword } })
-    return null
+    if (password) {
+      await updatePassword({ data: { password } })
+      return null
+    }
+    if (hasRedirect) {
+      redirect(hasRedirect)
+    }
   }
 }
