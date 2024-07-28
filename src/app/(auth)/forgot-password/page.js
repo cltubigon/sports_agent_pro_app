@@ -104,7 +104,7 @@ const ForgotPasswordPage = () => {
                 Send me a reset link
               </ButtonLoader>
               <p className={'mt-1 text-center text-primary text-sm'}>
-                {`We'll send you a link to create a new one.`}
+                {`We'll send you a code to verify it's you.`}
               </p>
             </div>
           </div>
