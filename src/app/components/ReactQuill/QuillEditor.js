@@ -4,6 +4,10 @@ import './QuillStyle.css'
 import dynamic from 'next/dynamic'
 import { twMerge } from 'tailwind-merge'
 
+{
+  /* <QuillEditor setValue={setaccordingTo} defaultValue={defaultValue} /> */
+}
+
 const modules = {
   toolbar: [
     //[{ 'font': [] }],

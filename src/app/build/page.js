@@ -5,7 +5,7 @@ import ContentBuild from './content/ContentBuild'
 const BuildPage = () => {
   return (
     <>
-      <div className={'flex h-screen text-white'}>
+      <div className={'flex h-screen'}>
         <NavigationBuild />
         <ContentBuild />
       </div>

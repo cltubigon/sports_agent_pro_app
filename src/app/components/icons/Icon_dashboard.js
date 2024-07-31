@@ -12,7 +12,7 @@ const Icon_dashboard = forwardRef(function Icon_dashboard(
       viewBox="0 0 24 24"
       strokeWidth={1}
       stroke="currentColor"
-      className={twMerge('size-4', className)}
+      className={twMerge('size-5', className)}
       {...props}
       ref={ref}
     >

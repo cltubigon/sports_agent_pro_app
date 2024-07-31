@@ -1,12 +1,19 @@
+'use client'
 import React from 'react'
+import DealType from './deal-type/DealType'
+import Details from './details.js/Details'
+import { useStore } from 'zustand'
+import buildStore from '@/utilities/store/buildStore'
+import Recipients from './recipients/Recipients'
 
 const ContentBuild = () => {
+  const { activeStep } = useStore(buildStore)
   return (
-    <div
-      className={
-        'w-full h-full bg-secondary-50 px-3 md:px-5 xl:px-10 2xl:px-20'
-      }
-    ></div>
+    <>
+      {activeStep === 'deal_type' && <DealType />}
+      {activeStep === 'details' && <Details />}
+      {activeStep === 'recipients' && <Recipients />}
+    </>
   )
 }
 
