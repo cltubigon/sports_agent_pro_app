@@ -9,7 +9,9 @@ const Navigation = ({ isOpen }) => {
   return (
     <>
       <div
-        className={`flex flex-col gap-3 mt-10 w-fit ${!isOpen && 'mx-auto'}`}
+        className={`flex flex-col gap-3 mt-10 w-fit ${
+          !isOpen ? 'mx-auto' : 'max-sm:mx-auto md:mr-auto'
+        }`}
       >
         {list.map((item, index) => {
           const { id, name, isOK } = item
@@ -33,7 +35,7 @@ const Navigation = ({ isOpen }) => {
                 )}
               </div>
               <div
-                className={`${!isOpen && 'hidden'} ${
+                className={`max-sm:hidden ${!isOpen && 'hidden'} ${
                   activeStep === id && 'font-bold'
                 }`}
               >

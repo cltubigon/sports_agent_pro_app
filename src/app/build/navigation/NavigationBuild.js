@@ -24,12 +24,18 @@ const NavigationBuild = () => {
           src={saplogo}
           alt="SAP Logo"
           quality={100}
-          className={`${isOpen ? 'max-w-[80px]' : 'max-w-[50px] mx-auto'}`}
+          className={`${
+            isOpen
+              ? 'max-sm:max-w-[50px] md:max-w-[80px]'
+              : 'max-w-[50px] mx-auto'
+          }`}
         />
         <Navigation isOpen={isOpen} />
       </div>
       <div
-        className={`flex ${!isOpen ? 'justify-center' : 'justify-end'}`}
+        className={`hidden md:flex ${
+          !isOpen ? 'justify-center' : 'justify-end'
+        }`}
         onClick={handleClick}
       >
         <Icon_left2 className={`size-6 ${!isOpen && 'hidden'}`} />

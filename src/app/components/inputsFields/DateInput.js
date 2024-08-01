@@ -16,7 +16,7 @@ const DateInput = forwardRef(function DateInput({ children, ...props }, ref) {
     <Input
       ref={ref}
       type="date"
-      defaultValue={converToDateInputFormat(props?.default)}
+      defaultValue={props?.default && converToDateInputFormat(props?.default)}
       {...props}
     />
   )

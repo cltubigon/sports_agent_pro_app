@@ -8,6 +8,18 @@ const checkDetailsIfOk = (get) => {
   return false
 }
 
+const checkActivitiesIfOk = (get) => {
+  const curActivities = get().selectedActivities
+  if (
+    curActivities?.length > 0 &&
+    curActivities?.every((item) => item?.date && item?.compensation)
+  ) {
+    return true
+  } else {
+    return false
+  }
+}
+
 const buildStore = create(
   immer((set, get) => ({
     // ********* Toast *********
@@ -72,7 +84,7 @@ const buildStore = create(
         state.list[1].isOK = isOK
       })
     },
-    // Details
+    // Recipients
     selectedRecipients: [],
     setselectedRecipients: (data) => {
       set((state) => {
@@ -90,6 +102,63 @@ const buildStore = create(
         } else {
           state.list[2].isOK = false
         }
+      })
+    },
+    // Activities
+    selectedActivities: [],
+    setselectedActivities: (data) => {
+      set((state) => {
+        const curActivities = get().selectedActivities
+        if (curActivities?.length > 0) {
+          state.selectedActivities = [...curActivities, ...data]
+        } else {
+          state.selectedActivities = data
+        }
+      })
+      set((state) => {
+        state.list[3].isOK = checkActivitiesIfOk(get)
+      })
+    },
+    setDate: (data) => {
+      set((state) => {
+        const curActivities = get().selectedActivities
+
+        state.selectedActivities = curActivities?.map((temp) => {
+          if (temp.id === data.id) {
+            const newTemp = { ...temp, date: data.date }
+            return newTemp
+          } else return temp
+        })
+      })
+      set((state) => {
+        state.list[3].isOK = checkActivitiesIfOk(get)
+      })
+    },
+    setCompensation: (data) => {
+      set((state) => {
+        const curActivities = get().selectedActivities
+
+        state.selectedActivities = curActivities?.map((temp) => {
+          if (temp.id === data.id) {
+            const newTemp = { ...temp, compensation: data.compensation }
+            console.log({ newTemp })
+            return newTemp
+          } else return temp
+        })
+      })
+      set((state) => {
+        state.list[3].isOK = checkActivitiesIfOk(get)
+      })
+    },
+    trashActivity: (data) => {
+      set((state) => {
+        const curActivities = get().selectedActivities
+        state.selectedActivities = curActivities?.filter(
+          (temp) => temp.id !== data.id
+        )
+      })
+      set((state) => {
+        state.list[3].isOK = checkActivitiesIfOk(get)
       })
     },
   })),
