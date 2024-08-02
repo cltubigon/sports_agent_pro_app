@@ -9,7 +9,8 @@ import Brief from './Brief'
 import ExpirationDate from './ExpirationDate'
 
 const Details = () => {
-  const { dealName, setdealName, setactiveStep } = useStore(buildStore)
+  const { dealName, setdealName, setactiveStep, dealType } =
+    useStore(buildStore)
 
   const handleDealNameChange = ({ target: { value } }) => {
     setdealName(value)
@@ -19,7 +20,7 @@ const Details = () => {
     setactiveStep('deal_type')
   }
   const handleNext = () => {
-    setactiveStep('recipients')
+    setactiveStep(dealType !== 'offer' ? 'activities' : 'recipients')
   }
   return (
     <div className={'w-full h-full bg-white flex flex-col justify-between'}>

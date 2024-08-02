@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Discover from './Discover'
 import SelectedRecipients from './SelectedRecipients'
 import { createClient } from '@/config/supabase/supabaseClient'
@@ -13,7 +14,7 @@ import { useStore } from 'zustand'
 import buildStore from '@/utilities/store/buildStore'
 
 const Content = () => {
-  const { selectedRecipients } = useStore(buildStore)
+  const { selectedRecipients, setfetchedAthletes } = useStore(buildStore)
   const [isDiscover, setisDiscover] = useState(true)
   const [isColumn, setisColumn] = useState(null)
   const formRef = useRef(null)
@@ -34,6 +35,10 @@ const Content = () => {
     },
     refetchInterval: 3600 * 1000,
   })
+
+  useEffect(() => {
+    setfetchedAthletes(athletes)
+  }, [athletes])
 
   console.log({ defaultInputValue, searchResult, athletes })
   const handleClick = (bool) => {

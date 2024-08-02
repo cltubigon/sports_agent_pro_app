@@ -5,7 +5,12 @@ import { useStore } from 'zustand'
 import buildStore from '@/utilities/store/buildStore'
 
 const Navigation = ({ isOpen }) => {
-  const { activeStep, list } = useStore(buildStore)
+  const { activeStep, list, dealType, setactiveStep } = useStore(buildStore)
+  const newList =
+    dealType !== 'offer' ? [...list.slice(0, 2), ...list.slice(3, 6)] : list
+  const handleChangeActiveStep = (step) => {
+    setactiveStep(step)
+  }
   return (
     <>
       <div
@@ -13,10 +18,14 @@ const Navigation = ({ isOpen }) => {
           !isOpen ? 'mx-auto' : 'max-sm:mx-auto md:mr-auto'
         }`}
       >
-        {list.map((item, index) => {
+        {newList.map((item, index) => {
           const { id, name, isOK } = item
           return (
-            <div key={index} className={`flex gap-2 md:gap-5`}>
+            <div
+              key={index}
+              className={`flex gap-2 md:gap-5`}
+              onClick={() => handleChangeActiveStep(id)}
+            >
               <div
                 className={`relative min-w-6 min-h-6 max-w-6 max-h-6 rounded-full border-[1px] ${
                   isOK && 'bg-white text-secondary'
@@ -35,12 +44,14 @@ const Navigation = ({ isOpen }) => {
                 )}
               </div>
               <div
-                className={`max-sm:hidden ${!isOpen && 'hidden'} ${
-                  activeStep === id && 'font-bold'
-                }`}
+                className={`max-sm:hidden cursor-default ${
+                  !isOpen && 'hidden'
+                } ${activeStep === id && 'font-bold'}`}
               >
                 <p className={'text-sm md:text-[15px]'}>{name}</p>
-                <p className={'text-xs md:text-sm'}>Incomplete</p>
+                <p className={'text-xs md:text-sm'}>
+                  {isOK ? 'Complete' : 'Incomplete'}
+                </p>
               </div>
             </div>
           )

@@ -6,9 +6,11 @@ import { useStore } from 'zustand'
 import buildStore from '@/utilities/store/buildStore'
 import Recipients from './recipients/Recipients'
 import Activities from './activities/Activities'
+import Review from './review/Review'
+import Payment from './payment/Payment'
 
 const ContentBuild = () => {
-  const { activeStep } = useStore(buildStore)
+  const { activeStep, dealType } = useStore(buildStore)
   console.log('activeStep', activeStep)
   return (
     <>
@@ -16,6 +18,8 @@ const ContentBuild = () => {
       {activeStep === 'details' && <Details />}
       {activeStep === 'recipients' && <Recipients />}
       {activeStep === 'activities' && <Activities />}
+      {activeStep === 'review' && <Review />}
+      {activeStep === 'payment' && <Payment />}
     </>
   )
 }

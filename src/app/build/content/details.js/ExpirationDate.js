@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Button from '@/app/components/Button'
 import DateInput from '@/app/components/inputsFields/DateInput'
 import { addDaysToDate } from '@/utilities/date-and-time/addDateTime'
 import buildStore from '@/utilities/store/buildStore'
+import { useEffect } from 'react'
 import { useStore } from 'zustand'
 
 const ExpirationDate = () => {
@@ -20,6 +22,18 @@ const ExpirationDate = () => {
       setexpirationDate(null)
     }
   }
+  useEffect(() => {
+    if (!briefDateOpen) return
+    const e = {
+      target: {
+        value: new Date(addDaysToDate(new Date(), 2))
+          .toISOString()
+          .slice(0, 10),
+      },
+    }
+    handleexpirationDate(e)
+  }, [briefDateOpen])
+
   const handleClick = () => {
     setbriefDateOpen(true)
   }
@@ -37,7 +51,7 @@ const ExpirationDate = () => {
             onChange={handleexpirationDate}
             defaultValue={
               expirationDate ||
-              new Date(addDaysToDate(new Date(), 1)).toISOString().slice(0, 10)
+              new Date(addDaysToDate(new Date(), 2)).toISOString().slice(0, 10)
             }
           />
         </div>

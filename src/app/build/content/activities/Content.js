@@ -79,7 +79,7 @@ const Content = ({ handlePopupOpen }) => {
                 />
                 <Icon_trash
                   onClick={() => handleTrash(item)}
-                  className="max-sm:absolute max-sm:top-4 max-sm:right-3 text-primary"
+                  className="max-sm:absolute max-sm:top-4 z-20 max-sm:right-3 text-primary"
                 />
               </div>
             )

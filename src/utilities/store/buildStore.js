@@ -20,9 +20,24 @@ const checkActivitiesIfOk = (get) => {
   }
 }
 
+const checkRecipientIfOk = (get) => {
+  const curRecipients = get().selectedRecipients
+  if (curRecipients?.length > 0) {
+    return true
+  } else {
+    return false
+  }
+}
+
 const buildStore = create(
   immer((set, get) => ({
     // ********* Toast *********
+    fetchedAthletes: null,
+    setfetchedAthletes: (data) => {
+      set((state) => {
+        state.fetchedAthletes = data
+      })
+    },
     activeStep: 'deal_type',
     setactiveStep: (data) => {
       set((state) => {
@@ -46,6 +61,15 @@ const buildStore = create(
       set((state) => {
         state.list[0].isOK = true
       })
+      set((state) => {
+        const dealType = get().dealType
+        state.list[4].isOK =
+          dealType === 'offer'
+            ? checkActivitiesIfOk(get) &&
+              checkDetailsIfOk(get) &&
+              checkRecipientIfOk(get)
+            : checkActivitiesIfOk(get) && checkDetailsIfOk(get)
+      })
     },
     // Details
     dealName: null,
@@ -57,6 +81,15 @@ const buildStore = create(
         const isOK = checkDetailsIfOk(get)
         state.list[1].isOK = isOK
       })
+      set((state) => {
+        const dealType = get().dealType
+        state.list[4].isOK =
+          dealType === 'offer'
+            ? checkActivitiesIfOk(get) &&
+              checkDetailsIfOk(get) &&
+              checkRecipientIfOk(get)
+            : checkActivitiesIfOk(get) && checkDetailsIfOk(get)
+      })
     },
     brief: null,
     setbrief: (data) => {
@@ -66,6 +99,15 @@ const buildStore = create(
       set((state) => {
         const isOK = checkDetailsIfOk(get)
         state.list[1].isOK = isOK
+      })
+      set((state) => {
+        const dealType = get().dealType
+        state.list[4].isOK =
+          dealType === 'offer'
+            ? checkActivitiesIfOk(get) &&
+              checkDetailsIfOk(get) &&
+              checkRecipientIfOk(get)
+            : checkActivitiesIfOk(get) && checkDetailsIfOk(get)
       })
     },
     briefDateOpen: false,
@@ -96,12 +138,16 @@ const buildStore = create(
         }
       })
       set((state) => {
-        const curRecipients = get().selectedRecipients
-        if (curRecipients?.length > 0) {
-          state.list[2].isOK = true
-        } else {
-          state.list[2].isOK = false
-        }
+        state.list[2].isOK = checkRecipientIfOk(get)
+      })
+      set((state) => {
+        const dealType = get().dealType
+        state.list[4].isOK =
+          dealType === 'offer'
+            ? checkActivitiesIfOk(get) &&
+              checkDetailsIfOk(get) &&
+              checkRecipientIfOk(get)
+            : checkActivitiesIfOk(get) && checkDetailsIfOk(get)
       })
     },
     // Activities
@@ -118,6 +164,15 @@ const buildStore = create(
       set((state) => {
         state.list[3].isOK = checkActivitiesIfOk(get)
       })
+      set((state) => {
+        const dealType = get().dealType
+        state.list[4].isOK =
+          dealType === 'offer'
+            ? checkActivitiesIfOk(get) &&
+              checkDetailsIfOk(get) &&
+              checkRecipientIfOk(get)
+            : checkActivitiesIfOk(get) && checkDetailsIfOk(get)
+      })
     },
     setDate: (data) => {
       set((state) => {
@@ -132,6 +187,15 @@ const buildStore = create(
       })
       set((state) => {
         state.list[3].isOK = checkActivitiesIfOk(get)
+      })
+      set((state) => {
+        const dealType = get().dealType
+        state.list[4].isOK =
+          dealType === 'offer'
+            ? checkActivitiesIfOk(get) &&
+              checkDetailsIfOk(get) &&
+              checkRecipientIfOk(get)
+            : checkActivitiesIfOk(get) && checkDetailsIfOk(get)
       })
     },
     setCompensation: (data) => {
@@ -149,6 +213,15 @@ const buildStore = create(
       set((state) => {
         state.list[3].isOK = checkActivitiesIfOk(get)
       })
+      set((state) => {
+        const dealType = get().dealType
+        state.list[4].isOK =
+          dealType === 'offer'
+            ? checkActivitiesIfOk(get) &&
+              checkDetailsIfOk(get) &&
+              checkRecipientIfOk(get)
+            : checkActivitiesIfOk(get) && checkDetailsIfOk(get)
+      })
     },
     trashActivity: (data) => {
       set((state) => {
@@ -159,6 +232,15 @@ const buildStore = create(
       })
       set((state) => {
         state.list[3].isOK = checkActivitiesIfOk(get)
+      })
+      set((state) => {
+        const dealType = get().dealType
+        state.list[4].isOK =
+          dealType === 'offer'
+            ? checkActivitiesIfOk(get) &&
+              checkDetailsIfOk(get) &&
+              checkRecipientIfOk(get)
+            : checkActivitiesIfOk(get) && checkDetailsIfOk(get)
       })
     },
   })),

@@ -10,19 +10,19 @@ import { useState } from 'react'
 import Icon_megaphone from '@/app/components/icons/Icon_megaphone'
 import PopupContent from './popup-content/PopupContent'
 
-const Activities = ({ athletes, isColumn }) => {
-  const { setactiveStep, selectedActivities } = useStore(buildStore)
+const Activities = () => {
+  const { setactiveStep, selectedActivities, dealType } = useStore(buildStore)
   const [popup, setpopup] = useState(null)
 
   const handlePopupOpen = () => {
     setpopup(true)
   }
 
+  const handlePrev = () => {
+    setactiveStep(dealType !== 'offer' ? 'details' : 'recipients')
+  }
   const handleNext = () => {
     setactiveStep('review')
-  }
-  const handlePrev = () => {
-    setactiveStep('recipients')
   }
   return (
     <div className={'w-full h-full bg-white flex flex-col justify-between'}>

@@ -1,29 +1,13 @@
 'use client'
 import Button from '@/app/components/Button'
-import Icon_dashboard from '@/app/components/icons/Icon_dashboard'
 import Icon_right from '@/app/components/icons/Icon_right'
-import Icon_write from '@/app/components/icons/Icon_write'
 import buildStore from '@/utilities/store/buildStore'
 import { useStore } from 'zustand'
+import { listDealType } from './list'
 
 const DealType = () => {
   const { dealType, setdealType, setactiveStep } = useStore(buildStore)
-  const list = [
-    {
-      title: 'Offer',
-      description:
-        'Offers are deals that are sent directly to one or more recipients, allowing you to target exactly who you want.',
-      value: 'offer',
-      Icon: Icon_write,
-    },
-    {
-      title: 'Opportunity',
-      description:
-        'Opportunities are posted for all users in the marketplace to review and apply to, giving you the flexibility to select from a pool of applicants.',
-      value: 'opportunity',
-      Icon: Icon_dashboard,
-    },
-  ]
+
   const handleClick = (value) => {
     setdealType(value)
   }
@@ -49,7 +33,7 @@ const DealType = () => {
         }
       >
         {/* Content */}
-        {list.map((item, index) => {
+        {listDealType.map((item, index) => {
           const { title, description, Icon, value } = item
           return (
             <div

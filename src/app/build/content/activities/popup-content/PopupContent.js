@@ -51,13 +51,16 @@ const PopupContent = ({ setpopup }) => {
     )
   }
   const handleAddActivities = () => {
+    if (tempSelections?.length < 1) return
     setlist(activityList)
     settempSelections([])
     setselectedActivities(tempSelections)
     setpopup(null)
   }
-  console.log({ tempSelections, list })
-  console.log({ selectedActivities })
+
+  const handleCancel = () => {
+    setpopup(false)
+  }
   return (
     <div className={'flex flex-col w-full'}>
       <div className={'px-6 flex sticky top-0 z-10 py-1 bg-white'}>
@@ -122,11 +125,18 @@ const PopupContent = ({ setpopup }) => {
           'px-6 flex items-center justify-between sticky top-0 z-10 py-3 bg-white'
         }
       >
-        <Button className="h-12 px-5" variant="button2">
+        <Button onClick={handleCancel} className="h-12 px-5" variant="button2">
           Cancel
         </Button>
-        <Button onClick={handleAddActivities} className="h-12 px-5">
-          Add Activities
+        <Button
+          onClick={handleAddActivities}
+          className={`h-12 px-5 ${
+            tempSelections?.length < 1 && 'opacity-60 cursor-default'
+          }`}
+        >
+          {tempSelections?.length < 1
+            ? 'Select Activities'
+            : `Add ${tempSelections?.length} Activities`}
         </Button>
       </div>
     </div>
