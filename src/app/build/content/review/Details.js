@@ -28,7 +28,7 @@ const Details = () => {
         <div
           className={`flex flex-col gap-3 overflow-y-hidden ${
             !isViewMore && brief && brief !== '<p><br></p>'
-              ? 'max-h-[197px] md:max-h-[195px]'
+              ? 'max-h-[197px] md:max-h-[197px]'
               : 'h-full'
           }`}
         >

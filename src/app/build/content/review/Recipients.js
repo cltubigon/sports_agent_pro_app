@@ -16,6 +16,7 @@ const Recipients = () => {
   const handleSetActiveStep = () => {
     setactiveStep('recipients')
   }
+  console.log('selectedAthletesssss', selectedAthletes)
   return (
     <ModuleContainer step={'recipients'} title={'Recipients'}>
       <div className={'w-full h-full'}>
@@ -29,10 +30,7 @@ const Recipients = () => {
             discipline,
           } = item
           return (
-            <div
-              key={index}
-              className={`cursor-default rounded-md`}
-            >
+            <div key={index} className={`cursor-default rounded-md`}>
               <div className={`flex gap-3 md:gap-5 py-[6px]`}>
                 <div
                   className={`flex gap-3 md:gap-5 content-between items-center`}
@@ -74,7 +72,7 @@ const Recipients = () => {
             </div>
           )
         })}
-        {selectedAthletes?.length < 1 && (
+        {(selectedAthletes?.length < 1 || !selectedAthletes) && (
           <div
             className={
               'w-full min-h-[100px] flex gap-3 flex-col justify-center items-center'

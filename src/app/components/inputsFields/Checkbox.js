@@ -2,6 +2,8 @@ import React, { forwardRef } from 'react'
 import Icon_check2 from '../icons/Icon_check2'
 import { twMerge } from 'tailwind-merge'
 
+// defaultChecked={true}
+
 // Example:
 // <Checkbox id="savePassword" {...register('savePassword')}>
 // Remember me

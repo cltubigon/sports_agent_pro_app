@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import saplogo from '@/app/images/SAP_logo.png'
 import Navigation from './Navigation'
 import Icon_right2 from '@/app/components/icons/Icon_right2'
+import Link from 'next/link'
 
 const NavigationBuild = () => {
   const [isOpen, setisOpen] = useState(true)
@@ -19,17 +20,19 @@ const NavigationBuild = () => {
           : 'max-w-[80px] px-2 max-sm:w-fit'
       }`}
     >
-      <div className={'flex flex-col'}>
-        <Image
-          src={saplogo}
-          alt="SAP Logo"
-          quality={100}
-          className={`${
-            isOpen
-              ? 'max-sm:max-w-[50px] md:max-w-[80px]'
-              : 'max-w-[50px] mx-auto'
-          }`}
-        />
+      <div className={'flex flex-col w-fit'}>
+        <Link href={'/'} prefetch>
+          <Image
+            src={saplogo}
+            alt="SAP Logo"
+            quality={100}
+            className={`${
+              isOpen
+                ? 'max-sm:max-w-[50px] md:max-w-[80px]'
+                : 'max-w-[50px] mx-auto'
+            }`}
+          />
+        </Link>
         <Navigation isOpen={isOpen} />
       </div>
       <div

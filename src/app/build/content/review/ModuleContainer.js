@@ -13,14 +13,16 @@ const ModuleContainer = ({ children, title, step }) => {
         className={'flex justify-between items-center pt-2 pb-4 border-b-[1px]'}
       >
         <p className={'md:text-xl text-neutral-500 font-semibold'}>{title}</p>
-        <p
-          onClick={handleEdit}
-          className={
-            'max-sm:text-sm cursor-default font-semibold text-secondary'
-          }
-        >
-          Edit
-        </p>
+        {step && (
+          <p
+            onClick={handleEdit}
+            className={
+              'max-sm:text-sm cursor-default font-semibold text-secondary'
+            }
+          >
+            Edit
+          </p>
+        )}
       </div>
       <div className={'flex flex-col pt-8 pb-4'}>{children}</div>
     </div>
