@@ -35,6 +35,7 @@ const Content = () => {
     refetchInterval: 3600 * 1000,
   })
 
+  console.log({ defaultInputValue, searchResult, athletes })
   const handleClick = (bool) => {
     setisDiscover(bool)
   }
@@ -127,14 +128,14 @@ const Content = () => {
         </div>
       </div>
       <div className={'flex'}>
-        {isDiscover && athletes && (
+        {isDiscover && (
           <Discover
             isColumn={isColumn}
             athletes={(defaultInputValue && searchResult) || athletes}
             handleClear={handleClear}
           />
         )}
-        {!isDiscover && athletes && (
+        {!isDiscover && (
           <SelectedRecipients
             athletes={(defaultInputValue && searchResult) || athletes}
             isColumn={isColumn}
