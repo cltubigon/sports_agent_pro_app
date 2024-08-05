@@ -3,6 +3,10 @@ import React, { forwardRef } from 'react'
 import placeholderImage from './images/profile_picture_placeholder.jpg'
 import { twMerge } from 'tailwind-merge'
 
+{
+  /* <ProfilePictureComponent user={user} /> */
+}
+
 const ProfilePictureComponent = forwardRef(function ProfilePictureComponent(
   { children, className, ...props },
   ref

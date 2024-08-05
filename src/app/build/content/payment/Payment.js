@@ -11,6 +11,7 @@ import Toast from '@/app/components/Toast'
 import { sendOffer } from './actions'
 import { formatDateToUTCString } from '@/utilities/date-and-time/formatDateToUTCString'
 import { useRouter } from 'next/navigation'
+import ButtonLoader from '@/app/components/ButtonLoader'
 
 const Payment = () => {
   const {
@@ -26,6 +27,7 @@ const Payment = () => {
   } = useStore(buildStore)
   const [hasAcceptedTC, sethasAcceptedTC] = useState(true)
   const [toast, settoast] = useState(null)
+  const [loading, setloading] = useState(null)
   const router = useRouter()
 
   const allOK = list?.find((item) => item.id === 'review')?.isOK
@@ -34,11 +36,14 @@ const Payment = () => {
   }
   const handleSubmit = async () => {
     if (!hasAcceptedTC && !allOK) return
+    setloading({ id: 'submit' })
     const { data, error } = await sendOffer({
       type: dealType,
       title: dealName,
       brief,
-      expirationDate: formatDateToUTCString(expirationDate),
+      expirationDate: expirationDate
+        ? formatDateToUTCString(expirationDate)
+        : null,
       selectedRecipients: dealType === 'offer' ? selectedRecipients : [],
       selectedActivities,
     })
@@ -51,6 +56,7 @@ const Payment = () => {
         status: 'error',
       })
     }
+    setloading(null)
   }
   return (
     <div className={'w-full h-full bg-white flex flex-col justify-between'}>
@@ -87,7 +93,7 @@ const Payment = () => {
         >
           <Icon_left /> Previous
         </Button>
-        <Button
+        {/* <Button
           disabled={(!hasAcceptedTC || !allOK) && true}
           onClick={handleSubmit}
           className={`h-10 max-sm:text-sm md:h-12 max-sm:px-3 ${
@@ -96,7 +102,17 @@ const Payment = () => {
         >
           {dealType === 'offer' ? 'Send Offer' : 'List opportunity'}{' '}
           <Icon_check2 />
-        </Button>
+        </Button> */}
+        <ButtonLoader
+          disabled={(!hasAcceptedTC || !allOK) && true}
+          onClick={handleSubmit}
+          className={`h-10 max-sm:text-sm md:h-12 max-sm:px-3 ${
+            (!hasAcceptedTC || !allOK) && 'opacity-60'
+          }`}
+          parameters={{ id: 'submit', loading, setloading }}
+        >
+          {dealType === 'offer' ? 'Send Offer' : 'List opportunity'}{' '}
+        </ButtonLoader>
       </div>
     </div>
   )

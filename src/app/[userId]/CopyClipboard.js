@@ -3,6 +3,7 @@ import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import Icon_check2 from '../components/icons/Icon_check2'
 import Icon_copy from '../components/icons/Icon_copy'
+import { twMerge } from 'tailwind-merge'
 
 const copyClipboard = (text) => {
   navigator.clipboard
@@ -15,7 +16,7 @@ const copyClipboard = (text) => {
     })
 }
 
-const CopyClipboard = () => {
+const CopyClipboard = ({ shareTextStyle }) => {
   const path = usePathname()
   const [copied, setcopied] = useState(false)
 
@@ -45,7 +46,7 @@ const CopyClipboard = () => {
         {!copied && (
           <>
             <Icon_copy className="size-4" />
-            <p className={'text-sm'}>Share</p>
+            <p className={twMerge('text-sm', shareTextStyle)}>Share</p>
           </>
         )}
         {copied && (

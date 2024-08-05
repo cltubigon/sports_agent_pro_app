@@ -1,6 +1,7 @@
 'use server'
 
 import { createServer } from '@/config/supabase/supabaseServer'
+import { revalidatePath } from 'next/cache'
 
 export const sendOffer = async (oldData) => {
   const compensation = oldData?.selectedActivities
@@ -15,6 +16,7 @@ export const sendOffer = async (oldData) => {
     .insert([newData])
     .select()
   if (data) {
+    revalidatePath('/opportunities')
     return { data, error: null }
   } else if (error) {
     return { data: null, error: error?.message }
