@@ -16,7 +16,6 @@ const Recipients = () => {
   const handleSetActiveStep = () => {
     setactiveStep('recipients')
   }
-  console.log('selectedAthletesssss', selectedAthletes)
   return (
     <ModuleContainer step={'recipients'} title={'Recipients'}>
       <div className={'w-full h-full'}>

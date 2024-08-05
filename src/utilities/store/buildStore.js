@@ -243,6 +243,23 @@ const buildStore = create(
             : checkActivitiesIfOk(get) && checkDetailsIfOk(get)
       })
     },
+    resetbuildStore: (data) => {
+      set((state) => {
+        state.list[0].isOK = false
+        state.list[1].isOK = false
+        state.list[2].isOK = false
+        state.list[3].isOK = false
+        state.list[4].isOK = false
+        state.activeStep = 'deal_type'
+        state.dealType = 'offer'
+        state.dealName = null
+        state.brief = null
+        state.briefDateOpen = false
+        state.expirationDate = null
+        state.selectedRecipients = []
+        state.selectedActivities = []
+      })
+    },
   })),
   {
     name: 'buildStore',

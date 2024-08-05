@@ -11,7 +11,6 @@ import Payment from './payment/Payment'
 
 const ContentBuild = () => {
   const { activeStep, dealType } = useStore(buildStore)
-  console.log('activeStep', activeStep)
   return (
     <>
       {activeStep === 'deal_type' && <DealType />}

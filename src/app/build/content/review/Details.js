@@ -11,8 +11,6 @@ const Details = () => {
   const briefRef = useRef(null)
   const [Height, setHeight] = useState(null)
 
-  console.log('briefRef', briefRef?.current)
-
   useEffect(() => {
     if (briefRef?.current) {
       setHeight(briefRef?.current?.offsetHeight)

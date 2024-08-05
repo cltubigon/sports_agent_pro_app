@@ -8,19 +8,49 @@ import TermsAndConditions from './TermsAndConditions'
 import Icon_check2 from '@/app/components/icons/Icon_check2'
 import { useState } from 'react'
 import Toast from '@/app/components/Toast'
+import { sendOffer } from './actions'
+import { formatDateToUTCString } from '@/utilities/date-and-time/formatDateToUTCString'
+import { useRouter } from 'next/navigation'
 
 const Payment = () => {
-  const { setactiveStep, dealType, list } = useStore(buildStore)
+  const {
+    selectedActivities,
+    selectedRecipients,
+    setactiveStep,
+    dealType,
+    dealName,
+    brief,
+    resetbuildStore,
+    expirationDate,
+    list,
+  } = useStore(buildStore)
   const [hasAcceptedTC, sethasAcceptedTC] = useState(true)
   const [toast, settoast] = useState(null)
+  const router = useRouter()
 
   const allOK = list?.find((item) => item.id === 'review')?.isOK
   const handlePrev = () => {
     setactiveStep('review')
   }
-
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!hasAcceptedTC && !allOK) return
+    const { data, error } = await sendOffer({
+      type: dealType,
+      title: dealName,
+      brief,
+      expirationDate: formatDateToUTCString(expirationDate),
+      selectedRecipients: dealType === 'offer' ? selectedRecipients : [],
+      selectedActivities,
+    })
+    if (data) {
+      resetbuildStore()
+      router.push('/opportunities')
+    } else if (error) {
+      settoast({
+        description: error,
+        status: 'error',
+      })
+    }
   }
   return (
     <div className={'w-full h-full bg-white flex flex-col justify-between'}>

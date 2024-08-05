@@ -6,7 +6,6 @@ import { listDealType } from '../deal-type/list'
 
 const DealType = () => {
   const { dealType } = useStore(buildStore)
-  console.log('listDealType', listDealType)
   return (
     <ModuleContainer step={'deal_type'} title={'Deal Type'}>
       {listDealType?.map((item, index) => {

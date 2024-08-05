@@ -40,7 +40,6 @@ const Content = () => {
     setfetchedAthletes(athletes)
   }, [athletes])
 
-  console.log({ defaultInputValue, searchResult, athletes })
   const handleClick = (bool) => {
     setisDiscover(bool)
   }

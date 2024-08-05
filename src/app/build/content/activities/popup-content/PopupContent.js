@@ -13,8 +13,10 @@ const PopupContent = ({ setpopup }) => {
   const [tempSelections, settempSelections] = useState([])
 
   const handleAdd = (item) => {
-    settempSelections([...tempSelections, item])
-    console.log({ list, tempSelections })
+    settempSelections([
+      ...tempSelections,
+      { ...item, id: `${item.id}${Date.now()}` },
+    ])
     setlist(
       list?.map((temp) => {
         if (temp.id === item.id) {
@@ -24,7 +26,9 @@ const PopupContent = ({ setpopup }) => {
             id: `${temp.id}${Date.now()}`,
           }
           return newTemp
-        } else return temp
+        } else {
+          return temp
+        }
       })
     )
   }
@@ -34,7 +38,6 @@ const PopupContent = ({ setpopup }) => {
       (_, index) =>
         index !== tempSelections?.findIndex((temp) => temp.name === item.name)
     )
-    console.log({ ind, asdf })
     settempSelections(
       tempSelections?.filter(
         (_, index) =>

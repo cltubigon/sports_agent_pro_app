@@ -20,7 +20,6 @@ const Content = ({ handlePopupOpen }) => {
   const handleTrash = (item) => {
     trashActivity(item)
   }
-  console.log('selectedActivities', selectedActivities)
   return (
     <div className="relative w-full h-auto px-3 md:px-8 xl:px-14 2xl:px-20">
       <div className={'sticky top-0 bg-white z-50 py-2'}>

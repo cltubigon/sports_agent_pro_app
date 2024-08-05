@@ -8,7 +8,6 @@ import Button from '@/app/components/Button'
 
 const Activities = () => {
   const { selectedActivities, setactiveStep } = useStore(buildStore)
-  console.log('selectedActivities', selectedActivities)
   const handleChangeActiveStep = () => {
     setactiveStep('activities')
   }
