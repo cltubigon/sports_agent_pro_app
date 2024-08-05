@@ -15,15 +15,12 @@ const Payment = () => {
   const [toast, settoast] = useState(null)
 
   const allOK = list?.find((item) => item.id === 'review')?.isOK
-  console.log('allOK', allOK)
   const handlePrev = () => {
     setactiveStep('review')
   }
-  console.log('hasAcceptedTC', hasAcceptedTC)
+
   const handleSubmit = () => {
-    console.log('disabled')
     if (!hasAcceptedTC && !allOK) return
-    console.log('submitting data')
   }
   return (
     <div className={'w-full h-full bg-white flex flex-col justify-between'}>
