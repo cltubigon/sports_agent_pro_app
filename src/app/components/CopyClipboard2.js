@@ -3,7 +3,6 @@ import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import Icon_check2 from '../components/icons/Icon_check2'
 import Icon_copy from '../components/icons/Icon_copy'
-import { twMerge } from 'tailwind-merge'
 
 const copyClipboard = (text) => {
   navigator.clipboard
@@ -16,12 +15,13 @@ const copyClipboard = (text) => {
     })
 }
 
-const CopyClipboard = ({ shareTextStyle }) => {
+// Default will copy the current full URL
+const CopyClipboard = ({ textToCopy }) => {
   const path = usePathname()
   const [copied, setcopied] = useState(false)
 
   const handleCopy = () => {
-    copyClipboard(`${process.env.NEXT_PUBLIC_ROOT_DOMAIN}${path}`)
+    copyClipboard(textToCopy || `${process.env.NEXT_PUBLIC_ROOT_DOMAIN}${path}`)
     setcopied(true)
   }
 
@@ -46,13 +46,11 @@ const CopyClipboard = ({ shareTextStyle }) => {
         {!copied && (
           <>
             <Icon_copy className="size-4" />
-            <p className={twMerge('text-sm', shareTextStyle)}>Share</p>
           </>
         )}
         {copied && (
           <>
             <Icon_check2 className="text-secondary" />
-            <p className={'text-sm text-secondary'}>URL copied</p>
           </>
         )}
       </div>

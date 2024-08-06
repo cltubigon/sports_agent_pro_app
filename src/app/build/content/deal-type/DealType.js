@@ -4,6 +4,8 @@ import Icon_right from '@/app/components/icons/Icon_right'
 import buildStore from '@/utilities/store/buildStore'
 import { useStore } from 'zustand'
 import { listDealType } from './list'
+import Icon_close from '@/app/components/icons/Icon_close'
+import Link from 'next/link'
 
 const DealType = () => {
   const { dealType, setdealType, setactiveStep } = useStore(buildStore)
@@ -18,7 +20,9 @@ const DealType = () => {
     <div className={'w-full h-full bg-white flex flex-col justify-between'}>
       {/* Header */}
       <div
-        className={'py-1 md:py-4 border-b-2  px-3 md:px-8 xl:px-14 2xl:px-20'}
+        className={
+          'relative py-1 md:py-4 border-b-2  px-3 md:px-8 xl:px-14 2xl:px-20'
+        }
       >
         <h5 className={'font-oswald text-2xl md:text-3xl font-bold'}>
           Deal Type
@@ -26,6 +30,9 @@ const DealType = () => {
         <p className={'text-neutral-600 text-sm md:text-[15px] mt-1'}>
           Select what type of deal you will be building out
         </p>
+        <Link href={'/opportunities'} prefetch>
+        <Icon_close className="absolute top-3 right-3" />
+        </Link>
       </div>
       <div
         className={

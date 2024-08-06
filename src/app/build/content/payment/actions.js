@@ -8,7 +8,7 @@ export const sendOffer = async (oldData) => {
     ?.map((item) => parseFloat(item?.compensation?.replace('$ ', '') || 0))
     ?.reduce((accu, curr) => accu + curr)
   const total = parseFloat((compensation * 0.05)?.toFixed(2)) + compensation
-  const newData = { ...oldData, total }
+  const newData = { ...oldData, total: compensation }
 
   const supabase = createServer()
   const { data, error } = await supabase

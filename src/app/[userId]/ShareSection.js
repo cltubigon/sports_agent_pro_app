@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Icon_left from '../components/icons/Icon_left'
-import CopyClipboard from './CopyClipboard'
+import Copy from './Copy'
 
 const ShareSection = ({ user }) => {
   return (
@@ -15,7 +15,7 @@ const ShareSection = ({ user }) => {
               </div>
             </Link>
           </div>
-          <CopyClipboard />
+          <Copy />
         </div>
       </div>
     </div>

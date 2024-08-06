@@ -21,7 +21,7 @@ const NavigationBuild = () => {
       }`}
     >
       <div className={'flex flex-col w-fit'}>
-        <Link href={'/'} prefetch>
+        <Link href={'/opportunities'} prefetch>
           <Image
             src={saplogo}
             alt="SAP Logo"

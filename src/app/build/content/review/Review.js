@@ -8,6 +8,8 @@ import DealType from './DealType'
 import Details from './Details'
 import Recipients from './Recipients'
 import Activities from './Activities'
+import Link from 'next/link'
+import Icon_close from '@/app/components/icons/Icon_close'
 
 const Review = () => {
   const { setactiveStep, dealType } = useStore(buildStore)
@@ -21,12 +23,17 @@ const Review = () => {
     <div className={'w-full h-full bg-white flex flex-col justify-between'}>
       {/* Header */}
       <div
-        className={'py-1 md:py-4 border-b-2  px-3 md:px-8 xl:px-14 2xl:px-20'}
+        className={
+          'relative py-1 md:py-4 border-b-2  px-3 md:px-8 xl:px-14 2xl:px-20'
+        }
       >
         <h5 className={'font-oswald text-2xl md:text-3xl font-bold'}>Review</h5>
         <p className={'text-neutral-600 text-sm md:text-[15px] mt-1'}>
           Look over all the information you have provided
         </p>
+        <Link href={'/opportunities'} prefetch>
+        <Icon_close className="absolute top-3 right-3" />
+        </Link>
       </div>
       <div
         className={

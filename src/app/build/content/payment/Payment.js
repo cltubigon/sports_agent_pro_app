@@ -12,6 +12,8 @@ import { sendOffer } from './actions'
 import { formatDateToUTCString } from '@/utilities/date-and-time/formatDateToUTCString'
 import { useRouter } from 'next/navigation'
 import ButtonLoader from '@/app/components/ButtonLoader'
+import Link from 'next/link'
+import Icon_close from '@/app/components/icons/Icon_close'
 
 const Payment = () => {
   const {
@@ -63,7 +65,9 @@ const Payment = () => {
       {/* Header */}
       <Toast parameters={{ toast, settoast }} />
       <div
-        className={'py-1 md:py-4 border-b-2  px-3 md:px-8 xl:px-14 2xl:px-20'}
+        className={
+          'relative py-1 md:py-4 border-b-2  px-3 md:px-8 xl:px-14 2xl:px-20'
+        }
       >
         <h5 className={'font-oswald text-2xl md:text-3xl font-bold'}>
           Payment
@@ -71,6 +75,9 @@ const Payment = () => {
         <p className={'text-neutral-600 text-sm md:text-[15px] mt-1'}>
           Select your payment method and agree to Sports Agent Pro terms
         </p>
+        <Link href={'/opportunities'} prefetch>
+          <Icon_close className="absolute top-3 right-3" />
+        </Link>
       </div>
       <div
         className={

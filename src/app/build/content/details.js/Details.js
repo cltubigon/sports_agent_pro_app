@@ -7,6 +7,8 @@ import buildStore from '@/utilities/store/buildStore'
 import { useStore } from 'zustand'
 import Brief from './Brief'
 import ExpirationDate from './ExpirationDate'
+import Link from 'next/link'
+import Icon_close from '@/app/components/icons/Icon_close'
 
 const Details = () => {
   const { dealName, setdealName, setactiveStep, dealType } =
@@ -26,7 +28,9 @@ const Details = () => {
     <div className={'w-full h-full bg-white flex flex-col justify-between'}>
       {/* Header */}
       <div
-        className={'py-1 md:py-4 border-b-2  px-3 md:px-8 xl:px-14 2xl:px-20'}
+        className={
+          'relative py-1 md:py-4 border-b-2  px-3 md:px-8 xl:px-14 2xl:px-20'
+        }
       >
         <h5 className={'font-oswald text-2xl md:text-3xl font-bold'}>
           Details
@@ -34,6 +38,9 @@ const Details = () => {
         <p className={'text-neutral-600 text-sm md:text-[15px] mt-1'}>
           Add information about your deal that will be shared with recipients
         </p>
+        <Link href={'/opportunities'} prefetch>
+          <Icon_close className="absolute top-3 right-3" />
+        </Link>
       </div>
       <div
         className={

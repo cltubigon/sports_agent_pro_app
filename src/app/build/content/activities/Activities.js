@@ -9,6 +9,8 @@ import Popup from '@/app/components/Popup'
 import { useState } from 'react'
 import Icon_megaphone from '@/app/components/icons/Icon_megaphone'
 import PopupContent from './popup-content/PopupContent'
+import Link from 'next/link'
+import Icon_close from '@/app/components/icons/Icon_close'
 
 const Activities = () => {
   const { setactiveStep, selectedActivities, dealType } = useStore(buildStore)
@@ -28,7 +30,9 @@ const Activities = () => {
     <div className={'w-full h-full bg-white flex flex-col justify-between'}>
       {/* Header */}
       <div
-        className={'py-1 md:py-4 border-b-2  px-3 md:px-8 xl:px-14 2xl:px-20'}
+        className={
+          'relative py-1 md:py-4 border-b-2  px-3 md:px-8 xl:px-14 2xl:px-20'
+        }
       >
         <h5 className={'font-oswald text-2xl md:text-3xl font-bold'}>
           Activities
@@ -36,6 +40,9 @@ const Activities = () => {
         <p className={'text-neutral-600 text-sm md:text-[15px] mt-1'}>
           Select which activities recipients will be required to complete
         </p>
+        <Link href={'/opportunities'} prefetch>
+        <Icon_close className="absolute top-3 right-3" />
+        </Link>
       </div>
       <div className={'flex flex-col gap-5 w-full items h-full overflow-auto'}>
         {/* Content */}
