@@ -1,4 +1,4 @@
-import React from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
 import { twMerge } from 'tailwind-merge'
 
 const HeaderContainer = ({ children, className }) => {

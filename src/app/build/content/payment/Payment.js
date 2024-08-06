@@ -5,28 +5,29 @@ import buildStore from '@/utilities/store/buildStore'
 import { useStore } from 'zustand'
 import PaymentDetails from './PaymentDetails'
 import TermsAndConditions from './TermsAndConditions'
-import Icon_check2 from '@/app/components/icons/Icon_check2'
 import { useState } from 'react'
 import Toast from '@/app/components/Toast'
-import { sendOffer } from './actions'
+import { insertOrUpdate } from './actions'
 import { formatDateToUTCString } from '@/utilities/date-and-time/formatDateToUTCString'
 import { useRouter } from 'next/navigation'
 import ButtonLoader from '@/app/components/ButtonLoader'
 import Link from 'next/link'
 import Icon_close from '@/app/components/icons/Icon_close'
+import utilityStore from '@/utilities/store/utilityStore'
 
 const Payment = () => {
   const {
+    postId,
     selectedActivities,
     selectedRecipients,
     setactiveStep,
     dealType,
     dealName,
     brief,
-    resetbuildStore,
     expirationDate,
     list,
   } = useStore(buildStore)
+  const { setdrawer } = useStore(utilityStore)
   const [hasAcceptedTC, sethasAcceptedTC] = useState(true)
   const [toast, settoast] = useState(null)
   const [loading, setloading] = useState(null)
@@ -39,18 +40,21 @@ const Payment = () => {
   const handleSubmit = async () => {
     if (!hasAcceptedTC && !allOK) return
     setloading({ id: 'submit' })
-    const { data, error } = await sendOffer({
-      type: dealType,
-      title: dealName,
-      brief,
-      expirationDate: expirationDate
-        ? formatDateToUTCString(expirationDate)
-        : null,
-      selectedRecipients: dealType === 'offer' ? selectedRecipients : [],
-      selectedActivities,
+    const { data, error } = await insertOrUpdate({
+      data: {
+        type: dealType,
+        title: dealName,
+        brief,
+        expirationDate: expirationDate
+          ? formatDateToUTCString(expirationDate)
+          : null,
+        selectedRecipients: dealType === 'offer' ? selectedRecipients : [],
+        selectedActivities,
+      },
+      id: postId ? postId : null,
     })
     if (data) {
-      resetbuildStore()
+      setdrawer(data[0])
       router.push('/opportunities')
     } else if (error) {
       settoast({
@@ -118,7 +122,13 @@ const Payment = () => {
           }`}
           parameters={{ id: 'submit', loading, setloading }}
         >
-          {dealType === 'offer' ? 'Send Offer' : 'List opportunity'}{' '}
+          {dealType === 'offer'
+            ? postId
+              ? 'Update offer'
+              : 'Send offer'
+            : postId
+            ? 'Update opportunity'
+            : 'List opportunity'}{' '}
         </ButtonLoader>
       </div>
     </div>

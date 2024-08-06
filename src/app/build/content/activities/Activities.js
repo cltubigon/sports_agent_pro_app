@@ -41,7 +41,7 @@ const Activities = () => {
           Select which activities recipients will be required to complete
         </p>
         <Link href={'/opportunities'} prefetch>
-        <Icon_close className="absolute top-3 right-3" />
+          <Icon_close className="absolute top-3 right-3" />
         </Link>
       </div>
       <div className={'flex flex-col gap-5 w-full items h-full overflow-auto'}>

@@ -10,13 +10,12 @@ const ViewMore = ({ children, className, maxHeight }) => {
   const [Height, setHeight] = useState(null)
   const contentRef = useRef(null)
 
-  const asdf = Height + 20 >= parseInt(maxHeight?.replace('px', ''))
   useEffect(() => {
     if (contentRef?.current?.offsetHeight) {
       setHeight(contentRef?.current?.offsetHeight)
     }
   }, [])
-  console.log('Height, maxHeight', asdf, Height, maxHeight)
+
   const handleView = () => {
     setisOpen(!isOpen)
   }

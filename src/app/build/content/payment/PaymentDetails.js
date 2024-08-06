@@ -36,13 +36,13 @@ const PaymentDetails = () => {
         <div className={'flex flex-col gap-1'}>
           <div className={'flex items-center justify-between'}>
             <p className={''}>Recipient compensation</p>
-            <p className={''}>${compensation}</p>
+            <p className={''}>${compensation?.toFixed(2)}</p>
           </div>
           <div className={'flex items-center justify-between'}>
             <p className={''}>
               Marketplace fee<span className="text-red-500">*</span>
             </p>
-            <p className={''}>${fee}</p>
+            <p className={''}>${fee?.toFixed(2)}</p>
           </div>
           <div
             className={

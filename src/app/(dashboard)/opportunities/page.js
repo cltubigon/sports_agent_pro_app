@@ -1,35 +1,34 @@
 import Button from '@/app/components/Button'
 import CopyClipboard from '@/app/components/CopyClipboard2'
-import Drawer from '@/app/components/Drawer'
 import HeaderContainer from '@/app/components/ThisWebsiteOnly/Dashboard/content-area/HeaderContainer'
 import ProfilePictureComponent from '@/app/components/ThisWebsiteOnly/profilePicture/ProfilePictureComponent'
 import { getCurrentUser } from '@/config/supabase/getCurrentUser'
 import { createServer } from '@/config/supabase/supabaseServer'
 import { capitalizeAllFirstLetter } from '@/utilities/capitalizeAllFirstLetter'
-import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import Details from './Details'
 import DrawerContainer from './DrawerContainer'
+import EditButton from './EditButton'
+import Header from './Header'
 
 const OpportunitiesPage = async () => {
   const supabase = createServer()
   const user = await getCurrentUser()
   const { data: posts, error } = await supabase.from('posts').select()
-  console.log('posts', posts)
   return (
     <div>
-      <HeaderContainer
-        className={'flex flex-col md:flex-row items-start gap-2'}
-      >
-        <h3 className={'font-oswald text-2xl md:text-3xl font-bold'}>
-          My Opportunities
-        </h3>
-        <div className={'w-fit'}>
-          <Link href={'/build'} prefetch>
-            <Button className="h-[53px]">Build Opportunity</Button>
-          </Link>
-        </div>
+      <HeaderContainer>
+        <Header>
+          <h3 className={'font-oswald text-2xl md:text-3xl font-bold'}>
+            My Opportunities
+          </h3>
+          <div className={'w-fit'}>
+            <Link href={'/build'} prefetch>
+              <Button className="h-[53px]">Build Opportunity</Button>
+            </Link>
+          </div>
+        </Header>
       </HeaderContainer>
       <div
         className={
@@ -45,8 +44,6 @@ const OpportunitiesPage = async () => {
             selectedActivities,
             total,
           } = item
-          // const expDate =
-          // console.log('expDate', expDate)
           return (
             <div
               className={
@@ -117,7 +114,8 @@ const OpportunitiesPage = async () => {
                     )}
                   </div>
                   <p className={''}>
-                    Total <span className="font-bold">${total}</span>
+                    Total{' '}
+                    <span className="font-bold">${total?.toFixed(2)}</span>
                   </p>
                   {expirationDate && (
                     <p className={''}>
@@ -130,13 +128,7 @@ const OpportunitiesPage = async () => {
                 </div>
               </div>
               <div className={'flex gap-2 flex-col md:px-4'}>
-                <Button
-                  className="w-full h-12 border-secondary text-secondary md:hover:bg-secondary-50"
-                  variant="button2"
-                  size="size2"
-                >
-                  Edit
-                </Button>
+                <EditButton item={item} />
                 <Details item={item} />
               </div>
             </div>

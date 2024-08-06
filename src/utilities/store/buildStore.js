@@ -243,13 +243,20 @@ const buildStore = create(
             : checkActivitiesIfOk(get) && checkDetailsIfOk(get)
       })
     },
-    resetbuildStore: (data) => {
+    postId: null,
+    setpostId: (data) => {
+      set((state) => {
+        state.postId = data
+      })
+    },
+    resetbuildStore: () => {
       set((state) => {
         state.list[0].isOK = false
         state.list[1].isOK = false
         state.list[2].isOK = false
         state.list[3].isOK = false
         state.list[4].isOK = false
+        state.postId = null
         state.activeStep = 'deal_type'
         state.dealType = 'offer'
         state.dealName = null

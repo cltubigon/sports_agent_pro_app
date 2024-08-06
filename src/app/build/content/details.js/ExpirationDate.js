@@ -49,7 +49,7 @@ const ExpirationDate = () => {
           <DateInput
             id="expirationDate"
             onChange={handleexpirationDate}
-            defaultValue={
+            default={
               expirationDate ||
               new Date(addDaysToDate(new Date(), 2)).toISOString().slice(0, 10)
             }

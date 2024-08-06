@@ -9,7 +9,6 @@ import Link from 'next/link'
 
 const DealType = () => {
   const { dealType, setdealType, setactiveStep } = useStore(buildStore)
-
   const handleClick = (value) => {
     setdealType(value)
   }
@@ -31,7 +30,7 @@ const DealType = () => {
           Select what type of deal you will be building out
         </p>
         <Link href={'/opportunities'} prefetch>
-        <Icon_close className="absolute top-3 right-3" />
+          <Icon_close className="absolute top-3 right-3" />
         </Link>
       </div>
       <div

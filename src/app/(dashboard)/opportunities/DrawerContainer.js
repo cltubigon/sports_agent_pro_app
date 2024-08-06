@@ -10,6 +10,7 @@ import utilityStore from '@/utilities/store/utilityStore'
 import Image from 'next/image'
 import React from 'react'
 import { useStore } from 'zustand'
+import useEditPost from './hooks/useEditPost'
 
 const Container = ({ children }) => {
   return <div className={'flex flex-col px-4 gap-5 py-5'}>{children}</div>
@@ -17,7 +18,7 @@ const Container = ({ children }) => {
 
 const DrawerContainer = ({ user }) => {
   const { drawer, setdrawer } = useStore(utilityStore)
-  console.log('drawer', drawer)
+  const { handleEdit } = useEditPost({ item: drawer })
 
   const uniqueActivities = removeDuplicatesFromArray(
     drawer?.selectedActivities?.map((i) => i.name)
@@ -80,14 +81,16 @@ const DrawerContainer = ({ user }) => {
                   <p className={' line-clamp-1'}>
                     Applications <span className="font-semibold">0</span>
                   </p>
+                  {drawer?.expirationDate && (
+                    <p className={' line-clamp-1'}>
+                      Expires{' '}
+                      <span className="font-semibold">
+                        {new Date(drawer?.expirationDate).toLocaleDateString()}
+                      </span>
+                    </p>
+                  )}
                   <p className={' line-clamp-1'}>
-                    Expires{' '}
-                    <span className="font-semibold">
-                      {new Date(drawer?.expirationDate).toLocaleDateString()}
-                    </span>
-                  </p>
-                  <p className={' line-clamp-1'}>
-                    Expires{' '}
+                    Total{' '}
                     <span className="font-semibold">${drawer?.total}</span>
                   </p>
                 </div>
@@ -108,7 +111,6 @@ const DrawerContainer = ({ user }) => {
                   <div className={'flex flex-col gap-2'}>
                     {drawer?.selectedActivities?.map((item, index) => {
                       const { img, name, date, compensation } = item
-                      console.log('item', item)
                       return (
                         <div key={index} className={'flex gap-2 items-center'}>
                           <Image
@@ -140,7 +142,7 @@ const DrawerContainer = ({ user }) => {
             }
           >
             <Button className="w-full">View Applicants</Button>
-            <Button className="w-full" variant="button2">
+            <Button onClick={handleEdit} className="w-full" variant="button2">
               Edit
             </Button>
           </div>
