@@ -95,29 +95,19 @@ const Payment = () => {
       {/* Footer */}
       <div
         className={
-          'flex justify-between py-2 md:py-4 border-t-2 px-3 md:px-8 xl:px-14 2xl:px-20'
+          'flex flex-col md:flex-row gap-1 justify-between py-2 md:py-4 border-t-2 px-3 md:px-8 xl:px-14 2xl:px-20'
         }
       >
         <Button
           onClick={handlePrev}
-          className="h-10 max-sm:text-sm md:h-12 max-sm:px-3"
+          className="h-10 max-sm:w-full max-sm:text-sm md:h-12 max-sm:px-3"
         >
           <Icon_left /> Previous
         </Button>
-        {/* <Button
-          disabled={(!hasAcceptedTC || !allOK) && true}
-          onClick={handleSubmit}
-          className={`h-10 max-sm:text-sm md:h-12 max-sm:px-3 ${
-            (!hasAcceptedTC || !allOK) && 'opacity-60'
-          }`}
-        >
-          {dealType === 'offer' ? 'Send Offer' : 'List opportunity'}{' '}
-          <Icon_check2 />
-        </Button> */}
         <ButtonLoader
           disabled={(!hasAcceptedTC || !allOK) && true}
           onClick={handleSubmit}
-          className={`h-10 max-sm:text-sm md:h-12 max-sm:px-3 ${
+          className={`h-10 max-sm:w-full max-sm:text-sm md:h-12 max-sm:px-3 ${
             (!hasAcceptedTC || !allOK) && 'opacity-60'
           }`}
           parameters={{ id: 'submit', loading, setloading }}

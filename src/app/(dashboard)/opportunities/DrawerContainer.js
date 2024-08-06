@@ -16,7 +16,7 @@ const Container = ({ children }) => {
   return <div className={'flex flex-col px-4 gap-5 py-5'}>{children}</div>
 }
 
-const DrawerContainer = ({ user }) => {
+const DrawerContainer = ({ user, account_type }) => {
   const { drawer, setdrawer } = useStore(utilityStore)
   const { handleEdit } = useEditPost({ item: drawer })
 

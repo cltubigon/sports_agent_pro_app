@@ -11,23 +11,43 @@ import Details from './Details'
 import DrawerContainer from './DrawerContainer'
 import EditButton from './EditButton'
 import Header from './Header'
+import Icon_heart2 from '@/app/components/icons/Icon_heart2'
+import ApplyButton from './ApplyButton'
 
 const OpportunitiesPage = async () => {
   const supabase = createServer()
   const user = await getCurrentUser()
+  const account_type = user?.account_type
+  console.log('user?.account_type', user?.account_type)
   const { data: posts, error } = await supabase.from('posts').select()
   return (
     <div>
       <HeaderContainer>
         <Header>
-          <h3 className={'font-oswald text-2xl md:text-3xl font-bold'}>
-            My Opportunities
-          </h3>
-          <div className={'w-fit'}>
-            <Link href={'/build'} prefetch>
-              <Button className="h-[53px]">Build Opportunity</Button>
-            </Link>
-          </div>
+          {(account_type === 'athlete' || account_type === 'coach') && (
+            <div className={'flex flex-col'}>
+              <h3 className={'font-oswald text-2xl md:text-3xl font-bold'}>
+                Listed opportunities
+              </h3>
+              <p className={'text-neutral-400'}>
+                Based on your profile and interests
+              </p>
+            </div>
+          )}
+          {account_type === 'brand' && (
+            <div className={'flex flex-col'}>
+              <h3 className={'font-oswald text-2xl md:text-3xl font-bold'}>
+                My Opportunities
+              </h3>
+            </div>
+          )}
+          {account_type === 'brand' && (
+            <div className={'w-fit'}>
+              <Link href={'/build'} prefetch>
+                <Button className="h-[53px]">Build Opportunity</Button>
+              </Link>
+            </div>
+          )}
         </Header>
       </HeaderContainer>
       <div
@@ -81,8 +101,16 @@ const OpportunitiesPage = async () => {
                       </div>
                     </div>
                   </div>
-                  <div className={'flex mt-2 px-2'}>
+                  <div
+                    className={
+                      'flex flex-col py-1 items-center justify-center px-2 gap-1'
+                    }
+                  >
                     {/* <Icon_copy className="text-neutral-500" /> */}
+                    {(account_type === 'athlete' ||
+                      account_type === 'coach') && (
+                      <Icon_heart2 className="text-neutral-500 size-4" />
+                    )}
                     <CopyClipboard
                       textToCopy={`${process.env.NEXT_PUBLIC_ROOT_DOMAIN}/opportunities/${id}`}
                     />
@@ -127,15 +155,23 @@ const OpportunitiesPage = async () => {
                   )}
                 </div>
               </div>
-              <div className={'flex gap-2 flex-col md:px-4'}>
-                <EditButton item={item} />
-                <Details item={item} />
-              </div>
+              {(account_type === 'athlete' || account_type === 'coach') && (
+                <div className={'flex gap-2 flex-col md:px-4'}>
+                  <ApplyButton item={item} />
+                  <Details item={item} />
+                </div>
+              )}
+              {account_type === 'brand' && (
+                <div className={'flex gap-2 flex-col md:px-4'}>
+                  <EditButton item={item} />
+                  <Details item={item} />
+                </div>
+              )}
             </div>
           )
         })}
       </div>
-      <DrawerContainer user={user} />
+      <DrawerContainer user={user} account_type={account_type} />
     </div>
   )
 }

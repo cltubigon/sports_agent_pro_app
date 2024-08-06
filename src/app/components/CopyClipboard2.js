@@ -37,7 +37,7 @@ const CopyClipboard = ({ textToCopy }) => {
     <div>
       <div
         onClick={handleCopy}
-        className={`flex items-center justify-center gap-1 rounded-md md:border-[1px] py-2 md:px-[15px] cursor-pointer select-none  ${
+        className={`flex items-center justify-center gap-1 rounded-md md:border-[1px] py-[6px] md:px-[15px] cursor-pointer select-none  ${
           copied
             ? 'border-secondary'
             : 'border-neutral-300 hover:bg-neutral-100'
