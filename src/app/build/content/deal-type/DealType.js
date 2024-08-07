@@ -8,7 +8,9 @@ import Icon_close from '@/app/components/icons/Icon_close'
 import Link from 'next/link'
 
 const DealType = () => {
-  const { dealType, setdealType, setactiveStep } = useStore(buildStore)
+  const { selectedRecipients, dealType, setdealType, setactiveStep } =
+    useStore(buildStore)
+  console.log('selectedRecipients', selectedRecipients)
   const handleClick = (value) => {
     setdealType(value)
   }

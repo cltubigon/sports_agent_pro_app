@@ -3,7 +3,6 @@ import ModuleContainer from './ModuleContainer'
 import { useStore } from 'zustand'
 import buildStore from '@/utilities/store/buildStore'
 import Image from 'next/image'
-import Icon_megaphone from '@/app/components/icons/Icon_megaphone'
 import Button from '@/app/components/Button'
 
 const Activities = () => {
@@ -26,6 +25,8 @@ const Activities = () => {
                 >
                   <div className={'flex gap-3 items-center'}>
                     <Image
+                      width={48}
+                      height={48}
                       src={img}
                       alt="Activity"
                       quality={100}

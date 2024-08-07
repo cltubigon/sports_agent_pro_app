@@ -57,6 +57,8 @@ const Content = ({ handlePopupOpen }) => {
               >
                 <div className={'flex gap-3 items-center'}>
                   <Image
+                    width={12}
+                    height={12}
                     src={img}
                     alt="Activity"
                     quality={100}

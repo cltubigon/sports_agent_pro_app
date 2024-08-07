@@ -10,7 +10,7 @@ const Discover = ({ athletes, isColumn, handleClear }) => {
   const { selectedRecipients, setselectedRecipients } = useStore(buildStore)
 
   const handleClick = (id) => {
-    setselectedRecipients(id)
+    setselectedRecipients([id])
   }
   return (
     <div

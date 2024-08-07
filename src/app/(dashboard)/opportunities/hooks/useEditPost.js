@@ -18,6 +18,7 @@ const useEditPost = ({ item }) => {
   } = useStore(buildStore)
   const { setdrawer } = useStore(utilityStore)
 
+  console.log('item?.selectedRecipients', item?.selectedRecipients)
   const router = useRouter()
   const handleEdit = () => {
     // resetbuildStore()

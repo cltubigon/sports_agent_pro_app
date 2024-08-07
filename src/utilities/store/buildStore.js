@@ -131,10 +131,16 @@ const buildStore = create(
     setselectedRecipients: (data) => {
       set((state) => {
         const curRecipients = get().selectedRecipients
-        if (!curRecipients?.some((r) => r === data)) {
-          state.selectedRecipients = [...curRecipients, data]
+        if (data?.length < 1 || !data) return
+        if (!curRecipients?.some((r) => data?.includes(r))) {
+          console.log('data', data)
+          console.log('entered top')
+          state.selectedRecipients = [...curRecipients, ...data]
         } else {
-          state.selectedRecipients = curRecipients?.filter((r) => r !== data)
+          console.log('entered bottom')
+          state.selectedRecipients = curRecipients?.filter(
+            (r) => !data?.includes(r)
+          )
         }
       })
       set((state) => {

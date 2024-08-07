@@ -36,6 +36,8 @@ const Content = () => {
     refetchInterval: 3600 * 1000,
   })
 
+  console.log('selectedRecipients', selectedRecipients)
+
   useEffect(() => {
     setfetchedAthletes(athletes)
   }, [athletes])

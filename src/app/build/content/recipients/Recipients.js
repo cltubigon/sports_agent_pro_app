@@ -20,7 +20,9 @@ const Recipients = ({ athletes, isColumn }) => {
     <div className={'w-full h-full bg-white flex flex-col justify-between'}>
       {/* Header */}
       <div
-        className={'relative py-1 md:py-4 border-b-2  px-3 md:px-8 xl:px-14 2xl:px-20'}
+        className={
+          'relative py-1 md:py-4 border-b-2  px-3 md:px-8 xl:px-14 2xl:px-20'
+        }
       >
         <h5 className={'font-oswald text-2xl md:text-3xl font-bold'}>
           Recipients
@@ -29,7 +31,7 @@ const Recipients = ({ athletes, isColumn }) => {
           Select which recipients you will be sending this to
         </p>
         <Link href={'/opportunities'} prefetch>
-        <Icon_close className="absolute top-3 right-3" />
+          <Icon_close className="absolute top-3 right-3" />
         </Link>
       </div>
       <div className={'flex flex-col gap-5 w-full items h-full overflow-auto'}>
