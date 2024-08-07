@@ -33,11 +33,11 @@ const PopupContent = ({ setpopup }) => {
     )
   }
   const handleDeduct = (item) => {
-    const ind = tempSelections?.findIndex((temp) => temp.name === item.name)
-    const asdf = tempSelections?.filter(
-      (_, index) =>
-        index !== tempSelections?.findIndex((temp) => temp.name === item.name)
-    )
+    // const ind = tempSelections?.findIndex((temp) => temp.name === item.name)
+    // const asdf = tempSelections?.filter(
+    //   (_, index) =>
+    //     index !== tempSelections?.findIndex((temp) => temp.name === item.name)
+    // )
     settempSelections(
       tempSelections?.filter(
         (_, index) =>
@@ -83,6 +83,8 @@ const PopupContent = ({ setpopup }) => {
               >
                 <div className={'flex gap-4'}>
                   <Image
+                    width={48}
+                    height={48}
                     src={img}
                     alt="Activity"
                     quality={100}
