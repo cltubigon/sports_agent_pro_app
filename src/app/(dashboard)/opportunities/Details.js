@@ -8,7 +8,6 @@ const Details = ({ item, applications }) => {
   const handleDetailsClick = () => {
     if (applications) {
       const { applications, ...newItem } = item
-      const asdf = { ...newItem, applications: applications[0] }
       setdrawer({ ...newItem, applications: applications[0] })
     } else {
       const { applications, ...newItem } = item

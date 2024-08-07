@@ -19,7 +19,7 @@ const Container = ({ children }) => {
   return <div className={'flex flex-col px-4 gap-5 py-5'}>{children}</div>
 }
 
-const DrawerContainer = ({ user, account_type }) => {
+const DrawerContainer = ({ account_type }) => {
   const { drawer, setdrawer } = useStore(utilityStore)
   const { handleEdit } = useEditPost({ item: drawer })
 
@@ -37,7 +37,7 @@ const DrawerContainer = ({ user, account_type }) => {
             {/* Profile Section */}
             <div className={'flex bg-neutral-50 gap-5 items-center'}>
               <ProfilePictureComponent
-                user={user}
+                user={drawer?.users}
                 parameters={{
                   containerStyle:
                     'min-w-[60px] max-h-[60px] md:min-w-[80px] md:min-h-[80px] 2xp:min-w-[100px] 2xp:min-h-[100px] rounded-none',
@@ -46,11 +46,11 @@ const DrawerContainer = ({ user, account_type }) => {
               />
               <div className={'flex flex-col w-full'}>
                 <p className={'text-lg font-semibold'}>
-                  {user?.first_name && user?.last_name
+                  {drawer?.users?.first_name && drawer?.users?.last_name
                     ? `${capitalizeAllFirstLetter(
-                        user?.first_name
-                      )} ${capitalizeAllFirstLetter(user?.last_name)}`
-                    : capitalizeAllFirstLetter(user?.display_name)}
+                        drawer?.users?.first_name
+                      )} ${capitalizeAllFirstLetter(drawer?.users?.last_name)}`
+                    : capitalizeAllFirstLetter(drawer?.users?.display_name)}
                 </p>
                 <div className={'flex items-center gap-2'}>
                   <p className={'text-sm'}>Open</p>
@@ -116,6 +116,8 @@ const DrawerContainer = ({ user, account_type }) => {
                       return (
                         <div key={index} className={'flex gap-2 items-center'}>
                           <Image
+                            width={48}
+                            height={48}
                             src={img}
                             alt="Activity"
                             quality={100}
