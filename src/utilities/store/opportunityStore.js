@@ -4,7 +4,7 @@ import { immer } from 'zustand/middleware/immer'
 const opportunityStore = create(
   immer((set, get) => ({
     // ********* Toast *********
-    hasApplied: [],
+    hasApplied: null,
     sethasApplied: (data) => {
       set((state) => {
         state.hasApplied = data

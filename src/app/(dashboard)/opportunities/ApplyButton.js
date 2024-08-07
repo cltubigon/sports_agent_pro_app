@@ -36,14 +36,35 @@ const ApplyButton = ({ item, applications }) => {
     }
   }
   return (
-    <Button
-      onClick={handleApply}
-      className="w-full h-12 border-secondary text-secondary md:hover:bg-secondary-50"
-      variant="button2"
-      size="size2"
-    >
-      {applied ? 'Applied' : 'Apply'}
-    </Button>
+    <>
+      {hasApplied ? (
+        <Button
+          onClick={handleApply}
+          className={`w-full h-12 ${
+            applied
+              ? 'border-secondary bg-secondary text-white md:hover:bg-secondary-600'
+              : 'border-secondary text-secondary md:hover:bg-secondary-50'
+          }`}
+          variant="button2"
+          size="size2"
+        >
+          {applied ? 'Applied' : 'Apply'}
+        </Button>
+      ) : (
+        <Button
+          onClick={handleApply}
+          className="w-full h-12 border-secondary text-secondary md:hover:bg-secondary-50"
+          variant="button2"
+          size="size2"
+        >
+          <div
+            className={
+              'w-[80px] bg-gradient-to-br from-neutral-50 to-neutral-200 animate-pulse h-3 rounded-md'
+            }
+          />
+        </Button>
+      )}
+    </>
   )
 }
 
