@@ -1,5 +1,6 @@
 'use client'
 import buildStore from '@/utilities/store/buildStore'
+import utilityStore from '@/utilities/store/utilityStore'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { useStore } from 'zustand'
@@ -15,10 +16,12 @@ const useEditPost = ({ item }) => {
     setselectedActivities,
     setselectedRecipients,
   } = useStore(buildStore)
+  const { setdrawer } = useStore(utilityStore)
 
   const router = useRouter()
   const handleEdit = () => {
     // resetbuildStore()
+    setdrawer(null)
     setpostId(item?.id)
     setdealType(item?.type || 'offer')
     setdealName(item?.title || null)

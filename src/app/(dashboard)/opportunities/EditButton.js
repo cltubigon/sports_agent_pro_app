@@ -2,6 +2,8 @@
 import Button from '@/app/components/Button'
 import React from 'react'
 import useEditPost from './hooks/useEditPost'
+import { useStore } from 'zustand'
+import utilityStore from '@/utilities/store/utilityStore'
 
 const EditButton = ({ item }) => {
   const { handleEdit } = useEditPost({ item })

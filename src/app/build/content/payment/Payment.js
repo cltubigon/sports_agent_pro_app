@@ -27,7 +27,7 @@ const Payment = () => {
     expirationDate,
     list,
   } = useStore(buildStore)
-  const { setdrawer } = useStore(utilityStore)
+  // const { setdrawer } = useStore(utilityStore)
   const [hasAcceptedTC, sethasAcceptedTC] = useState(true)
   const [toast, settoast] = useState(null)
   const [loading, setloading] = useState(null)
@@ -54,7 +54,7 @@ const Payment = () => {
       id: postId ? postId : null,
     })
     if (data) {
-      setdrawer(data[0])
+      // setdrawer(null)
       router.push('/opportunities')
     } else if (error) {
       settoast({

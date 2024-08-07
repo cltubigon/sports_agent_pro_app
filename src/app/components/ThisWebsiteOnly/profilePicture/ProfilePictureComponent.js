@@ -60,7 +60,10 @@ const ProfilePictureComponent = forwardRef(function ProfilePictureComponent(
           sizes="(max-width: 768px) 100vw, 100vw"
           data="profile-picture"
           title="Upload profile picture"
-          className="object-cover rounded-full transition-all duration-300 z-10"
+          className={twMerge(
+            'object-cover rounded-full transition-all duration-300 z-10',
+            props?.parameters?.imgStyle
+          )}
           {...props}
           ref={ref}
         />

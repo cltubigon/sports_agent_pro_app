@@ -18,8 +18,24 @@ const OpportunitiesPage = async () => {
   const supabase = createServer()
   const user = await getCurrentUser()
   const account_type = user?.account_type
-  console.log('user?.account_type', user?.account_type)
-  const { data: posts, error } = await supabase.from('posts').select()
+
+  let posts
+  if (account_type === 'brand') {
+    const { data: ownerPost, ownerPostError } = await supabase
+      .from('posts')
+      .select(`*, users (profilePicture, first_name, last_name, display_name)`)
+      .eq('owner_id', user?.id)
+    posts = ownerPost
+    console.log('ownerPostError', ownerPostError)
+  } else if (account_type === 'athlete' || account_type === 'coach') {
+    const { data: allPosts, allPostsError } = await supabase
+      .from('posts')
+      .select(`*, users (profilePicture, first_name, last_name, display_name)`)
+    console.log('allPosts', allPosts)
+    posts = allPosts
+    console.log('allPostsError', allPostsError)
+  }
+  console.log('posts', posts)
   return (
     <div>
       <HeaderContainer>
@@ -63,6 +79,7 @@ const OpportunitiesPage = async () => {
             expirationDate,
             selectedActivities,
             total,
+            users: owner,
           } = item
           return (
             <div
@@ -77,7 +94,7 @@ const OpportunitiesPage = async () => {
                 >
                   <div className={'flex gap-2'}>
                     <ProfilePictureComponent
-                      user={user}
+                      user={owner}
                       parameters={{
                         containerStyle: 'size-[64px] rounded-none',
                         imgStyle: 'rounded-none',
@@ -85,11 +102,11 @@ const OpportunitiesPage = async () => {
                     />
                     <div className={'flex flex-col'}>
                       <p className={'text-lg mt-1 font-semibold line-clamp-1'}>
-                        {user?.first_name && user?.last_name
+                        {owner?.first_name && owner?.last_name
                           ? `${capitalizeAllFirstLetter(
-                              user?.first_name
-                            )} ${capitalizeAllFirstLetter(user?.last_name)}`
-                          : capitalizeAllFirstLetter(user?.display_name)}
+                              owner?.first_name
+                            )} ${capitalizeAllFirstLetter(owner?.last_name)}`
+                          : capitalizeAllFirstLetter(owner?.display_name)}
                       </p>
                       <div className={'flex items-center gap-2'}>
                         <p className={'text-sm'}>Open</p>
