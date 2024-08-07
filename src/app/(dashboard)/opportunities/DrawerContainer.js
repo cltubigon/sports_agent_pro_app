@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 import Button from '@/app/components/Button'
 import Drawer from '@/app/components/Drawer'
@@ -8,9 +9,11 @@ import { capitalizeAllFirstLetter } from '@/utilities/capitalizeAllFirstLetter'
 import { removeDuplicatesFromArray } from '@/utilities/removeDuplicatesFromArray'
 import utilityStore from '@/utilities/store/utilityStore'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useStore } from 'zustand'
 import useEditPost from './hooks/useEditPost'
+import ApplyButton from './ApplyButton'
+import opportunityStore from '@/utilities/store/opportunityStore'
 
 const Container = ({ children }) => {
   return <div className={'flex flex-col px-4 gap-5 py-5'}>{children}</div>
@@ -23,7 +26,6 @@ const DrawerContainer = ({ user, account_type }) => {
   const uniqueActivities = removeDuplicatesFromArray(
     drawer?.selectedActivities?.map((i) => i.name)
   )
-
   const handleClose = () => {
     setdrawer(null)
   }
@@ -136,16 +138,32 @@ const DrawerContainer = ({ user, account_type }) => {
               </Container>
             </div>
           </div>
-          <div
-            className={
-              'absolute flex-col md:flex-row bottom-0 w-full flex gap-2 md:gap-5 py-3 px-4'
-            }
-          >
-            <Button className="w-full">View Applicants</Button>
-            <Button onClick={handleEdit} className="w-full" variant="button2">
-              Edit
-            </Button>
-          </div>
+          {account_type === 'brand' && (
+            <div
+              className={
+                'absolute flex-col md:flex-row bottom-0 w-full flex gap-2 md:gap-5 py-3 px-4'
+              }
+            >
+              <Button className="w-full">View Applicants</Button>
+              <Button onClick={handleEdit} className="w-full" variant="button2">
+                Edit
+              </Button>
+            </div>
+          )}
+          {(account_type === 'athlete' || account_type === 'coach') && (
+            <div
+              className={
+                'absolute flex-col md:flex-row bottom-0 w-full flex gap-2 md:gap-5 py-3 px-4'
+              }
+            >
+              <ApplyButton
+                item={drawer}
+                applications={
+                  drawer?.applications ? drawer?.applications : null
+                }
+              />
+            </div>
+          )}
         </div>
       </Drawer>
     </div>

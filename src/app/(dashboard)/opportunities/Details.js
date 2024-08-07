@@ -3,11 +3,17 @@ import Button from '@/app/components/Button'
 import utilityStore from '@/utilities/store/utilityStore'
 import { useStore } from 'zustand'
 
-const Details = ({ item }) => {
+const Details = ({ item, applications }) => {
   const { setdrawer } = useStore(utilityStore)
-
   const handleDetailsClick = () => {
-    setdrawer(item)
+    if (applications) {
+      const { applications, ...newItem } = item
+      const asdf = { ...newItem, applications: applications[0] }
+      setdrawer({ ...newItem, applications: applications[0] })
+    } else {
+      const { applications, ...newItem } = item
+      setdrawer(newItem)
+    }
   }
   return (
     <>

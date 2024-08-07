@@ -26,20 +26,18 @@ const OpportunitiesPage = async () => {
       .select(`*, users (profilePicture, first_name, last_name, display_name)`)
       .eq('owner_id', user?.id)
     posts = ownerPost
-    console.log('ownerPostError', ownerPostError)
   } else if (account_type === 'athlete' || account_type === 'coach') {
     const { data: allPosts, allPostsError } = await supabase
       .from('posts')
-      .select(`*, users (profilePicture, first_name, last_name, display_name)`)
-    console.log('allPosts', allPosts)
+      .select(
+        `*, users (profilePicture, first_name, last_name, display_name), applications(*)`
+      )
     posts = allPosts
-    console.log('allPostsError', allPostsError)
   }
-  console.log('posts', posts)
   return (
     <div>
       <HeaderContainer>
-        <Header>
+        <Header posts={posts}>
           {(account_type === 'athlete' || account_type === 'coach') && (
             <div className={'flex flex-col'}>
               <h3 className={'font-oswald text-2xl md:text-3xl font-bold'}>
@@ -80,6 +78,7 @@ const OpportunitiesPage = async () => {
             selectedActivities,
             total,
             users: owner,
+            applications,
           } = item
           return (
             <div
@@ -174,8 +173,18 @@ const OpportunitiesPage = async () => {
               </div>
               {(account_type === 'athlete' || account_type === 'coach') && (
                 <div className={'flex gap-2 flex-col md:px-4'}>
-                  <ApplyButton item={item} />
-                  <Details item={item} />
+                  <ApplyButton
+                    applications={
+                      applications?.length >= 1 ? applications[0] : null
+                    }
+                    item={item}
+                  />
+                  <Details
+                    item={item}
+                    applications={
+                      applications?.length >= 1 ? applications[0] : null
+                    }
+                  />
                 </div>
               )}
               {account_type === 'brand' && (
