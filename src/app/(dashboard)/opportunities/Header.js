@@ -9,13 +9,6 @@ const Header = ({ children, posts }) => {
   const { resetbuildStore } = useStore(buildStore)
   const { hasApplied, sethasApplied } = useStore(opportunityStore)
 
-  // useEffect(() => {
-  //   if (item?.id === applications?.post_id) {
-  //     console.log('istrue', item?.id)
-  //     sethasApplied([...hasApplied, item?.id])
-  //   }
-  // }, [])
-
   useEffect(() => {
     sethasApplied([
       ...posts
