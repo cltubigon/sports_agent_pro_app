@@ -10,6 +10,12 @@ const opportunityStore = create(
         state.hasApplied = data
       })
     },
+    hasSavedToList: null,
+    sethasSavedToList: (data) => {
+      set((state) => {
+        state.hasSavedToList = data
+      })
+    },
     drawerApplications: [],
     setdrawerApplications: (item) => {
       set((state) => {

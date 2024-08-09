@@ -20,7 +20,7 @@ const OpportunitiesPage = async () => {
     const { data: allPosts, allPostsError } = await supabase
       .from('posts')
       .select(
-        `*, users (profilePicture, first_name, last_name, display_name), applications(*)`
+        `*, users (profilePicture, first_name, last_name, display_name), applications(*), favorite_opportunities(*)`
       )
     posts = allPosts
   }

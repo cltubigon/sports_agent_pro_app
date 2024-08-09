@@ -12,7 +12,7 @@ import Image from 'next/image'
 import React, { useEffect } from 'react'
 import { useStore } from 'zustand'
 import useEditPost from './hooks/useEditPost'
-import ApplyButton from './ApplyButton'
+import ApplyButton from './athlete/ApplyButton'
 import opportunityStore from '@/utilities/store/opportunityStore'
 
 const Container = ({ children }) => {

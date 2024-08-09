@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 import Button from '@/app/components/Button'
-import React, { useEffect, useState } from 'react'
-import { applyToPost, unApplyToPost } from './actions'
+import { applyToPost, unApplyToPost } from '../actions'
 import { useStore } from 'zustand'
 import opportunityStore from '@/utilities/store/opportunityStore'
 

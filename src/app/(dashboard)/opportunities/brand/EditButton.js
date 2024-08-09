@@ -1,7 +1,7 @@
 'use client'
 import Button from '@/app/components/Button'
 import React from 'react'
-import useEditPost from './hooks/useEditPost'
+import useEditPost from '../hooks/useEditPost'
 
 const EditButton = ({ item }) => {
   const { handleEdit } = useEditPost({ item })

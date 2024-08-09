@@ -7,13 +7,19 @@ import { useStore } from 'zustand'
 
 const Header = ({ children, posts }) => {
   const { resetbuildStore } = useStore(buildStore)
-  const { hasApplied, sethasApplied } = useStore(opportunityStore)
+  const { hasApplied, sethasApplied, hasSavedToList, sethasSavedToList } =
+    useStore(opportunityStore)
 
   useEffect(() => {
     sethasApplied([
       ...posts
         ?.filter((i) => i.applications?.length > 0)
         ?.map((i) => i?.applications[0]?.post_id),
+    ])
+    sethasSavedToList([
+      ...posts
+        ?.filter((i) => i.favorite_opportunities?.length > 0)
+        ?.map((i) => i?.favorite_opportunities[0]?.post_id),
     ])
     resetbuildStore()
   }, [])

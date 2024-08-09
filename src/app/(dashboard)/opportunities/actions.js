@@ -28,3 +28,32 @@ export const unApplyToPost = async (data) => {
   revalidatePath('/opportunities')
   return null
 }
+
+export const saveToList = async (data) => {
+  const { id } = data
+  const supabase = createServer()
+  const { data: applyResult, error } = await supabase
+    .from('favorite_opportunities')
+    .insert([{ post_id: id }])
+    .select()
+  if (applyResult) {
+    revalidatePath('/opportunities')
+    return { data: applyResult, error: null }
+  } else if (error) {
+    return { data: null, error: error?.message }
+  }
+}
+
+export const unSaveToList = async (data) => {
+  const { id } = data
+  const supabase = createServer()
+  const { error } = await supabase
+    .from('favorite_opportunities')
+    .delete()
+    .eq('id', id)
+  if (error) {
+    return error?.message
+  }
+  revalidatePath('/opportunities')
+  return null
+}

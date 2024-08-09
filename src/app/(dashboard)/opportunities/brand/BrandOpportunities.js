@@ -7,7 +7,7 @@ import Link from 'next/link'
 import React from 'react'
 import Details from '../Details'
 import DrawerContainer from '../DrawerContainer'
-import EditButton from '../EditButton'
+import EditButton from './EditButton'
 import Header from '../Header'
 
 const BrandOpportunities = ({ user, posts, account_type }) => {
