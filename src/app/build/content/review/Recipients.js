@@ -35,8 +35,9 @@ const Recipients = () => {
                   className={`flex gap-3 md:gap-5 content-between items-center`}
                 >
                   <ProfilePictureComponent
+                    sizes="48px"
                     parameters={{
-                      containerStyle: 'size-12 min-w-12 min-h-12',
+                      containerStyle: 'min-w-[48px] min-h-[48px]',
                     }}
                     user={item}
                   />

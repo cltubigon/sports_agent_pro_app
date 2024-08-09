@@ -8,14 +8,14 @@ import { twMerge } from 'tailwind-merge'
 }
 
 const ProfilePictureComponent = forwardRef(function ProfilePictureComponent(
-  { children, className, ...props },
+  { children, className, sizes, ...props },
   ref
 ) {
   // Accepts and OBJECT user
   return (
     <div
       className={twMerge(
-        'group/profile relative size-[100px] overflow-hidden rounded-full',
+        'group/profile relative min-w-[100px] min-h-[100px] overflow-hidden rounded-full',
         props?.parameters?.containerStyle
       )}
     >
@@ -27,7 +27,8 @@ const ProfilePictureComponent = forwardRef(function ProfilePictureComponent(
           quality={100}
           alt="user image"
           fill
-          sizes="(max-width: 768px) 100vw, 100vw"
+          sizes={sizes || '100px'}
+          // "(max-width: 768px) 100vw, 100vw"
           data="profile-picture"
           className={twMerge(
             'object-cover rounded-full border-[1px] border-[#ccc] transition-all duration-300 z-10',
@@ -42,7 +43,7 @@ const ProfilePictureComponent = forwardRef(function ProfilePictureComponent(
           quality={100}
           alt="user image"
           fill
-          sizes="(max-width: 768px) 100vw, 100vw"
+          sizes={sizes || '100px'}
           data="profile-picture"
           className={twMerge(
             'object-cover rounded-full border-[1px] border-[#ccc] transition-all duration-300 z-10',
@@ -57,7 +58,7 @@ const ProfilePictureComponent = forwardRef(function ProfilePictureComponent(
           alt="profile placeholder"
           quality={100}
           fill
-          sizes="(max-width: 768px) 100vw, 100vw"
+          sizes={sizes || '100px'}
           data="profile-picture"
           title="Upload profile picture"
           className={twMerge(

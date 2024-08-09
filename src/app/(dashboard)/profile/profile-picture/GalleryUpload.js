@@ -56,7 +56,7 @@ const GalleryUpload = ({ parameters: { user, images, setpopup } }) => {
                   blurDataURL={blurDataURL}
                   quality={100}
                   fill
-                  sizes="(max-width: 768px) 100vw, 100vw"
+                  sizes="160px"
                   className="object-cover group-hover:brightness-50"
                 />
                 {/* <Button

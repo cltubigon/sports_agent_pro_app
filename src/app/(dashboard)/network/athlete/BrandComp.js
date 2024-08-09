@@ -26,7 +26,7 @@ const BrandComp = ({ brand, currentUser }) => {
                     blurDataURL={item?.profilePicture?.blurDataURL}
                     alt="athlete profile picture"
                     quality={100}
-                    sizes="(max-width: 768px) 100vw, 100vw"
+                    sizes="214px"
                     fill
                     className="object-cover"
                   />
@@ -36,7 +36,7 @@ const BrandComp = ({ brand, currentUser }) => {
                     alt="athlete profile picture"
                     quality={100}
                     fill
-                    sizes="(max-width: 768px) 100vw, 100vw"
+                    sizes="214px"
                     className="object-cover"
                   />
                 )}

@@ -206,6 +206,7 @@ const Media = ({ user, images: imagesFromSupabase }) => {
                             blurDataURL={blurDataURL}
                             quality={100}
                             fill
+                            sizes="160px"
                             className="object-cover group-hover/edit:brightness-50 transition-all duration-300"
                           />
                           <Icon_trash
@@ -275,7 +276,7 @@ const Media = ({ user, images: imagesFromSupabase }) => {
                   blurDataURL={blurDataURL}
                   quality={100}
                   fill
-                  sizes="(max-width: 768px) 100vw, 100vw"
+                  sizes="(min-width: 1500px) 260px, (min-width: 768px) 200px, 150px"
                   className="object-cover"
                 />
               </div>

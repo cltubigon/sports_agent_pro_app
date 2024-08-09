@@ -38,11 +38,9 @@ const SelectedRecipients = ({ athletes, isColumn, setisDiscover }) => {
               <div
                 onClick={() => handleClick(id)}
                 key={index}
-                className={
-                  `border-[1px] cursor-default rounded-md hover:border-neutral-400 px-2 md:px-5 ${
-                    isColumn ? 'border-neutral-200' : 'border-transparent'
-                  }`
-                }
+                className={`border-[1px] cursor-default rounded-md hover:border-neutral-400 px-2 md:px-5 ${
+                  isColumn ? 'border-neutral-200' : 'border-transparent'
+                }`}
               >
                 <div
                   className={`flex gap-3 md:gap-5 py-[6px] ml-2 ${
@@ -62,8 +60,9 @@ const SelectedRecipients = ({ athletes, isColumn, setisDiscover }) => {
                       )}
                     </div>
                     <ProfilePictureComponent
+                      sizes="48px"
                       parameters={{
-                        containerStyle: 'size-12 min-w-12 min-h-12',
+                        containerStyle: 'min-w-[48px] min-h-[48px]',
                       }}
                       user={item}
                     />

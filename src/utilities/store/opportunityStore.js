@@ -26,6 +26,21 @@ const opportunityStore = create(
         }
       })
     },
+    // Athlete Opportunities
+    isMyApplications: false,
+    setisMyApplications: () => {
+      set((state) => {
+        const status = get().isMyApplications
+        state.isMyApplications = !status
+      })
+    },
+    isMySavedList: false,
+    setisMySavedList: () => {
+      set((state) => {
+        const status = get().isMySavedList
+        state.isMySavedList = !status
+      })
+    },
   })),
   {
     name: 'opportunityStore',

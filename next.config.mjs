@@ -1,5 +1,4 @@
 // import withBundleAnalyzer from "@next/bundle-analyzer"
-
 const nextConfig = {
   images: {
     remotePatterns: [

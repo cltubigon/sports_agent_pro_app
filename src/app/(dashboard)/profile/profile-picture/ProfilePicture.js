@@ -31,8 +31,9 @@ const ProfilePicture = ({ user, images }) => {
         <ProfilePictureComponent
           user={user}
           onClick={handleImageClick}
+          sizes="128px"
           parameters={{
-            containerStyle: 'size-[128px]',
+            containerStyle: 'min-w-[128px] min-h-[128px]',
             imgStyle: 'lg:group-hover/profile:brightness-50',
           }}
         >

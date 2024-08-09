@@ -29,7 +29,8 @@ const Navigation = ({ user }) => {
               >
                 <ProfilePictureComponent
                   user={user}
-                  parameters={{ containerStyle: 'size-[35px]' }}
+                  sizes="35px"
+                  parameters={{ containerStyle: 'min-w-[35px] min-h-[35px]' }}
                 />
                 <p className={'text-sm text-center'}>Login</p>
               </div>

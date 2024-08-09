@@ -56,8 +56,10 @@ const BrandOpportunities = ({ user, posts, account_type }) => {
                   <div className={'flex gap-2'}>
                     <ProfilePictureComponent
                       user={owner}
+                      sizes="64px"
                       parameters={{
-                        containerStyle: 'size-[64px] rounded-none',
+                        containerStyle:
+                          'min-w-[64px] min-h-[64px] rounded-none',
                         imgStyle: 'rounded-none',
                       }}
                     />

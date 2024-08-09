@@ -47,8 +47,12 @@ const AccountMenu = ({
       >
         <ProfilePictureComponent
           user={user}
+          sizes="35px"
           parameters={{
-            containerStyle: twMerge('size-[35px]', profPicContainerStyle),
+            containerStyle: twMerge(
+              'min-w-[35px] min-h-[35px]',
+              profPicContainerStyle
+            ),
           }}
         />
         <p className={'text-sm text-center'}>{children}</p>

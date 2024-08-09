@@ -36,8 +36,9 @@ const Sec1 = ({ person }) => {
         </div>
         <ProfilePictureComponent
           user={person}
+          sizes="56px"
           parameters={{
-            containerStyle: 'size-[60px] min-w-[56px] min-h-[56px]',
+            containerStyle: 'min-w-[56px] min-h-[56px]',
           }}
         />
       </div>

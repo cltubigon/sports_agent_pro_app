@@ -57,7 +57,8 @@ const Discover = ({ athletes, isColumn, handleClear }) => {
                     )}
                   </div>
                   <ProfilePictureComponent
-                    parameters={{ containerStyle: 'size-12 min-w-12 min-h-12' }}
+                    sizes="48px"
+                    parameters={{ containerStyle: 'min-w-[48px] min-h-[48px]' }}
                     user={item}
                   />
                 </div>

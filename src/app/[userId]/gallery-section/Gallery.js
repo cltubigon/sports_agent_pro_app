@@ -41,7 +41,7 @@ const Gallery = ({ user, images }) => {
                     blurDataURL={blurDataURL}
                     quality={100}
                     fill
-                    sizes="(max-width: 768px) 100vw, 100vw"
+                    sizes="(min-width: 1280px)268px, (min-width: 1240px) 200px, 144px"
                     className="object-cover"
                   />
                 </div>

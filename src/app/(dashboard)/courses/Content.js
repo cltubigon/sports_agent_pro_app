@@ -47,7 +47,7 @@ const Content = ({
                   <Image
                     src={image || placeholder}
                     fill
-                    sizes="100vw"
+                    sizes="160px"
                     alt="lesson image"
                     className="object-cover"
                   />
@@ -75,12 +75,14 @@ const Content = ({
               {lessonData.title}
             </h3>
             <div
-              className={'relative h-[280px] md:h-[350px] xl:h-[430px] 2xl:h-[530px] mb-6'}
+              className={
+                'relative h-[280px] md:h-[350px] xl:h-[430px] 2xl:h-[530px] mb-6'
+              }
             >
               <Image
                 src={lessonData.image || placeholder}
                 fill
-                sizes="100vw"
+                sizes="(min-width: 1200px) 530px, (min-width: 768px) 350px, 280px"
                 alt="lesson image"
                 className="object-cover"
               />

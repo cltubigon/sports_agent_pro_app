@@ -22,7 +22,10 @@ const HeaderMenu = ({ currentUser }) => {
       </p>
       <ProfilePictureComponent
         user={currentUser}
-        parameters={{ containerStyle: 'size-[50px]' }}
+        sizes="50px"
+        parameters={{
+          containerStyle: 'min-w-[50px] min-h-[50px]',
+        }}
       />
       <div
         className={

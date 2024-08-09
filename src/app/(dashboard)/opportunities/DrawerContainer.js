@@ -38,6 +38,7 @@ const DrawerContainer = ({ account_type }) => {
             <div className={'flex bg-neutral-50 gap-5 items-center'}>
               <ProfilePictureComponent
                 user={drawer?.users}
+                sizes="100px"
                 parameters={{
                   containerStyle:
                     'min-w-[60px] max-h-[60px] md:min-w-[80px] md:min-h-[80px] 2xp:min-w-[100px] 2xp:min-h-[100px] rounded-none',
