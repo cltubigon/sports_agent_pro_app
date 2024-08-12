@@ -1,3 +1,4 @@
+import { opportunityMiddleware } from '@/app/(dashboard)/opportunities/middleware'
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse } from 'next/server'
 
@@ -71,6 +72,10 @@ export async function updateSession(request) {
       if (pathname === '/signup' && params === '4') return
       else return NextResponse.redirect(new URL('/network', request.url))
     }
+    if (pathname === '/opportunities' && url.searchParams.get('post')) {
+      return opportunityMiddleware(request)
+    }
+    // All Logic below are for logged out users
   } else if (
     (pathname === '/signup' && params === '3' && !user) ||
     (pathname === '/signup' && params === '4' && !user)

@@ -1,16 +1,16 @@
 import HeaderContainer from '@/app/components/ThisWebsiteOnly/Dashboard/content-area/HeaderContainer'
-import React from 'react'
-import DrawerContainer from '../DrawerContainer'
 import Header from '../Header'
-import Opportunities from './Opportunities'
+import Opportunities from '../Opportunities'
 import MyApplicationsButton from './MyApplicationsButton'
 import MySavedList from './MySavedList'
+import { getCookie } from '@/utilities/actions/cookieActions'
 
-const AthleteOpportunities = ({ posts, user, account_type }) => {
+const AthleteOpportunities = async ({ posts, account_type }) => {
+  const activePostId = await getCookie('drawerPostId')
   return (
     <div>
       <HeaderContainer>
-        <Header posts={posts}>
+        <Header>
           <div className={'flex flex-col w-full'}>
             <h3 className={'font-oswald text-2xl md:text-3xl font-bold'}>
               Listed opportunities
@@ -25,8 +25,11 @@ const AthleteOpportunities = ({ posts, user, account_type }) => {
           </div>
         </Header>
       </HeaderContainer>
-      <Opportunities posts={posts} />
-      <DrawerContainer user={user} account_type={account_type} />
+      <Opportunities
+        posts={posts}
+        account_type={account_type}
+        activePostId={activePostId}
+      />
     </div>
   )
 }

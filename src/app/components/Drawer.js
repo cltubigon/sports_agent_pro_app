@@ -4,22 +4,21 @@ import Icon_right from './icons/Icon_right'
 import { useStore } from 'zustand'
 import utilityStore from '@/utilities/store/utilityStore'
 import { AnimatePresence, LazyMotion, m } from 'framer-motion'
+import { deleteCookie } from '@/utilities/actions/cookieActions'
 const loadFeatures = () =>
   import('@/utilities/framerMotion/features').then((res) => res.default)
 
 // set drawer to any string / array / true value
-// const { drawer, setdrawer } = useStore(utilityStore)
-
+// const [drawer, setdrawer] = useState(null)
 {
   /* <Drawer>
         <p>children</p>
     </Drawer> */
 }
 
-const Drawer = ({ children, mobileCloseActive }) => {
-  const { drawer, setdrawer } = useStore(utilityStore)
-
+const Drawer = ({ children, mobileCloseActive, drawer, setdrawer }) => {
   const handleCloseDrawer = () => {
+    deleteCookie('drawerPostId') // This can be removed on Other websites except sportsagentpro
     setdrawer(null)
   }
 

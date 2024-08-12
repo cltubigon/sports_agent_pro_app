@@ -1,54 +1,47 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
-import Button from '@/app/components/Button'
 import { applyToPost, unApplyToPost } from '../actions'
-import { useStore } from 'zustand'
-import opportunityStore from '@/utilities/store/opportunityStore'
+import ButtonLoader from '@/app/components/ButtonLoader'
+import { useEffect, useState } from 'react'
 
-const ApplyButton = ({ item, applications }) => {
-  const { hasApplied, sethasApplied } = useStore(opportunityStore)
-  const applied = hasApplied?.some((i) => i === item?.id)
+const ApplyButton = ({ item }) => {
+  const [loading, setloading] = useState(null)
+  const hasApplied = item?.applications?.length > 0
+
+  useEffect(() => {
+    setloading(null)
+  }, [hasApplied])
 
   const handleApply = async () => {
-    if (!applied) {
-      sethasApplied([...hasApplied, item?.id])
-      await applyToPost(item)
+    setloading({ id: item?.id })
+
+    if (!hasApplied) {
+      const { data } = await applyToPost(item)
+      if (!data) {
+        changeLoading()
+      }
     } else {
-      sethasApplied(hasApplied?.filter((i) => i !== item?.id))
-      const error = await unApplyToPost(applications)
-      console.log('error', error)
+      const error = await unApplyToPost(item?.applications[0])
+      if (error) {
+        changeLoading()
+      }
     }
   }
   return (
-    <>
-      {hasApplied ? (
-        <Button
-          onClick={handleApply}
-          className={`w-full h-12 ${
-            applied
-              ? 'border-secondary bg-secondary text-white md:hover:bg-secondary-600'
-              : 'border-secondary text-secondary md:hover:bg-secondary-50'
-          }`}
-          variant="button2"
-          size="size2"
-        >
-          {applied ? 'Applied' : 'Apply'}
-        </Button>
-      ) : (
-        <Button
-          onClick={handleApply}
-          className="w-full h-12 border-secondary text-secondary md:hover:bg-secondary-50"
-          variant="button2"
-          size="size2"
-        >
-          <div
-            className={
-              'w-[80px] bg-gradient-to-br from-neutral-50 to-neutral-200 animate-pulse h-3 rounded-md'
-            }
-          />
-        </Button>
-      )}
-    </>
+    <ButtonLoader
+      onClick={handleApply}
+      disabled={loading && true}
+      className={`w-full h-12 ${
+        hasApplied
+          ? 'border-secondary bg-secondary text-white md:hover:bg-secondary-600'
+          : 'border-secondary text-secondary md:hover:bg-secondary-50'
+      }`}
+      parameters={{ id: item?.id, loading, setloading }}
+      variant="button2"
+      size="size2"
+    >
+      {hasApplied ? 'Applied' : 'Apply'}
+    </ButtonLoader>
   )
 }
 

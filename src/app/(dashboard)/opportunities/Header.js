@@ -1,26 +1,13 @@
 'use client'
 /* eslint-disable react-hooks/exhaustive-deps */
 import buildStore from '@/utilities/store/buildStore'
-import opportunityStore from '@/utilities/store/opportunityStore'
 import React, { useEffect } from 'react'
 import { useStore } from 'zustand'
 
-const Header = ({ children, posts }) => {
+const Header = ({ children }) => {
   const { resetbuildStore } = useStore(buildStore)
-  const { hasApplied, sethasApplied, hasSavedToList, sethasSavedToList } =
-    useStore(opportunityStore)
 
   useEffect(() => {
-    sethasApplied([
-      ...posts
-        ?.filter((i) => i.applications?.length > 0)
-        ?.map((i) => i?.applications[0]?.post_id),
-    ])
-    sethasSavedToList([
-      ...posts
-        ?.filter((i) => i.favorite_opportunities?.length > 0)
-        ?.map((i) => i?.favorite_opportunities[0]?.post_id),
-    ])
     resetbuildStore()
   }, [])
   return (

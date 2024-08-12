@@ -1,18 +1,9 @@
 'use client'
 import Button from '@/app/components/Button'
-import utilityStore from '@/utilities/store/utilityStore'
-import { useStore } from 'zustand'
 
-const Details = ({ item, applications }) => {
-  const { setdrawer } = useStore(utilityStore)
+const Details = ({ item, setactiveID }) => {
   const handleDetailsClick = () => {
-    if (applications) {
-      const { applications, ...newItem } = item
-      setdrawer({ ...newItem, applications: applications[0] })
-    } else {
-      const { applications, ...newItem } = item
-      setdrawer(newItem)
-    }
+    setactiveID(item?.id)
   }
   return (
     <>
