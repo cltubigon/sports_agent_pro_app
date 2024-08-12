@@ -7,6 +7,8 @@ import { generateBlurDataURL } from './actions'
 import Icon_spinner from '../icons/Icon_spinner'
 import { twMerge } from 'tailwind-merge'
 import Toast from '../Toast'
+import { useStore } from 'zustand'
+import utilityStore from '@/utilities/store/utilityStore'
 
 // guide:
 // Add these
@@ -22,6 +24,14 @@ import Toast from '../Toast'
           setImagesWithBlurDataUrl,
           placeholder: 'Click to upload file.',     // optional
           quantityLimit: 1,                         // optional
+          accept: {
+            'image/png': ['.png'],
+            'image/jpg': ['.jpg'],
+            'image/jpeg': ['.jpeg'],
+            'image/svg': ['.svg'],
+            'image/webp': ['.webp'],
+          },
+          maxSize: 2,                               // optional 2MB
         }}
       /> */
 }
@@ -36,24 +46,32 @@ const CltDropzone = ({
     placeholder,
     selectedContainerStyle,
     quantityLimit,
+    allowedType,
+    maxSize, // Default is 4.1MB
   },
 }) => {
-  const [toast, settoast] = useState(null)
+  const { toast, settoast } = useStore(utilityStore)
+
   const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
-    if (!quantityLimit) {
-      acceptedFiles.forEach((file) => {
-        setSelectedImages((prevState) => [...prevState, file])
-      })
-    } else {
-      setSelectedImages(acceptedFiles)
-      if (rejectedFiles?.length > 0) {
-        settoast({
-          description: 'Files rejected',
-          status: 'error',
-        })
+    if (rejectedFiles?.length > 0) {
+      let error
+      if (rejectedFiles[0]?.errors[0]?.message?.includes('File type must be')) {
+        error = 'Invalid file type'
+      } else if (
+        rejectedFiles[0]?.errors[0]?.message?.includes('File is larger than')
+      ) {
+        error = 'File too large'
       }
+      settoast({
+        description: error || rejectedFiles[0]?.errors[0]?.message,
+        status: 'error',
+      })
+    }
+    if (acceptedFiles?.length > 0) {
+      setSelectedImages(acceptedFiles)
     }
   }, [])
+
   const onUpload = async () => {
     let formData = new FormData()
     for (const image of selectedImages) {
@@ -67,6 +85,7 @@ const CltDropzone = ({
     })
     setImagesWithBlurDataUrl(newSelectedImages)
   }
+
   useEffect(() => {
     if (selectedImages?.length <= 0) return
     onUpload()
@@ -81,6 +100,14 @@ const CltDropzone = ({
   } = useDropzone({
     onDrop,
     maxFiles: quantityLimit,
+    maxSize: maxSize || 1024 * 1000 * 4.1,
+    accept: {
+      'image/png': ['.png'],
+      'image/jpg': ['.jpg'],
+      'image/jpeg': ['.jpeg'],
+      'image/svg': ['.svg'],
+      'image/webp': ['.webp'],
+    },
   })
 
   return (
@@ -89,7 +116,7 @@ const CltDropzone = ({
       <div
         {...getRootProps()}
         className={twMerge(
-          'w-full bg-white text-[#C4C6C9] py-8 px-3 border-[1px] border-secondary border-dashed relative flex flex-col gap-2 justify-center items-center',
+          'w-full bg-white text-[#C4C6C9] py-8 px-3 border-[1px] border-neutral-300 border-dashed relative flex flex-col gap-2 justify-center items-center',
           containerStyle
         )}
       >
@@ -101,7 +128,7 @@ const CltDropzone = ({
             {placeholder || 'Click to upload files, or drag & drop files here.'}
           </p>
         )}
-        {selectedImages.length > 0 && (
+        {selectedImages?.length > 0 && (
           <div
             className={twMerge(
               'grid grid-cols-2 md:grid-cols-4 gap-2 mt-2',

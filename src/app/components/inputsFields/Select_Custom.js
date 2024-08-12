@@ -98,7 +98,7 @@ export default function Select_Custom({
     : variants['default']
 
   return (
-    <div className={'relative w-full'}>
+    <div className={'relative h-fit w-full'}>
       <div
         className={twMerge(
           variation,

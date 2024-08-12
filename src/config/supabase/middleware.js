@@ -1,6 +1,4 @@
-import { restrictedPages } from '@/app/lib/restrictedPages'
 import { createServerClient } from '@supabase/ssr'
-import { redirect } from 'next/navigation'
 import { NextResponse } from 'next/server'
 
 export async function updateSession(request) {

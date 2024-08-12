@@ -75,12 +75,14 @@ const Menu = ({ children, classId, ...props }) => {
   })
   const triggeredFunction = (e) => {
     const currElem = e.target?.className
-    const currParent = e.target?.parentElement?.className
+    const currParent = e.target?.offsetParent?.className
 
     if (typeof currElem === 'string' && typeof currParent === 'string') {
       if (!currElem?.includes(classId) && !currParent?.includes(classId)) {
         setShowModal(() => !showModal)
       }
+    } else {
+      setShowModal(() => !showModal)
     }
   }
 
