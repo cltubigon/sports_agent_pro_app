@@ -13,17 +13,16 @@ const DesktopNav = ({ parameters: { nav, pathName } }) => {
               {path ? (
                 <Link
                   href={path}
-                  className={`${pathName === path && 'text-primary'}`}
+                  className="group-hover/main:text-primary"
+                  // className={`${pathName === path && 'text-primary'}`}
                 >
                   {name}
                 </Link>
               ) : (
-                name
+                <p className={'group-hover/main:text-primary'}>{name}</p>
               )}
               <div
-                className={`absolute -bottom-1 h-[1px] ${
-                  pathName === path ? 'w-full' : 'w-0'
-                } group-hover/main:w-full ease-in-out bg-primary transition-all duration-300`}
+                className={`absolute -bottom-1 h-[1px] w-0 group-hover/main:w-full ease-in-out bg-primary transition-all duration-300`}
               ></div>
             </div>
             <div

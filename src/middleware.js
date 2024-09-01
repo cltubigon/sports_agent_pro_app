@@ -21,7 +21,7 @@ export async function middleware(req) {
   const path = url.pathname
   const doesInclude = restrictedPages.some((item) => path.includes(item))
 
-  if (doesInclude || path === '/') {
+  if (doesInclude) {
     return await updateSession(req)
   }
   // ************** SPLIT TESTING **************

@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import mainLogo from '@/app/images/main-logo.png'
+import mainLogo from '@/app/images/SAP-logo-colored.png'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { restrictedPathsNavigationMenu } from '@/app/lib/restrictFooterNavigation'
@@ -19,49 +19,39 @@ const MainNavigation = () => {
   const nav = [
     { path: '/', name: 'Home' },
     {
-      name: 'Cleaning services',
-      // path: '/cleaning-services',
-      array: [
-        {
-          name: 'Cleaning Commercial and Domestic',
-          path: '/cleaning-commercial-and-domestic',
-        },
-        {
-          name: 'Professional carpet and upholstery cleaning',
-          path: '/professional-carpet-and-upholstery-cleaning',
-        },
-        {
-          name: 'Professional oven cleaning',
-          path: '/professional-oven-cleaning',
-        },
-      ],
+      name: 'Free Athlete Marketing',
+      // path: '/free-athlete-marketing',
     },
     {
-      name: 'Maintenance Services',
-      // path: '/maintenance-services',
-      array: [
-        {
-          name: 'Grounds keeping and gardening services',
-          path: 'grounds-keeping-and-gardening-services',
-        },
-        {
-          name: 'Home Improvement',
-          path: '/home-improvement',
-        },
-      ],
+      name: 'Free Canva Template Package',
+      // path: '/free-canva-template-package',
     },
     {
       name: 'Contact us',
-      path: '/contact-us',
+      // path: '/contact-us',
     },
+    // {
+    //   name: 'Free Canva Template Package',
+    //   path: '/maintenance-services',
+    //   array: [
+    //     {
+    //       name: 'Grounds keeping and gardening services',
+    //       path: 'grounds-keeping-and-gardening-services',
+    //     },
+    //     {
+    //       name: 'Home Improvement',
+    //       path: '/home-improvement',
+    //     },
+    //   ],
+    // },
   ]
 
   return (
     <>
-      <div className={`flex py-4 shadow-sm select-none`}>
+      <div className={`flex py-5 shadow-sm select-none`}>
         <div
           className={
-            'flex justify-start xl:justify-between items-center gap-2 md:gap-4 xl:gap-[unset] max-w-[1150px] w-full mx-auto px-3 md:px-6 xl:px-0  z-[999]'
+            'flex justify-start xl:justify-between items-center gap-4 md:gap-4 xl:gap-[unset] max-w-[1720px] w-full mx-auto px-3 md:px-6 xl:px-10 2xl:px-0  z-[999]'
           }
         >
           <MobileNav parameters={{ nav, pathName }} />
@@ -70,7 +60,7 @@ const MainNavigation = () => {
               src={mainLogo}
               quality={100}
               priority
-              className=" mx-auto"
+              className="max-sm:max-w-[100px] mx-auto"
               alt="Love Transfusion logo"
             />
           </Link>
