@@ -51,7 +51,7 @@ const MainNavigation = () => {
       <div className={`flex py-5 shadow-sm select-none`}>
         <div
           className={
-            'flex justify-start xl:justify-between items-center gap-4 md:gap-4 xl:gap-[unset] max-w-[1720px] w-full mx-auto px-3 md:px-6 xl:px-10 2xl:px-0  z-[999]'
+            'flex justify-start xl:justify-between items-center gap-4 md:gap-4 xl:gap-[unset] max-w-[1720px] w-full mx-auto px-3 md:px-6 xl:px-10 2xl:px-[100px]  z-[999]'
           }
         >
           <MobileNav parameters={{ nav, pathName }} />

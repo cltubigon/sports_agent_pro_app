@@ -43,7 +43,9 @@ const HomepageHeroBg = () => {
         src={flame}
         quality={100}
         alt="flame background"
-        className="mix-blend-lighten absolute bottom-0 -left-[370px] xl:min-w-[1000px] 2xl:min-w-[1308px]"
+        className={`mix-blend-lighten absolute bottom-0 -left-[370px] xl:min-w-[1000px] 2xl:min-w-[1308px] transition-all duration-700 ${
+          !hasStarted ? 'opacity-0' : 'opacity-100'
+        }`}
       />
     </>
   )
