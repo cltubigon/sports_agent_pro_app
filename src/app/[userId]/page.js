@@ -17,13 +17,10 @@ const UserId = async ({ params }) => {
     .from('users')
     .select('*')
     .eq('id', params?.userId)
+
+  if (!data) notFound()
   const person = data[0]
-
   const images = await fetchGalleryImages(person)
-
-  if (error || person?.length <= 0) {
-    return notFound()
-  }
   return (
     <div>
       <Navigation user={user} />

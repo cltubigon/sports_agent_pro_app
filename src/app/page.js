@@ -1,11 +1,4 @@
-import MainNavigation from './components/ThisWebsiteOnly/Navigation/MainNavigation'
-import HomepageSection1 from './_homepage/section1/Section1'
-import HomepageSection2 from './_homepage/section2/HomepageSection2'
-import HomepageSection3 from './_homepage/section3/HomepageSection3'
-import HomepageSection4 from './_homepage/section4/HomepageSection4'
-import HomepageSection5 from './_homepage/section5/HomepageSection5'
-import HomepageSection6 from './_homepage/Section6/HomepageSection6'
-import Footer from './components/ThisWebsiteOnly/Footer/Footer'
+import LoginPage from './(auth)/login/page'
 
 export const metadata = {
   title: 'Sports Agent Pro',
@@ -17,14 +10,7 @@ const Homepage = async () => {
   // redirect(isLoggedIn ? '/dashboard' : '/login')
   return (
     <>
-      <MainNavigation />
-      <HomepageSection1 />
-      <HomepageSection2 />
-      <HomepageSection3 />
-      <HomepageSection4 />
-      <HomepageSection5 />
-      <HomepageSection6 />
-      <Footer />
+      <LoginPage />
     </>
   )
 }
