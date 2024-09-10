@@ -8,7 +8,6 @@ const useIntersection = (img1Ref) => {
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       const entry = entries[0]
-      console.log('entries', entries)
       if (entry.isIntersecting) {
         // Element is visible
         setisVisible(true)
